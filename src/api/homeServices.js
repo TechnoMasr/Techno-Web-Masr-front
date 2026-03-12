@@ -1,21 +1,26 @@
 import api from "./api";
 
-export const getFaqs = async () => {
-  const { data } = await api.get("/faqs");
-  return data || {};
+export const getHome = async () => {
+  const { data } = await api.get("/home");
+  return data?.data || {};
 };
 
-export const getFeatures = async () => {
-  const { data } = await api.get("/features");
-  return data?.data || [];
+export const getOurStory = async () => {
+  const { data } = await api.get("/our-story");
+  return data?.data || {};
 };
 
-export const getBanner = async () => {
-  const { data } = await api.get("/banner");
-  return data?.data || [];
+export const getTestimonials = async () => {
+  const { data } = await api.get("/testimonials-home");
+  return data?.data || {};
 };
 
-export const getHero = async () => {
-  const { data } = await api.get("/hero");
+export const getOurServices = async () => {
+  const { data } = await api.get("/our-services");
+  return data?.data || {};
+};
+
+export const getCategories = async () => {
+  const { data } = await api.get("/categories");
   return data?.data || [];
 };

@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import settingReducer from "./setting/setting";
+import settingsReducer from "./settings/settingsSlice";
 import languageReducer from "./languageSlice/languageSlice";
+import modalsReducer from "./modals/modalsSlice";
 
 export const store = configureStore({
   reducer: {
-    setting: settingReducer,
+    settings: settingsReducer,
     language: languageReducer,
+    modals: modalsReducer,
   },
 });

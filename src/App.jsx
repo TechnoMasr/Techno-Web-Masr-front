@@ -1,38 +1,44 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router";
+import Header from "@/components/layout/Header/Header";
+import Footer from "@/components/layout/Footer/Footer";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import Header from "./components/layout/Header/Header";
-import Footer from "./components/layout/Footer/Footer";
 import { useDispatch } from "react-redux";
-import { fetchSetting } from "./store/setting/setting";
+import { Toaster } from "@/components/ui/sonner";
 import ScrollToTopBtn from "./components/behaviors/ScrollToTopBtn";
-import ScrollToHash from "./components/behaviors/ScrollToHash";
+import ModalManager from "./components/modals/ModalManager";
 
 function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // dispatch(fetchSettings());
+  }, [dispatch]);
+
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  useEffect(() => {
-    dispatch(fetchSetting());
-  }, [dispatch]);
-
   return (
     <main>
-      <ScrollToHash />
-
       <Header />
 
-      <div className="min-h-[calc(100vh-80px)]">
+      <div className="min-h-dvh">
         <Outlet />
       </div>
 
       <Footer />
 
+      <Toaster position="top-center" />
+
       <ScrollToTopBtn />
+
+      {/* modals */}
+      <ModalManager />
     </main>
   );
 }
