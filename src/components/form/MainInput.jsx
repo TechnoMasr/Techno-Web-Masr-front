@@ -28,7 +28,7 @@ const MainInput = ({
   return (
     <div className="space-y-1">
       {label && (
-        <label htmlFor={name} className="text-sm font-medium">
+        <label htmlFor={name} className="text-sm font-medium text-black">
           {label}
         </label>
       )}
@@ -42,14 +42,14 @@ const MainInput = ({
           onChange={onChange}
           placeholder={placeholder}
           disabled={disabled}
-          className="resize-none bg-muted min-h-20"
+          className="resize-none bg-white min-h-20"
         />
       )}
 
       {/* SELECT */}
       {type === "select" && (
         <Select value={value} onValueChange={onChange} disabled={disabled}>
-          <SelectTrigger className={"w-full bg-muted"}>
+          <SelectTrigger className={"w-full bg-white"}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
 
@@ -69,7 +69,7 @@ const MainInput = ({
           id={name}
           type="file"
           disabled={disabled}
-          className={"bg-muted"}
+          className={"bg-white"}
           // onChange={(e) => onChange(e.target.files?.[0])}
           onChange={(e) => onChange(e.target.files)}
         />
@@ -92,7 +92,7 @@ const MainInput = ({
             type={isPassword ? (showPassword ? "text" : "password") : type}
             placeholder={placeholder}
             disabled={disabled}
-            className={`bg-muted
+            className={`bg-white
                 ${icon ? "ps-10" : ""}
                 ${isPassword ? "pe-10" : ""}`}
           />

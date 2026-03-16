@@ -66,7 +66,7 @@ input::-webkit-inner-spin-button {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #FCFCFC;
   /* --foreground: oklch(0.145 0 0); */
   --foreground: #45556c;
   --card: oklch(1 0 0);
@@ -274,7 +274,7 @@ input::-webkit-inner-spin-button {
 /* phone input */
 /* wrapper */
 .phone-input-wrapper {
-  @apply flex items-center border border-input rounded-md bg-muted
+  @apply flex items-center border border-input rounded-md bg-white
   px-2 h-9 transition-[color,box-shadow];
 }
 

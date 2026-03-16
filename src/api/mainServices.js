@@ -15,17 +15,7 @@ export const sendContactUs = async (formData) => {
   return data?.data || [];
 };
 
-export const getLocationSliders = async () => {
-  const { data } = await api.get(`/sliders`);
-  return data?.data || [];
-};
-
-export const getBestSelling = async () => {
-  const { data } = await api.get(`/products/best-selling`);
-  return data?.data || [];
-};
-
-export const getStrips = async () => {
-  const { data } = await api.get(`/strips`);
-  return data?.data || [];
+export const getTestimonials = async () => {
+  const { data } = await api.get("/testimonials-home");
+  return data?.data || {};
 };

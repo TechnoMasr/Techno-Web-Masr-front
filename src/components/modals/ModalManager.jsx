@@ -1,9 +1,11 @@
+import LoadingModal from "./LoadingModal";
 import MobileNav from "./MobileNav";
 
 const ModalManager = () => {
   return (
     <>
       <MobileNav />
+      <LoadingModal />
     </>
   );
 };

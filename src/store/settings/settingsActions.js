@@ -9,7 +9,7 @@ export const fetchSettings = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(
-        error.response?.data.error_msg || "Failed to load settingss",
+        error.response?.data.error_msg || "Failed to load settings",
       );
     }
   },

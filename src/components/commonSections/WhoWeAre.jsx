@@ -21,6 +21,7 @@ const WhoWeAre = () => {
       icon: <LuFolderCode />,
     },
   ];
+
   return (
     <section className="relative overflow-hidden">
       <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
@@ -33,7 +34,7 @@ const WhoWeAre = () => {
           }
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8">
           <div className="col-span-1 md:col-span-2 h-100 overflow-hidden rounded-2xl shadow">
             <img src={image} alt="" className="w-full h-full object-cover" />
           </div>
@@ -54,7 +55,7 @@ const WhoWeAre = () => {
               المتطورة.
             </p>
 
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
               {list.map((item) => (
                 <li key={item.id} className="flex flex-col gap-2 text-primary">
                   <span className="text-2xl bg-secondary/20 w-10 h-10 flex items-center justify-center rounded-full">

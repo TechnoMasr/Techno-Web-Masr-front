@@ -57,9 +57,12 @@ const Footer = () => {
     >
       {/* <div className="absolute inset-0 bg-primary/95" /> */}
 
-      <div className="container relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-white">
-        <div className="flex flex-col items-center gap-4 text-center">
-          <div className="w-48 overflow-hidden">
+      <div
+        className="container relative z-10 text-white
+        flex flex-col md:flex-row gap-8"
+      >
+        <div className="flex flex-col items-center text-center md:items-start md:text-start gap-4 md:max-w-75">
+          <div className="w-26 overflow-hidden">
             <img
               loading="lazy"
               src={logo}
@@ -67,13 +70,31 @@ const Footer = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <p className="text-sm">
-            lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia
+
+          <p className="text-xs">
+            نسعى إلى الإرتقاء بمستوى الجودة و الدقة لنواكب التطور التكنولوجى و
+            تبسيط حلول الأعمال التقنية نسعى إلى الإرتقاء بمستوى الجودة و الدقة
+            لنواكب التطور التكنولوجى
           </p>
+
+          <div className="flex items-center justify-center flex-wrap gap-4 border-t pt-4 w-full">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                className="hover:text-secondary hover:border-secondary transition-colors text-xl"
+              >
+                {link.icon}
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4 text-center">
-          <h3 className="text-xl lg:text-2xl font-medium uppercase">links</h3>
+        <div className="flex flex-col gap-4 min-w-1/6">
+          <h3 className="text-lg lg:text-xl font-medium uppercase">
+            روابط رئيسية
+          </h3>
           <ul className="space-y-2">
             {links.map((link) => (
               <li key={link.name} title={link.name}>
@@ -88,22 +109,40 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="flex flex-col items-center gap-4 text-center">
-          <h3 className="text-xl lg:text-2xl font-medium uppercase">
-            social media
+        <div className="flex flex-col gap-4 min-w-1/6">
+          <h3 className="text-lg lg:text-xl font-medium uppercase">
+            روابط رئيسية
           </h3>
-          <div className="grid grid-cols-4 gap-4">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                className="hover:text-secondary hover:border-secondary transition-colors p-1 border rounded text-xl"
-              >
-                {link.icon}
-              </a>
+          <ul className="space-y-2">
+            {links.map((link) => (
+              <li key={link.name} title={link.name}>
+                <Link
+                  to={link.href}
+                  className="text-muted hover:text-secondary transition-colors"
+                >
+                  {link.name}
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+
+        <div className="flex flex-col gap-4 min-w-1/6">
+          <h3 className="text-lg lg:text-xl font-medium uppercase">
+            روابط رئيسية
+          </h3>
+          <ul className="space-y-2">
+            {links.map((link) => (
+              <li key={link.name} title={link.name}>
+                <Link
+                  to={link.href}
+                  className="text-muted hover:text-secondary transition-colors"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

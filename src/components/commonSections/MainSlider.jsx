@@ -4,7 +4,7 @@ import "swiper/css";
 
 import { useRef, useState } from "react";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 const MainSlider = ({
   data = [],
@@ -30,7 +30,7 @@ const MainSlider = ({
     setIsEnd(swiper.isEnd);
   };
 
-  const { lang } = useSelector((state) => state.language);
+  const { lang } = useParams();
 
   return (
     <div className="relative w-full">

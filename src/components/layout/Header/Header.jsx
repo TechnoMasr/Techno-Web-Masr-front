@@ -1,5 +1,5 @@
 import logo from "@/assets/images/logo.png";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import HeaderActions from "./HeaderActions/HeaderActions";
@@ -19,6 +19,8 @@ const Header = () => {
     };
   }, []);
 
+  const { lang } = useParams();
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50`}>
       <div
@@ -31,7 +33,7 @@ const Header = () => {
       `}
       >
         <div className="container mx-auto flex justify-between items-center">
-          <Link to="/" className="w-24">
+          <Link to={`/${lang}`} className="w-24">
             <img
               loading="lazy"
               src={logo}
