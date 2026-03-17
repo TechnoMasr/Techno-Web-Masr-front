@@ -1,20 +1,21 @@
 import bgImg from "@/assets/images/bg-img.png";
-import pcImg from "@/assets/images/pc-img.png";
+// import pcImg from "@/assets/images/pc-img.png";
+import pcImg from "@/assets/images/mobiles-img.png";
 import { Button } from "../ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 
 const PageBannerWithImg = () => {
   return (
     <section
-      className="bg-center bg-cover w-full min-h-screen md:min-h-[80vh] content-center pt-24 pb-16 lg:mb-14"
+      className="bg-center bg-cover w-full h-screen md:h-[80vh] content-center pt-24 pb-16 md:mb-14"
       style={{ backgroundImage: `url(${bgImg})` }}
     >
-      <div className="container w-full h-full flex flex-col md:flex-row items-center gap-10">
-        <div className="w-full md:w-1/2">
+      <div className="container w-full h-full flex flex-col justify-center md:flex-row items-center gap-10">
+        <div className="w-full md:w-1/2 h-[250px] md:h-full">
           <img
             src={pcImg}
             alt=""
-            className="w-[90%] sm:w-[60%] md:w-full h-full object-contain mx-auto lg:translate-y-[30%] drop-shadow-xl"
+            className="w-[90%] sm:w-[60%] md:w-full h-full object-contain mx-auto md:translate-y-[35%] drop-shadow-xl"
           />
         </div>
 
@@ -23,7 +24,7 @@ const PageBannerWithImg = () => {
             خدمة تطوير المنتجات
           </h1>
 
-          <p className="text-white/60 text-sm">
+          <p className="text-white/80 text-sm">
             نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي
             النمو والتفوق في التخصص الخاص بهم من خلال التطبيق او الموقع نحن في
             تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي النمو

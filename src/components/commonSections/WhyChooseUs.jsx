@@ -1,4 +1,4 @@
-import image from "@/assets/images/bg-img.png";
+import image from "@/assets/images/Device - Macbook Pro.png";
 import { LuFolderCode } from "react-icons/lu";
 import { PiPaintBrushHouseholdLight } from "react-icons/pi";
 
@@ -39,7 +39,7 @@ const WhyChooseUs = () => {
       <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
 
       <div className="container sectionPadding">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 place-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 place-items-center">
           <div className="flex flex-col gap-4 lg:gap-6">
             <h3 className="text-xl font-semibold text-primary">
               لماذا تختار تكنو ويب مصر
@@ -67,8 +67,8 @@ const WhyChooseUs = () => {
             </ul>
           </div>
 
-          <div className="h-100 overflow-hidden rounded-2xl shadow hidden md:block">
-            <img src={image} alt="" className="w-full h-full object-cover" />
+          <div className="h-100 overflow-hidden hidden md:block">
+            <img src={image} alt="" className="w-full h-full object-contain drop-shadow-xl" />
           </div>
         </div>
       </div>

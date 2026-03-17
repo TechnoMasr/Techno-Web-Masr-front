@@ -25,16 +25,16 @@ const Faqs = () => {
       <div className="container sectionPadding relative z-10">
         <SectionTitle title={"الأسئلة الشائعة"} />
 
-        <div className="flex items-start gap-8">
-          <div className="flex-1">
+        <div className="flex items-start gap-4 lg:gap-8">
+          <div className="flex-1 max-w-2xl mx-auto">
             <Accordion type="single" collapsible className="w-full space-y-4">
               {list.map((item) => (
                 <AccordionItem
                   key={item.id}
                   value={`item-${item.id}`}
-                  className={`bg-gray-50 rounded-lg`}
+                  className={` bg-gray-200 rounded-lg`}
                 >
-                  <AccordionTrigger className="bg-gray-200 p-2 py-4 font-semibold cursor-pointer">
+                  <AccordionTrigger className="text-black p-2 py-4 font-semibold cursor-pointer">
                     {item.question}
                   </AccordionTrigger>
 
@@ -46,7 +46,7 @@ const Faqs = () => {
             </Accordion>
           </div>
 
-          <div className="w-1/3 aspect-4/3 hidden md:block rounded-2xl shadow overflow-hidden">
+          <div className="w-1/3 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden">
             <img src={image} alt="faq" className="w-full h-full object-cover" />
           </div>
         </div>

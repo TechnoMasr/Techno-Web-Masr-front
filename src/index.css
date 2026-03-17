@@ -211,7 +211,7 @@ input::-webkit-inner-spin-button {
   }
 
   .nav_link {
-    @apply text-lg text-white transition-all duration-300 relative;
+    @apply text-white cursor-pointer transition-all duration-300 relative;
 
     &::after {
       content: "";

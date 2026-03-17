@@ -1,4 +1,4 @@
-import image from "@/assets/images/mobiles-img.png";
+import image from "@/assets/images/Device - Macbook Pro.png";
 import TitleAndDescription from "../common/TitleAndDescription";
 import { Button } from "../ui/button";
 
@@ -18,7 +18,7 @@ const TextAndImage = ({
         <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
       )}
 
-      <div className="container grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 relative z-10">
         <div className={`${imageFirst ? "md:order-2" : ""}`}>
           <TitleAndDescription
             textColor={backgroundImage ? "text-white!" : ""}
@@ -39,12 +39,12 @@ const TextAndImage = ({
         </div>
 
         <div
-          className={`w-full h-fit hidden md:block ${imageFirst ? "md:order-1" : ""}`}
+          className={`w-full h-[400px] hidden md:block ${imageFirst ? "md:order-1" : ""}`}
         >
           <img
             src={image}
             alt="image"
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain drop-shadow-xl"
           />
         </div>
       </div>

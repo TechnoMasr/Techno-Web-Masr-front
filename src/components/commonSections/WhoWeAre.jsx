@@ -35,7 +35,7 @@ const WhoWeAre = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8">
-          <div className="col-span-1 md:col-span-2 h-100 overflow-hidden rounded-2xl shadow">
+          <div className="col-span-1 md:col-span-2 aspect-12/9 md:aspect-11/12 overflow-hidden rounded-2xl shadow">
             <img src={image} alt="" className="w-full h-full object-cover" />
           </div>
 

@@ -7,7 +7,7 @@ const GallerySection = () => {
     <section className="container sectionPadding">
       <div className="space-y-6">
         {/* Main Image */}
-        <div className="w-full h-[250px] md:h-[320px] lg:h-[380px] rounded-2xl overflow-hidden">
+        <div className="w-full h-[300px] md:h-[380px] lg:h-[380px] rounded-2xl overflow-hidden">
           <img
             src={image}
             alt="gallery"
@@ -18,10 +18,7 @@ const GallerySection = () => {
         {/* Thumbnails */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {list.map((img, index) => (
-            <div
-              key={index}
-              className="aspect-4/3 rounded-xl overflow-hidden"
-            >
+            <div key={index} className="aspect-4/3 rounded-xl overflow-hidden">
               <img
                 src={img}
                 alt="thumb"

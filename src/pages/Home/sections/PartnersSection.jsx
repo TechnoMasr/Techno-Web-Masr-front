@@ -1,5 +1,5 @@
 import SectionTitle from "@/components/common/SectionTitle";
-import image from "@/assets/images/pc-img.png";
+import image from "@/assets/images/Phone.png";
 
 const PartnersSection = () => {
   const list = Array.from({ length: 8 }).map((_, i) => ({

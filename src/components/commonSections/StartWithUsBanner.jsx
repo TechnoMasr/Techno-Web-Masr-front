@@ -8,16 +8,16 @@ const StartWithUsBanner = () => {
     <section className="container sectionPadding">
       <div
         className="bg-center bg-cover w-full min-h-72 content-center p-8 
-        flex flex-col md:flex-row items-center gap-10 rounded-3xl shadow relative overflow-hidden"
+        flex flex-col md:flex-row items-center gap-4 lg:gap-10 rounded-3xl shadow relative overflow-hidden"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="absolute inset-0 bg-primary/80" />
 
-        <div className="w-full md:w-1/2 relative z-10">
+        <div className="w-full md:w-1/2 h-[200px] md:h-[300px] relative z-10">
           <img
             src={pcImg}
             alt=""
-            className="w-[90%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
+            className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
           />
         </div>
 
@@ -30,7 +30,7 @@ const StartWithUsBanner = () => {
             وكن في الصدارة
           </h2>
 
-          <p className="text-white/60 text-sm">
+          <p className="text-white/80 text-sm">
             نساعدك في بناء موقع إلكتروني أو تطبيق احترافي يجذب عملاءك، يعزز
             مبيعاتك، ويمنح نشاطك حضورًا رقميًا قويًا ينافس أكبر الشركات
           </p>

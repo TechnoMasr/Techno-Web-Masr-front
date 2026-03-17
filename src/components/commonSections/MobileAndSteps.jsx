@@ -35,7 +35,7 @@ const MobileAndSteps = () => {
             ))}
           </ul>
 
-          <Button>اطلب الخدمه</Button>
+          <Button className={`mx-auto block md:me-auto md:ms-0`}>اطلب الخدمه</Button>
         </div>
 
         <div className={`w-full h-[500px] hidden md:block md:col-span-2`}>

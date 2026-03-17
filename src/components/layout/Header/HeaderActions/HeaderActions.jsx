@@ -14,7 +14,7 @@ const HeaderActions = () => {
       <Button variant="secondary">اطلب الخدمه</Button>
 
       <HiMenuAlt3
-        className="header_icon lg:hidden text-3xl!"
+        className="text-white lg:hidden text-3xl!"
         onClick={() => dispatch(openModal({ modalName: "mobileNav" }))}
       />
     </div>

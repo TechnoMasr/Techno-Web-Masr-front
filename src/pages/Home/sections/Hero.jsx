@@ -3,23 +3,27 @@ import bgImg from "@/assets/images/bg-img.png";
 import pcImg from "@/assets/images/pc-img.png";
 import { Button } from "@/components/ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
+import { useDispatch } from "react-redux";
+import { openModal } from "@/store/modals/modalsSlice";
 
 const Hero = ({ data, loading }) => {
   // if (loading) return <HeroSkeleton />;
 
   // if (!data) return null;
 
+  const dispatch = useDispatch();
+
   return (
     <section
       className="bg-center bg-cover w-full min-h-screen content-center pt-24 pb-16"
       style={{ backgroundImage: `url(${bgImg})` }}
     >
-      <div className="container w-full h-full flex flex-col md:flex-row items-center gap-10">
-        <div className="w-full md:w-1/2">
+      <div className="container w-full h-full flex flex-col md:flex-row items-center gap-4 md:gap-10">
+        <div className="w-full md:w-1/2 h-[250px] md:h-[400px]">
           <img
             src={pcImg}
             alt=""
-            className="w-[90%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
+            className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
           />
         </div>
 
@@ -32,12 +36,18 @@ const Hero = ({ data, loading }) => {
             بحلول برمجية ذكية
           </h2>
 
-          <p className="text-white/60 text-sm">
+          <p className="text-white/80 text-sm">
             نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي
             النمو والتفوق في التخصص الخاص بهم من خلال التطبيق او الموقع
           </p>
 
-          <Button variant="secondary" className="mt-6 group">
+          <Button
+            onClick={() =>
+              dispatch(openModal({ modalName: "ServiceRequestModal" }))
+            }
+            variant="secondary"
+            className="mt-6 group"
+          >
             اطلب الخدمة الان
             <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
           </Button>

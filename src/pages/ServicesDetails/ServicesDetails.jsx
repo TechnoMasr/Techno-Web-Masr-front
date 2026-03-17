@@ -9,6 +9,7 @@ import TitleAndSteps from "@/components/commonSections/TitleAndSteps";
 import TechnologySection from "@/components/commonSections/TechnologySection";
 import TechnoMasrTextBanner from "@/components/commonSections/TechnoMasrTextBanner";
 import image from "@/assets/images/bg-img.png";
+import WhyChooseUs from "@/components/commonSections/WhyChooseUs";
 
 const ServicesDetails = () => {
   return (
@@ -17,6 +18,7 @@ const ServicesDetails = () => {
       <PageBannerWithImg />
       <ImagesSliderSection />
       <VideoBanner />
+      <WhyChooseUs />
       <TextAndImage yellowCircle={true} imageFirst={true} />
       <TextAndImage backgroundImage={image} />
       <MobileAndSteps />

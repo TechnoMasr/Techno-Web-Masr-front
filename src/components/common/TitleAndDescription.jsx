@@ -13,7 +13,7 @@ const TitleAndDescription = ({
       )}
 
       {description && (
-        <p className={`mt-2 text-sm font-medium leading-loose ${textColor}`}>
+        <p className={`mt-2 text-sm font-medium leading-relaxed ${textColor}`}>
           {description}
         </p>
       )}

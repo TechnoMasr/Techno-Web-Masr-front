@@ -15,7 +15,7 @@ const Partners = () => {
       <PageBanner title={"عملائنا"} />
 
       <section className="container pagePadding">
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:gap-8">
           {list.map((item) => (
             <li
               key={item.id}

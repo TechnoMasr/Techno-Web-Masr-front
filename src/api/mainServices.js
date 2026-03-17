@@ -15,6 +15,11 @@ export const sendContactUs = async (formData) => {
   return data?.data || [];
 };
 
+export const sendServiceRequest = async (formData) => {
+  const { data } = await api.post(`/sendServiceRequest`, formData);
+  return data?.data || [];
+};
+
 export const getTestimonials = async () => {
   const { data } = await api.get("/testimonials-home");
   return data?.data || {};
