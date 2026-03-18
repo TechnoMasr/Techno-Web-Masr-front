@@ -5,7 +5,6 @@ import { Button } from "../ui/button";
 const TitleAndSteps = ({ block }) => {
   console.log("block", block);
 
-
   return (
     <section className={`sectionPadding`}>
       <div className="container space-y-8">

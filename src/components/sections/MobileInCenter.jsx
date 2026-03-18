@@ -3,7 +3,7 @@ import { MdSnippetFolder } from "react-icons/md";
 import { FaPaintBrush } from "react-icons/fa";
 import MobileInCenterSkeleton from "../skeletons/MobileInCenterSkeleton";
 
-const MobileInCenter = () => {
+const MobileInCenter = ({ block, loading }) => {
   const list = [
     {
       id: 1,
@@ -44,12 +44,10 @@ const MobileInCenter = () => {
   ];
 
   // Split list into left (odd indices) and right (even indices)
-  const leftItems = list.filter((_, i) => i % 2 === 0); // index 0, 2, 4
-  const rightItems = list.filter((_, i) => i % 2 === 1); // index 1, 3, 5
+  const leftItems = block?.block_items?.filter((_, i) => i % 2 === 0); // index 0, 2, 4
+  const rightItems = block?.block_items?.filter((_, i) => i % 2 === 1); // index 1, 3, 5
 
-  // const loading = true;
-
-  // if (loading) return <MobileInCenterSkeleton />;
+  if (loading) return <MobileInCenterSkeleton />;
 
   return (
     <section className="sectionPadding relative overflow-hidden" dir="rtl">
@@ -67,7 +65,7 @@ const MobileInCenter = () => {
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
                 <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
-                  {item.icon}
+                  <img src={item.image_url} alt="icon" className="w-5 h-5" />
                 </span>
                 <h3 className="font-semibold text-base">{item.title}</h3>
                 <p className="text-foreground font-medium text-sm max-w-45">
@@ -80,7 +78,7 @@ const MobileInCenter = () => {
           {/* Center — Phone Image */}
           <div className="flex justify-center">
             <img
-              src={image}
+              src={block?.image_url}
               alt="phone mockup"
               className="w-45 object-contain drop-shadow-2xl"
             />
@@ -94,7 +92,7 @@ const MobileInCenter = () => {
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
                 <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
-                  {item.icon}
+                  <img src={item.image_url} alt="icon" className="w-5 h-5" />
                 </span>
                 <h3 className="font-semibold text-base">{item.title}</h3>
                 <p className="text-foreground font-medium text-sm max-w-45">
@@ -108,18 +106,18 @@ const MobileInCenter = () => {
         {/* Mobile Layout — Phone on top, items in 2-col grid below */}
         <div className="flex flex-col items-center gap-10 md:hidden">
           <img
-            src={image}
+            src={block?.image_url}
             alt="phone mockup"
             className="w-50 object-contain drop-shadow-2xl"
           />
           <ul className="grid grid-cols-2 gap-6 w-full">
-            {list.map((item) => (
+            {block?.block_items?.map((item) => (
               <li
                 key={item.id}
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
                 <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
-                  {item.icon}
+                  <img src={item.image_url} alt="icon" className="w-5 h-5" />
                 </span>
                 <h3 className="font-semibold text-sm">{item.title}</h3>
                 <p className="text-foreground font-medium text-xs">

@@ -1,21 +1,21 @@
 import PreviousWorkCard from "@/components/cards/PreviousWorkCard";
 import SectionTitle from "@/components/common/SectionTitle";
 import MainSlider from "@/components/sections/MainSlider";
-import image from "@/assets/images/bg-img.png";
 import PreviousWorkSectionSkeleton from "../skeletons/PreviousWorkSectionSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { getPortfolioSlider } from "@/api/mainServices";
 
-const PreviousWorkSection = () => {
-  const projects = Array.from({ length: 5 }).map((_, i) => ({
-    id: i,
-    image: image,
-    title: "تصميم الابلكيشن",
-    description:
-      "تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير  شركة متخصصة في الحلول الرقمية وتصميم وتطوير ",
-  }));
+const PreviousWorkSection = ({ block, loading }) => {
+  const { data: portfolioData, isLoading } = useQuery({
+    queryKey: ["portfolioSlider"],
+    queryFn: getPortfolioSlider,
+    enabled: !block?.block_items?.length,
+  });
 
-  // const loading = true;
+  if (loading || isLoading) return <PreviousWorkSectionSkeleton />;
 
-  // if (loading) return <PreviousWorkSectionSkeleton />;
+  const portfolio =
+    block?.block_items?.length > 0 ? block.block_items : portfolioData || [];
 
   return (
     <section>
@@ -40,7 +40,7 @@ const PreviousWorkSection = () => {
             // 780: { slidesPerView: 3.5 },
             960: { slidesPerView: 4 },
           }}
-          data={projects || []}
+          data={portfolio || []}
           renderItem={(project) => (
             <PreviousWorkCard key={project.id} item={project} />
           )}

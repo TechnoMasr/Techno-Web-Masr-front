@@ -1,30 +1,28 @@
 import ServiceCard from "@/components/cards/ServiceCard";
 import SectionTitle from "@/components/common/SectionTitle";
 import MainSlider from "@/components/sections/MainSlider";
-import image from "@/assets/images/bg-img.png";
 import ServicesSectionSkeleton from "../skeletons/ServicesSectionSkeleton";
+import { getServicesSlider } from "@/api/mainServices";
+import { useQuery } from "@tanstack/react-query";
 
-const ServicesSection = () => {
-  const services = Array.from({ length: 5 }).map((_, i) => ({
-    id: i,
-    image: image,
-    title: "تصميم الابلكيشن",
-    description:
-      "تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير  شركة متخصصة في الحلول الرقمية وتصميم وتطوير ",
-  }));
+const ServicesSection = ({ block, loading }) => {
+  const { data: servicesData, isLoading } = useQuery({
+    queryKey: ["servicesSlider"],
+    queryFn: getServicesSlider,
+    enabled: !block?.block_items?.length,
+  });
 
-  // const loading = true;
+  if (loading || isLoading) return <ServicesSectionSkeleton />;
 
-  // if (loading) return <ServicesSectionSkeleton />;
+  const services =
+    block?.block_items?.length > 0 ? block.block_items : servicesData || [];
 
   return (
     <section>
       <div className="container sectionPadding">
         <SectionTitle
-          title={"خدمات تكنو ويب مصر"}
-          description={
-            "تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير المواقع الإلكترونية،"
-          }
+          title={block?.title}
+          description={block?.description}
           link={{
             href: "/services",
             text: "عرض جميع الخدمات",
@@ -32,7 +30,7 @@ const ServicesSection = () => {
         />
 
         <MainSlider
-          data={services || []}
+          data={services}
           renderItem={(service) => (
             <ServiceCard key={service.id} service={service} />
           )}
@@ -41,5 +39,4 @@ const ServicesSection = () => {
     </section>
   );
 };
-
 export default ServicesSection;

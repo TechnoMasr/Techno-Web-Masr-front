@@ -1,17 +1,18 @@
-import image from "@/assets/images/Device - Macbook Pro.png";
 import TitleAndDescription from "../common/TitleAndDescription";
 import { Button } from "../ui/button";
 import TextAndImageSkeleton from "../skeletons/TextAndImageSkeleton";
+import useHandleAction from "@/hooks/useHandleAction";
 
 const TextAndImage = ({
   backgroundImage = null,
   yellowCircle = false,
   imageFirst = false,
+  block,
+  loading,
 }) => {
+  const handleAction = useHandleAction();
 
-  // const loading = true;
-
-  // if (loading) return <TextAndImageSkeleton />;
+  if (loading) return <TextAndImageSkeleton />;
 
   return (
     <section
@@ -28,19 +29,16 @@ const TextAndImage = ({
         <div className={`${imageFirst ? "md:order-2" : ""}`}>
           <TitleAndDescription
             textColor={backgroundImage ? "text-white!" : ""}
-            title={
-              "تعرف علي بعض التفاصيل عن شركتنا  وسبب نجاحنا في جميع الاسواق التي نعمل بها الان"
-            }
-            description={`تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير الــمـــواقـــع الإلــكــتــرونـيـة، المـتـاجـر الإلكـتـرونـيـة، والتـطبيقات، بالإضافة إلى أنــظــمــة الــبــرمجــيــات المــخــصصــة لـلـشركــات. تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع بين التصميم الاحترافي، الأداء التقني العالي، وتجربة المستخدم المتطورة.
-            تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير الــمـــواقـــع الإلــكــتــرونـيـة، المـتـاجـر الإلكـتـرونـيـة، والتـطبيقات، بالإضافة إلى أنــظــمــة الــبــرمجــيــات المــخــصصــة لـلـشركــات. تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع بين التصميم الاحترافي، الأداء التقني العالي، وتجربة المستخدم المتطورة.
-            `}
+            title={block.title}
+            description={block.description}
           />
 
           <Button
+            onClick={() => handleAction(block?.other_data?.btn_1_url)}
             variant={backgroundImage ? "secondary" : "default"}
             className={`${backgroundImage ? "bg-white" : ""} lg:mt-8`}
           >
-            اطلب الخدمه
+            {block?.other_data?.btn_1_text}
           </Button>
         </div>
 
@@ -48,7 +46,7 @@ const TextAndImage = ({
           className={`w-full h-100 hidden md:block ${imageFirst ? "md:order-1" : ""}`}
         >
           <img
-            src={image}
+            src={block.image_url}
             alt="image"
             className="w-full h-full object-contain drop-shadow-xl"
           />

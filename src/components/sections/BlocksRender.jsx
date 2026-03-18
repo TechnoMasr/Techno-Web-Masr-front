@@ -23,6 +23,7 @@ import WhyChooseUsBanner from "./WhyChooseUsBanner";
 import SectionTitle from "../common/SectionTitle";
 import TestimonialsSection from "./TestimonialsSection";
 import Faqs from "./Faqs";
+import GallerySection from "./GallerySection";
 
 const BlocksRender = ({ blocks }) => {
   useEffect(() => {
@@ -123,7 +124,7 @@ const BlocksRender = ({ blocks }) => {
             )}
             {/* 'اسئله شائعه  تصميم باترن وصوره  يمين  ومحتوى يسار  ', 'faq_with_pattern_right_image_left_content' */}
             {block.type === "faq_with_pattern_right_image_left_content" && (
-              <Faqs block={block} />
+              <Faqs block={block} imageRight={true} />
             )}
             {/* 'هيدر  عنوان ونص', 'header_title_and_desc_2' */}
             {block.type === "header_title_and_desc_2" && (

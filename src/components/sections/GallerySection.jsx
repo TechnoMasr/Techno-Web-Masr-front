@@ -1,12 +1,10 @@
-import image from "@/assets/images/bg-img.png";
 import GallerySectionSkeleton from "../skeletons/GallerySectionSkeleton";
 
-const GallerySection = () => {
-  const list = [image, image, image, image];
+const GallerySection = ({ block, loading }) => {
+  if (loading) return <GallerySectionSkeleton />;
 
-  // const loading = true;
-
-  // if (loading) return <GallerySectionSkeleton />;
+  const bigImage = block?.block_items[0]?.image_url;
+  const images = block?.block_items[0]?.images_url;
 
   return (
     <section className="container sectionPadding">
@@ -14,7 +12,7 @@ const GallerySection = () => {
         {/* Main Image */}
         <div className="w-full h-75 md:h-95 rounded-2xl overflow-hidden">
           <img
-            src={image}
+            src={bigImage}
             alt="gallery"
             className="w-full h-full object-cover"
           />
@@ -22,7 +20,7 @@ const GallerySection = () => {
 
         {/* Thumbnails */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {list.map((img, index) => (
+          {images?.map((img, index) => (
             <div key={index} className="aspect-4/3 rounded-xl overflow-hidden">
               <img
                 src={img}

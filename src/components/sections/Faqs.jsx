@@ -8,15 +8,20 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import FaqsSkeleton from "../skeletons/FaqsSkeleton";
+import { getFaq } from "@/api/mainServices";
+import { useQuery } from "@tanstack/react-query";
 
-const Faqs = ({ block, loading }) => {
-  const list = Array.from({ length: 5 }).map((_, i) => ({
-    id: i,
-    question: "ما هي الخدمات التي تقدمها تكنو ويب مصر؟",
-    answer: "نقدم خدمات تصميم وتطوير المواقع والتطبيقات والتسويق الإلكتروني.",
-  }));
+const Faqs = ({ block, loading, imageRight }) => {
+  const { data: faqsData, isLoading } = useQuery({
+    queryKey: ["faqs"],
+    queryFn: getFaq,
+    enabled: !block?.block_items?.length,
+  });
 
-  if (loading) return <FaqsSkeleton />;
+  if (loading || isLoading) return <FaqsSkeleton />;
+
+  const faqs =
+    block?.block_items?.length > 0 ? block.block_items : faqsData || [];
 
   return (
     <section
@@ -28,10 +33,12 @@ const Faqs = ({ block, loading }) => {
       <div className="container sectionPadding relative z-10">
         <SectionTitle title={block.title} />
 
-        <div className="flex items-start gap-4 lg:gap-8">
+        <div
+          className={`flex items-start gap-4 lg:gap-8 ${imageRight && "flex-row-reverse"}`}
+        >
           <div className="flex-1 max-w-2xl mx-auto">
             <Accordion type="single" collapsible className="w-full space-y-4">
-              {block?.block_items?.map((item) => (
+              {faqs?.map((item) => (
                 <AccordionItem
                   key={item.id}
                   value={`item-${item.id}`}

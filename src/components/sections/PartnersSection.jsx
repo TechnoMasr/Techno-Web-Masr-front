@@ -2,15 +2,8 @@ import SectionTitle from "@/components/common/SectionTitle";
 import image from "@/assets/images/Phone.png";
 import PartnersSectionSkeleton from "../skeletons/PartnersSectionSkeleton";
 
-const PartnersSection = () => {
-  const list = Array.from({ length: 8 }).map((_, i) => ({
-    id: i,
-    image: image,
-  }));
-
-  // const loading = true;
-
-  // if (loading) return <PartnersSectionSkeleton />;
+const PartnersSection = ({ block, loading }) => {
+  if (loading) return <PartnersSectionSkeleton />;
 
   return (
     <section
@@ -20,16 +13,16 @@ const PartnersSection = () => {
       <div className="absolute inset-0 bg-gray-100/90" />
 
       <div className="container sectionPadding relative z-10">
-        <SectionTitle title={"شركاء نجاح تكنو ويب مصر"} />
+        <SectionTitle title={block?.title} />
 
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:gap-8">
-          {list.map((item) => (
+          {block?.block_items?.map((item) => (
             <li
               key={item.id}
-              className="bg-white shadow rounded-2xl border w-full aspect-video overflow-hidden p-4"
+              className="bg-white shadow rounded-2xl border w-full aspect-video overflow-hidden p-2"
             >
               <img
-                src={item.image}
+                src={item.image_url}
                 alt="partner"
                 className="w-full h-full object-contain"
               />

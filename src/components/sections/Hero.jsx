@@ -3,9 +3,17 @@ import { Button } from "@/components/ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import HeroSkeleton from "../skeletons/HeroSkeleton";
 import useHandleAction from "@/hooks/useHandleAction";
+import { useEffect, useState } from "react";
 
 const Hero = ({ block, loading }) => {
   const handleAction = useHandleAction();
+
+  const [title, setTitle] = useState(block.title);
+
+  useEffect(() => {
+    console.log("block", block);
+    setTitle(block.title.split("#"));
+  }, [block]);
 
   if (loading) return <HeroSkeleton />;
 
@@ -25,8 +33,12 @@ const Hero = ({ block, loading }) => {
 
         <div className="w-full md:w-1/2 flex flex-col gap-2 items-center md:items-start text-center md:text-start capitalize">
           <h1 className="text-3xl lg:text-4xl font-medium text-white">
-            {block.title}
+            {title[0]}
           </h1>
+
+          <h2 className="text-2xl lg:text-3xl font-medium text-secondary">
+            {title[1]}
+          </h2>
 
           <p className="text-white/80 text-sm">{block.description}</p>
 
