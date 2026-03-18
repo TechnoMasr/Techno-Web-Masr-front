@@ -6,7 +6,7 @@ const PreviousWorkCard = ({ item }) => {
 
   return (
     <div
-      onClick={() => navigate(`/${lang}/previous-work/${item.id}`)}
+      onClick={() => navigate(`/${lang}/previous-work/${item.slug}`)}
       className="bg-cover bg-center rounded-lg w-full h-80 relative overflow-hidden cursor-pointer"
       style={{
         background: `url(${item.image})`,

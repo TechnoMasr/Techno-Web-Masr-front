@@ -12,11 +12,14 @@ import image from "@/assets/images/bg-img.png";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import { getServiceDetails } from "@/api/pagesServices";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router";
 
 const ServicesDetails = () => {
+  const { slug } = useParams();
+
   const { data: serviceDetailsData, isLoading } = useQuery({
-    queryKey: ["serviceDetails"],
-    queryFn: getServiceDetails,
+    queryKey: ["serviceDetails", slug],
+    queryFn: () => getServiceDetails(slug),
   });
 
   return (

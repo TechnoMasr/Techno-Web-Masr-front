@@ -14,10 +14,11 @@ import { closeModal } from "@/store/modals/modalsSlice";
 import { toast } from "sonner";
 import MainInput from "@/components/form/MainInput";
 import FormError from "@/components/form/FormError";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInputField from "@/components/form/PhoneInputField";
 import { getContactServices, sendServiceRequest } from "@/api/contactServices";
+import { useEffect } from "react";
 
 const ServiceRequestModal = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,12 @@ const ServiceRequestModal = () => {
     },
   });
 
-  const { mutate, isPending, error } = useMutation({
+  const {
+    mutate,
+    isPending,
+    error,
+    reset: resetMutation,
+  } = useMutation({
     mutationFn: sendServiceRequest,
     onSuccess: () => {
       reset();
@@ -69,6 +75,25 @@ const ServiceRequestModal = () => {
     queryFn: getContactServices,
     enabled: modalName === "ServiceRequestModal",
   });
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (modalName !== "ServiceRequestModal") {
+      reset({
+        name: "",
+        company_name: "",
+        email: "",
+        message: "",
+        phone: "",
+        product_id: "",
+      });
+
+      resetMutation();
+
+      queryClient.resetQueries({ queryKey: ["contactServices"] });
+    }
+  }, [modalName, reset, queryClient, resetMutation]);
 
   return (
     <Dialog

@@ -23,7 +23,7 @@ const ServiceCard = ({ service, type = "service" }) => {
       <p className="text-xs font-medium line-clamp-3">{service.description}</p>
 
       <Link
-        to={`/${lang}/services/${service.slug}`}
+        to={`/${lang}/${isService ? "services" : "products"}/${service.slug}`}
         className="flex items-center gap-2 group text-gray-400 font-medium"
       >
         {isService ? "تفاصيل الخدمة" : "تفاصيل المنتج"}{" "}

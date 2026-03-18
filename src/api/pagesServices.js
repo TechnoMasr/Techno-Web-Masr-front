@@ -24,3 +24,13 @@ export const getServiceDetails = async (slug) => {
   const { data } = await api.get(`/services/${slug}`);
   return data?.data || [];
 };
+
+export const getPortfolio = async () => {
+  const { data } = await api.get(`/portfolio`);
+  return data?.data || [];
+};
+
+export const getPortfolioDetails = async (slug) => {
+  const { data } = await api.get(`/portfolio/${slug}`);
+  return data?.data || [];
+};
