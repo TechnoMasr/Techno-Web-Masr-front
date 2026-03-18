@@ -21,6 +21,8 @@ import PreviousWorkSection from "./PreviousWorkSection";
 import PartnersSection from "./PartnersSection";
 import WhyChooseUsBanner from "./WhyChooseUsBanner";
 import SectionTitle from "../common/SectionTitle";
+import TestimonialsSection from "./TestimonialsSection";
+import Faqs from "./Faqs";
 
 const BlocksRender = ({ blocks }) => {
 
@@ -36,7 +38,6 @@ const BlocksRender = ({ blocks }) => {
 
     <>
 
-      <PageBanner title={"خدماتنا"} />
 
       {
         blocks.map((block) => {
@@ -53,7 +54,7 @@ const BlocksRender = ({ blocks }) => {
               {block.type === 'banner_title_text_image_btns' && <PageBannerWithImg />}
 
               {/* 'بانر فيديو وسطي', 'video_centered_banner' */}
-              {block.type === 'video_centered_banner' && <VideoBanner />}
+              {block.type === 'video_centered_banner' && <VideoBanner block={block}/>}
 
               {/* 'صوره جانبيه  وفقره  وصناديق المميزات 1', 'side_image_with_paragraph_and_features_boxes_1' */}
               {block.type === 'side_image_with_paragraph_and_features_boxes_1' && <WhyChooseUs />}
@@ -62,9 +63,9 @@ const BlocksRender = ({ blocks }) => {
               {block.type === 'banner_title_paragraph_buttons' && <TechnoMasrTextBanner />}
 
               {/* 'عنوان + صناديق الخطوات ', 'title_steps_boxes' */}
-              {block.type === 'title_steps_boxes' && <TitleAndSteps />}
+              {block.type === 'title_steps_boxes' && <TitleAndSteps block={block} />}
               {/* 'عنوان  +  صناديق الصور', 'title_image_boxes' */}
-              {block.type === 'title_image_boxes' && <TechnologySection />}
+              {block.type === 'title_image_boxes' && <TechnologySection block={block} />}
 
               {/* 'صورع على اليمين  + نص +فقره + زر على اليسار', 'right_images_left_text_paragraph_button' */}
               {block.type === 'right_images_left_text_paragraph_button' && <TextAndImage yellowCircle={true} imageFirst={true} />}
@@ -84,7 +85,7 @@ const BlocksRender = ({ blocks }) => {
               {block.type === 'image_gallery_1' && <GallerySection />}
 
               {/* 'بانر طلب الخدمه العريق', 'service_request_banner' */}
-              {block.type === 'service_request_banner' && <StartWithUsBanner />}
+              {block.type === 'service_request_banner' && <StartWithUsBanner block={block} />}
 
               {/* 'انترو من  نحن ', 'about_us_intro' */}
               {block.type === 'about_us_intro' && <WhoWeAre />}
@@ -108,7 +109,7 @@ const BlocksRender = ({ blocks }) => {
                 <WhyChooseUsBanner block={block} />}
 
               {/* 'خصائص المنتج', 'product_features' */}
-              {block.type === 'product_features' && <MobileAndSteps />}
+              {block.type === 'product_features' && <MobileAndSteps block={block} />}
 
               {/* 'اسئله شائعه  تصميم باترن وصوره  يمين  ومحتوى يسار  ', 'faq_with_pattern_right_image_left_content' */}
               {block.type === 'faq_with_pattern_right_image_left_content' && <Faqs />}
@@ -132,7 +133,7 @@ const BlocksRender = ({ blocks }) => {
 
               {/* 'اراء العملاء', 'customer_reviews' */}
 
-              {block.type === 'customer_reviews' && <TestimonialsSection />}
+              {block.type === 'customer_reviews' && <TestimonialsSection block={block} />}
           
 
               {/* 'page_banner س', 'page_banner' */}
