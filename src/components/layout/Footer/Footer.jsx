@@ -12,40 +12,56 @@ import { RiInstagramFill } from "react-icons/ri";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { Link } from "react-router";
 import useNavigationLinks from "@/hooks/useNavigationLinks";
+import { getFooter } from "@/api/mainServices";
+import { useQuery } from "@tanstack/react-query";
+import FooterSkeleton from "@/components/skeletons/FooterSkeleton";
 
 const Footer = () => {
   const links = useNavigationLinks();
 
-  // if (isLoading) return <FooterSkeleton />;
+  const { data: footerData, isLoading } = useQuery({
+    queryKey: ["footer"],
+    queryFn: getFooter,
+  });
+
+  if (isLoading) return <FooterSkeleton />;
 
   const socialLinks = [
     {
       name: "Facebook",
       icon: <FaFacebookF />,
-      url: "/",
+      url: footerData?.footer_facebook || "/",
     },
     {
       name: "LinkedIn",
       icon: <FaLinkedinIn />,
-      url: "/",
+      url: footerData?.footer_linkedin || "/",
     },
-    { name: "Twitter", icon: <FaXTwitter />, url: "/" },
-    { name: "Youtube", icon: <FaYoutube />, url: "/" },
+    { name: "Twitter", icon: <FaXTwitter />, url: footerData?.footer_x || "/" },
+    {
+      name: "Youtube",
+      icon: <FaYoutube />,
+      url: footerData?.footer_youtube || "/",
+    },
     {
       name: "Instagram",
       icon: <RiInstagramFill />,
-      url: "/",
+      url: footerData?.footer_instagram || "/",
     },
-    { name: "Tiktok", icon: <FaTiktok />, url: "/" },
+    {
+      name: "Tiktok",
+      icon: <FaTiktok />,
+      url: footerData?.footer_tiktok || "/",
+    },
     {
       name: "Telegram",
       icon: <FaTelegramPlane />,
-      url: "/",
+      url: footerData?.footer_telegram || "/",
     },
     {
       name: "Whatsapp",
       icon: <IoLogoWhatsapp />,
-      url: "/",
+      url: footerData?.footer_whatsapp || "/",
     },
   ];
 
@@ -58,23 +74,19 @@ const Footer = () => {
 
       <div
         className="container relative z-10 text-white
-        flex flex-col md:flex-row gap-8"
+        flex flex-col md:flex-row justify-between gap-8"
       >
         <div className="flex flex-col items-center text-center md:items-start md:text-start gap-4 md:max-w-75">
           <div className="w-26 overflow-hidden">
             <img
               loading="lazy"
-              src={logo}
+              src={footerData?.footer_logo || logo}
               alt={"logo"}
               className="w-full h-full object-contain"
             />
           </div>
 
-          <p className="text-xs">
-            نسعى إلى الإرتقاء بمستوى الجودة و الدقة لنواكب التطور التكنولوجى و
-            تبسيط حلول الأعمال التقنية نسعى إلى الإرتقاء بمستوى الجودة و الدقة
-            لنواكب التطور التكنولوجى
-          </p>
+          <p className="text-xs">{footerData?.footer_description_ar}</p>
 
           <div className="flex items-center justify-center flex-wrap gap-4 border-t pt-4 w-full">
             {socialLinks.map((link) => (

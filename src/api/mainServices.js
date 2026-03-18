@@ -6,7 +6,7 @@ export const getSettings = async () => {
 };
 
 export const getFooter = async () => {
-  const { data } = await api.get("/footer-and-social-links");
+  const { data } = await api.get("/footer");
   return data?.data || {};
 };
 

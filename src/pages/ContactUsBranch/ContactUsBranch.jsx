@@ -6,7 +6,7 @@ import ContactForm from "./sections/ContactForm";
 import { useQuery } from "@tanstack/react-query";
 import { getBranchDetails } from "@/api/contactServices";
 import { useParams } from "react-router";
-import BranchesSectionSkeleton from "@/components/skeletons/BranchesSectionSkeleton";
+import BranchSkeleton from "@/components/skeletons/BranchSkeleton";
 
 const ContactUsBranch = () => {
   const { slug } = useParams();
@@ -46,12 +46,12 @@ const ContactUsBranch = () => {
 
   return (
     <main>
-      <PageBanner title={item.title} />
+      <PageBanner title={item.name} />
 
       <section className="container pagePadding space-y-4 md:space-y-8">
         {isLoading ? (
-          <BranchesSectionSkeleton number={2} />
-        ) : (
+          <BranchSkeleton />
+        ) : !branchData ? null : (
           <div
             className="flex flex-col md:flex-row-reverse gap-2 md:gap-6 bg-white p-3 border shadow rounded-lg font-medium"
             key={item.id}
