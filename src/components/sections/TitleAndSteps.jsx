@@ -2,28 +2,21 @@ import TitleAndDescription from "../common/TitleAndDescription";
 import TitleAndStepsSkeleton from "../skeletons/TitleAndStepsSkeleton";
 import { Button } from "../ui/button";
 
-const TitleAndSteps = () => {
-  const steps = Array.from({ length: 4 }).map((_, i) => ({
-    id: i + 1,
-    title: "البرمجة والتطوير",
-    description: "فهم مطلبات العميل بطريقة واضحة",
-  }));
+const TitleAndSteps = ({ block }) => {
+  console.log("block", block);
 
-  // const loading = true;
-
-  // if (loading) return <TitleAndStepsSkeleton />;
 
   return (
     <section className={`sectionPadding`}>
       <div className="container space-y-8">
         <TitleAndDescription
           className={"max-w-3xl"}
-          title={"خصائص المنتج"}
-          description={`تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير المواقع الإلكترونية، المتاجر الإلكترونية، والتطبيقات، بالإضافة إلى أنظمة البرمجيات المخصصة للشركات. تهدف الشركة إلى`}
+          title={block.title}
+          description={block.description}
         />
 
         <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {steps.map((step, index) => (
+          {block.block_items.map((step, index) => (
             <li
               key={step.id}
               className="flex flex-col items-center text-center gap-2 border rounded-md text-primary p-4"

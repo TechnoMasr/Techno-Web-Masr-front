@@ -3,24 +3,16 @@ import TechnologySectionSkeleton from "../skeletons/TechnologySectionSkeleton";
 import { Button } from "../ui/button";
 import image from "@/assets/images/pc-img.png";
 
-const TechnologySection = () => {
-  const list = Array.from({ length: 4 }).map((_, i) => ({
-    id: i + 1,
-    title: "البرمجة والتطوير",
-    image: image,
-  }));
+const TechnologySection = ({ block }) => {
 
-  // const loading = true;
-
-  // if (loading) return <TechnologySectionSkeleton />;
 
   return (
     <section className={`sectionPadding`}>
       <div className="container space-y-8">
-        <TitleAndDescription title={"التقنيات المستخدمة"} />
+        <TitleAndDescription title={block.title} />
 
         <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {list.map((item) => (
+          {block.block_items.map((item) => (
             <li
               key={item.id}
               className="bg-white shadow rounded-md border w-full aspect-video
@@ -28,7 +20,7 @@ const TechnologySection = () => {
             >
               <div className="h-20 aspect-video overflow-hidden mb-2">
                 <img
-                  src={item.image}
+                  src={item.image_url}
                   alt="partner"
                   className="w-full h-full object-contain"
                 />

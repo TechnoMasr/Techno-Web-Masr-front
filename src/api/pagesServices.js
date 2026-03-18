@@ -1,5 +1,10 @@
 import api from "./api";
 
+export const getTestimonials = async () => {
+  const { data } = await api.get(`/testimonials`);
+  return data?.data || [];
+};
+
 export const getPartners = async () => {
   const { data } = await api.get(`/our-clients`);
   return data?.data || [];
