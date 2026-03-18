@@ -1,13 +1,14 @@
 import bgImg from "@/assets/images/bg-img.png";
-// import pcImg from "@/assets/images/pc-img.png";
-import pcImg from "@/assets/images/mobiles-img.png";
 import { Button } from "../ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import PageBannerWithImgSkeleton from "../skeletons/PageBannerWithImgSkeleton";
+import useHandleAction from "@/hooks/useHandleAction";
 
-const PageBannerWithImg = () => {
-  // const loading = true;
-  // if (loading) return <PageBannerWithImgSkeleton />;
+const PageBannerWithImg = ({ block, loading }) => {
+  const handleAction = useHandleAction();
+
+  if (loading) return <PageBannerWithImgSkeleton />;
+
   return (
     <section
       className="bg-center bg-cover w-full h-screen md:h-[80vh] content-center pt-24 pb-16 md:mb-14"
@@ -16,7 +17,7 @@ const PageBannerWithImg = () => {
       <div className="container w-full h-full flex flex-col justify-center md:flex-row items-center gap-10">
         <div className="w-full md:w-1/2 h-62.5 md:h-full">
           <img
-            src={pcImg}
+            src={block.image_url}
             alt=""
             className="w-[90%] sm:w-[60%] md:w-full h-full object-contain mx-auto md:translate-y-[35%] drop-shadow-xl"
           />
@@ -24,18 +25,17 @@ const PageBannerWithImg = () => {
 
         <div className="w-full md:w-1/2 flex flex-col gap-2 items-center md:items-start text-center md:text-start capitalize">
           <h1 className="text-3xl lg:text-4xl font-medium text-white">
-            خدمة تطوير المنتجات
+            {block.title}
           </h1>
 
-          <p className="text-white/80 text-sm">
-            نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي
-            النمو والتفوق في التخصص الخاص بهم من خلال التطبيق او الموقع نحن في
-            تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي النمو
-            والتفوق في التخصص الخاص بهم من خلال التطبيق او الموقع
-          </p>
+          <p className="text-white/80 text-sm">{block.description}</p>
 
-          <Button variant="secondary" className="mt-6 group">
-            اطلب الخدمة الان
+          <Button
+            onClick={() => handleAction(block?.other_data?.btn_1_url)}
+            variant="secondary"
+            className="mt-6 group"
+          >
+            {block?.other_data?.btn_1_text}
             <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
           </Button>
         </div>
