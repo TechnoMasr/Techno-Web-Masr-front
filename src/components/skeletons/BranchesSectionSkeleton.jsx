@@ -1,7 +1,7 @@
 import { Skeleton } from "../ui/skeleton";
 
-const BranchesSectionSkeleton = () => {
-  const list = Array.from({ length: 2 }); // عدد الـ skeleton cards اللي تحب تظهره
+const BranchesSectionSkeleton = ({ number = 2 }) => {
+  const list = Array.from({ length: number }); // عدد الـ skeleton cards اللي تحب تظهره
 
   return (
     <section className="container pagePadding">

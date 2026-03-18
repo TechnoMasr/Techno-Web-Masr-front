@@ -16,7 +16,7 @@ export const getContactUsPage = async () => {
 };
 
 export const getBranchDetails = async (slug) => {
-  const { data } = await api.get(`/branches/techno/${slug}`);
+  const { data } = await api.get(`/branches/${slug}`);
   return data?.data || [];
 };
 

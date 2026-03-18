@@ -12,7 +12,7 @@ import { sendContactUs } from "@/api/contactServices";
 import { useParams } from "react-router";
 
 const ContactForm = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const contactSchema = z.object({
     name: z.string().min(2, "الاسم مطلوب"),
@@ -49,7 +49,7 @@ const ContactForm = () => {
   });
 
   const onSubmit = (data) => {
-    data.branch_id = id;
+    data.branch_slug = slug;
     mutate(data);
   };
 

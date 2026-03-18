@@ -23,8 +23,10 @@ const ContactUS = () => {
   const branches =
     contactData?.branches?.map((item) => ({
       id: item.id,
+      slug: item.slug,
       name: item.name,
       description: item.description,
+      map_embed: item.map_embed,
       info: [
         {
           id: 1,
@@ -80,16 +82,14 @@ const ContactUS = () => {
           <div className="container grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10">
             {branches?.map((item) => (
               <div
-                onClick={() => navigate(`/${lang}/contact/${item.id}`)}
-                className="flex flex-col gap-2 bg-white p-3 border shadow rounded-lg font-medium"
+                onClick={() => navigate(`/${lang}/contact/${item.slug}`)}
+                className="flex flex-col gap-2 bg-white p-3 border shadow rounded-lg font-medium cursor-pointer"
                 key={item.id}
               >
-                <iframe
-                  className="w-full h-60 rounded-lg"
-                  src="https://maps.google.com/maps?q=123+Main+St,+Anytown,+USA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  frameBorder="0"
-                  allowFullScreen
-                ></iframe>
+                <div
+                  className="rounded-lg [&>iframe]:w-full [&>iframe]:h-60 rich_content"
+                  dangerouslySetInnerHTML={{ __html: item.map_embed }}
+                />
 
                 <h3 className="text-xl text-primary">{item.name}</h3>
                 <p className="text-sm">{item.description}</p>
