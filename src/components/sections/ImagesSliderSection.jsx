@@ -9,38 +9,30 @@ import "swiper/css";
 import "swiper/css/thumbs";
 import { Button } from "../ui/button";
 import ImagesSliderSectionSkeleton from "../skeletons/ImagesSliderSectionSkeleton";
+import useHandleAction from "@/hooks/useHandleAction";
 
-const ImagesSliderSection = () => {
+const ImagesSliderSection = ({ block, loading }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const handleAction = useHandleAction();
 
   const { lang } = useParams();
 
-  const images = [
-    image,
-    image,
-    image,
-    image,
-    image,
-    image,
-    image,
-    image,
-    image,
-  ];
+  if (loading) return <ImagesSliderSectionSkeleton />;
 
-  // const loading = true;
-
-  // if (loading) return <ImagesSliderSectionSkeleton />;
+  const images = block?.block_items[0]?.images_url;
 
   return (
     <section className="container pagePadding grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
       <div className="order-2 md:order-1">
         <TitleAndDescription
-          title={`تعرف علي تكنو ويب مصر`}
-          description={`تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير الــمـــواقـــع الإلــكــتــرونـيـة، المـتـاجـر الإلكـتـرونـيـة، والتـطبيقات، بالإضافة إلى أنــظــمــة الــبــرمجــيــات المــخــصصــة لـلـشركــات. تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع بين التصميم الاحترافي، الأداء التقني العالي، وتجربة المستخدم المتطورة.تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع بين التصميم الاحترافي، الأداء التقني العالي، وتجربة المستخدم المتطورة. المتطورة.تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال `}
+          title={block.title}
+          description={block.description}
         />
 
-        <Button>اطلب الخدمه الان</Button>
+        <Button onClick={() => handleAction(block?.other_data?.btn_1_url)}>
+          {block?.other_data?.btn_1_text}
+        </Button>
       </div>
 
       <div className="order-1 md:order-2">

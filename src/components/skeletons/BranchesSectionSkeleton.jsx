@@ -5,6 +5,13 @@ const BranchesSectionSkeleton = ({ number = 2 }) => {
 
   return (
     <section className="container pagePadding">
+      <hgroup className="mb-6 lg:mb-12 flex flex-col items-center justify-center text-center gap-4 px-4">
+        <Skeleton className="h-6 w-48" />
+        <Skeleton className="h-0.5 w-32 bg-primary rounded-full" />
+        <Skeleton className="h-3 w-2/3" />
+        <Skeleton className="h-3 w-1/2" />
+      </hgroup>
+
       <div className="container grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10">
         {list.map((_, index) => (
           <div

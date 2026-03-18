@@ -1,5 +1,6 @@
 import { getContactUsPage } from "@/api/contactServices";
 import SectionTitle from "@/components/common/SectionTitle";
+import EmptyDataSection from "@/components/sections/EmptyDataSection";
 import PageBanner from "@/components/sections/PageBanner";
 import BranchesSectionSkeleton from "@/components/skeletons/BranchesSectionSkeleton";
 import { useQuery } from "@tanstack/react-query";
@@ -72,6 +73,8 @@ const ContactUS = () => {
 
       {isLoading ? (
         <BranchesSectionSkeleton />
+      ) : contactData?.branches?.length === 0 ? (
+        <EmptyDataSection msg={"لا يوجد فروع حاليا"} />
       ) : (
         <section className="container pagePadding">
           <SectionTitle

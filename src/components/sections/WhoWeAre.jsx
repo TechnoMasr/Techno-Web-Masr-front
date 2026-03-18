@@ -5,7 +5,7 @@ import { PiPaintBrushHouseholdLight } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import WhoWeAreSkeleton from "../skeletons/WhoWeAreSkeleton";
 
-const WhoWeAre = () => {
+const WhoWeAre = ({ block, loading }) => {
   const list = [
     {
       id: 1,
@@ -23,23 +23,14 @@ const WhoWeAre = () => {
     },
   ];
 
-  // const isLoading = true;
-
-  // if (isLoading) return <WhoWeAreSkeleton />;
+  if (loading) return <WhoWeAreSkeleton />;
 
   return (
     <section className="relative overflow-hidden">
       <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
 
       <div className="container sectionPadding">
-        
-        <SectionTitle
-          title={"من هي تكنو ويب مصر"}
-          description={
-            "تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير المواقع الإلكترونية، المتاجر الإلكترونية، والتطبيقات، بالإضافة إلى أنظمة البرمجيات المخصصة للشركات. تهدف الشركة إلى"
-          }
-        />
-
+        <SectionTitle title={block.title} description={block.description} />
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8">
           <div className="col-span-1 md:col-span-2 aspect-12/9 md:aspect-11/12 overflow-hidden rounded-2xl shadow">

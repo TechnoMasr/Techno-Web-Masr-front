@@ -30,8 +30,15 @@ export const getServiceDetails = async (slug) => {
   return data?.data || [];
 };
 
-export const getPortfolio = async () => {
-  const { data } = await api.get(`/portfolio`);
+export const getPortfolio = async (slug) => {
+  const url = slug ? `/portfolio/category/${slug}` : `/portfolio`;
+  const { data } = await api.get(`${url}`);
+
+  return data?.data || [];
+};
+
+export const getPortfolioCategories = async () => {
+  const { data } = await api.get(`/portfolio/categories`);
   return data?.data || [];
 };
 
