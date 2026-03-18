@@ -31,7 +31,7 @@ const ServiceRequestModal = () => {
     phone: z.string().refine((value) => isValidPhoneNumber(value || ""), {
       message: "رقم الهاتف غير صحيح",
     }),
-    product_id: z.string(),
+    product_id: z.string().min(1, "الخدمة مطلوبة"),
   });
 
   const {
@@ -55,7 +55,8 @@ const ServiceRequestModal = () => {
     mutationFn: sendServiceRequest,
     onSuccess: () => {
       reset();
-      toast.success("تم إرسال الرسالة بنجاح");
+      toast.success("تم إرسال الطلب بنجاح");
+      dispatch(closeModal());
     },
   });
 
@@ -66,27 +67,8 @@ const ServiceRequestModal = () => {
   const { data: contactServices, isLoading } = useQuery({
     queryKey: ["contactServices"],
     queryFn: getContactServices,
-    // donot call if modal is not open
     enabled: modalName === "ServiceRequestModal",
   });
-
-  const services = [
-    {
-      id: 1,
-      label: "طلب خدمة",
-      value: "ServiceRequestModal",
-    },
-    {
-      id: 2,
-      label: "طلب خدمة",
-      value: "ServiceRequestModal",
-    },
-    {
-      id: 3,
-      label: "طلب خدمة",
-      value: "ServiceRequestModal",
-    },
-  ];
 
   return (
     <Dialog
@@ -109,7 +91,12 @@ const ServiceRequestModal = () => {
                 type="select"
                 label="الخدمة"
                 placeholder="الخدمة"
-                options={services}
+                options={
+                  contactServices?.map((service) => ({
+                    value: String(service.id),
+                    label: service.name,
+                  })) || []
+                }
                 error={errors.product_id?.message}
                 disabled={isLoading}
               />

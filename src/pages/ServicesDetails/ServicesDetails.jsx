@@ -10,8 +10,15 @@ import TechnologySection from "@/components/sections/TechnologySection";
 import TechnoMasrTextBanner from "@/components/sections/TechnoMasrTextBanner";
 import image from "@/assets/images/bg-img.png";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import { getServiceDetails } from "@/api/pagesServices";
+import { useQuery } from "@tanstack/react-query";
 
 const ServicesDetails = () => {
+  const { data: serviceDetailsData, isLoading } = useQuery({
+    queryKey: ["serviceDetails"],
+    queryFn: getServiceDetails,
+  });
+
   return (
     <main>
       <PageBanner title={"خدماتنا"} />

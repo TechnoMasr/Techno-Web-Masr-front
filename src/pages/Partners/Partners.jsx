@@ -1,18 +1,9 @@
 import PageBanner from "@/components/sections/PageBanner";
-import image from "@/assets/images/pc-img.png";
 import PartnersListSkeleton from "@/components/skeletons/PartnersListSkeleton";
 import { getPartners } from "@/api/pagesServices";
 import { useQuery } from "@tanstack/react-query";
 
 const Partners = () => {
-  const list = Array.from({ length: 8 }).map((_, i) => ({
-    id: i,
-    image: image,
-    title: "شركة ليفا للتامين",
-    description:
-      "شركة ليفا للتامين في المملكة العربية السعودية الرياض حي المنصورة",
-  }));
-
   const { data: PartnersData, isLoading } = useQuery({
     queryKey: ["Partners"],
     queryFn: getPartners,

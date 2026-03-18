@@ -46,11 +46,11 @@ const router = createBrowserRouter([
       { path: "contact/:slug", element: <ContactUsBranch /> },
       { path: "partners", element: <Partners /> },
       { path: "previous-work", element: <PreviousWork /> },
-      { path: "previous-work/:id", element: <PreviousWorkDetails /> },
+      { path: "previous-work/:slug", element: <PreviousWorkDetails /> },
       { path: "services", element: <Services /> },
-      { path: "services/:id", element: <ServicesDetails /> },
+      { path: "services/:slug", element: <ServicesDetails /> },
       { path: "products", element: <Products /> },
-      { path: "products/:id", element: <ProductsDetails /> },
+      { path: "products/:slug", element: <ProductsDetails /> },
 
       { path: "pages/:slug", element: <SitePages /> },
 
