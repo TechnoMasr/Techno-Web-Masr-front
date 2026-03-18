@@ -8,9 +8,9 @@ const PartnersSection = () => {
     image: image,
   }));
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <PartnersSectionSkeleton />;
+  // if (loading) return <PartnersSectionSkeleton />;
 
   return (
     <section

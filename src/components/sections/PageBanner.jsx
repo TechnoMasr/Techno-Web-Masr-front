@@ -2,8 +2,8 @@ import bgImg from "@/assets/images/bg-img.png";
 import PageBannerSkeleton from "../skeletons/PageBannerSkeleton";
 
 const PageBanner = ({ image, title }) => {
-  const loading = true;
-  if (loading) return <PageBannerSkeleton />;
+  // const loading = true;
+  // if (loading) return <PageBannerSkeleton />;
 
   return (
     <article

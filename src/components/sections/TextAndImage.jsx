@@ -9,9 +9,9 @@ const TextAndImage = ({
   imageFirst = false,
 }) => {
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <TextAndImageSkeleton />;
+  // if (loading) return <TextAndImageSkeleton />;
 
   return (
     <section

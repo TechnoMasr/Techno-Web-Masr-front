@@ -10,9 +10,9 @@ const MobileAndSteps = () => {
     description: "فهم مطلبات العميل بطريقة واضحة",
   }));
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <MobileAndStepsSkeleton />;
+  // if (loading) return <MobileAndStepsSkeleton />;
 
   return (
     <section className={`sectionPadding relative`}>

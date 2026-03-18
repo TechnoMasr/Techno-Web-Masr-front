@@ -2,9 +2,9 @@ import TechnoMasrTextBannerSkeleton from "../skeletons/TechnoMasrTextBannerSkele
 import { Button } from "../ui/button";
 
 const TechnoMasrTextBanner = () => {
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <TechnoMasrTextBannerSkeleton />;
+  // if (loading) return <TechnoMasrTextBannerSkeleton />;
 
   return (
     <section className={`sectionPadding`}>

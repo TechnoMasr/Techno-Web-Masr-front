@@ -5,9 +5,9 @@ import TitleAndDescription from "../common/TitleAndDescription";
 import PreviousWorkInfoSkeleton from "../skeletons/PreviousWorkInfoSkeleton";
 
 const PreviousWorkInfo = () => {
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <PreviousWorkInfoSkeleton />;
+  // if (loading) return <PreviousWorkInfoSkeleton />;
 
   return (
     <section className="container sectionPadding flex flex-col-reverse md:flex-row gap-6 lg:gap-12">

@@ -3,6 +3,8 @@ import { FiPhone } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 import ContactForm from "./sections/ContactForm";
+import { useQuery } from "@tanstack/react-query";
+import { getBranchDetails } from "@/api/contactServices";
 
 const ContactUsBranch = () => {
   const item = {
@@ -31,6 +33,11 @@ const ContactUsBranch = () => {
       },
     ],
   };
+
+    const { data: branchData, isLoading } = useQuery({
+      queryKey: ["branchDetails"],
+      queryFn: getBranchDetails,
+    });
 
   return (
     <main>

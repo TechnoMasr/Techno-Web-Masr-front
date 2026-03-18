@@ -5,17 +5,20 @@ import { z } from "zod";
 import MainInput from "@/components/form/MainInput";
 import { Button } from "@/components/ui/button";
 import FormError from "@/components/form/FormError";
-import { sendContactUs } from "@/api/mainServices";
 import { toast } from "sonner";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInputField from "@/components/form/PhoneInputField";
+import { sendContactUs } from "@/api/contactServices";
+import { useParams } from "react-router";
 
 const ContactForm = () => {
+  const { id } = useParams();
+
   const contactSchema = z.object({
     name: z.string().min(2, "الاسم مطلوب"),
     company_name: z.string().min(2, "اسم الشركة مطلوب"),
     email: z.string().email("البريد الإلكتروني غير صحيح"),
-    message: z.string().min(10, "الرسالة يجب أن تكون 10 أحرف على الأقل"),
+    message: z.string().min(5, "الرسالة يجب أن تكون 5 أحرف على الأقل"),
     phone: z.string().refine((value) => isValidPhoneNumber(value || ""), {
       message: "رقم الهاتف غير صحيح",
     }),
@@ -46,8 +49,8 @@ const ContactForm = () => {
   });
 
   const onSubmit = (data) => {
-    // mutate(data);
-    console.log(data);
+    data.branch_id = id;
+    mutate(data);
   };
 
   return (

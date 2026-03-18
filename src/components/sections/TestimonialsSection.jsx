@@ -19,11 +19,11 @@ const TestimonialsSection = () => {
   //   queryFn: getTestimonials,
   // });
 
-  const isLoading = true;
+  // const isLoading = true;
 
-  if (isLoading) {
-    return <TestimonialsSectionSkeleton />;
-  }
+  // if (isLoading) {
+  //   return <TestimonialsSectionSkeleton />;
+  // }
 
   return (
     <section>

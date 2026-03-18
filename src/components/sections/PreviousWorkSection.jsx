@@ -13,9 +13,9 @@ const PreviousWorkSection = () => {
       "تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير  شركة متخصصة في الحلول الرقمية وتصميم وتطوير ",
   }));
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <PreviousWorkSectionSkeleton />;
+  // if (loading) return <PreviousWorkSectionSkeleton />;
 
   return (
     <section>

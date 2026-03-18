@@ -14,10 +14,10 @@ import { closeModal } from "@/store/modals/modalsSlice";
 import { toast } from "sonner";
 import MainInput from "@/components/form/MainInput";
 import FormError from "@/components/form/FormError";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInputField from "@/components/form/PhoneInputField";
-import { sendServiceRequest } from "@/api/mainServices";
+import { getContactServices, sendServiceRequest } from "@/api/contactServices";
 
 const ServiceRequestModal = () => {
   const dispatch = useDispatch();
@@ -27,10 +27,11 @@ const ServiceRequestModal = () => {
     name: z.string().min(2, "الاسم مطلوب"),
     company_name: z.string().min(2, "اسم الشركة مطلوب"),
     email: z.string().email("البريد الإلكتروني غير صحيح"),
-    message: z.string().min(10, "الرسالة يجب أن تكون 10 أحرف على الأقل"),
+    message: z.string().min(5, "الرسالة يجب أن تكون 5 أحرف على الأقل"),
     phone: z.string().refine((value) => isValidPhoneNumber(value || ""), {
       message: "رقم الهاتف غير صحيح",
     }),
+    product_id: z.string(),
   });
 
   const {
@@ -46,6 +47,7 @@ const ServiceRequestModal = () => {
       email: "",
       message: "",
       phone: "",
+      product_id: "",
     },
   });
 
@@ -58,9 +60,15 @@ const ServiceRequestModal = () => {
   });
 
   const onSubmit = (data) => {
-    // mutate(data);
-    console.log(data);
+    mutate(data);
   };
+
+  const { data: contactServices, isLoading } = useQuery({
+    queryKey: ["contactServices"],
+    queryFn: getContactServices,
+    // donot call if modal is not open
+    enabled: modalName === "ServiceRequestModal",
+  });
 
   const services = [
     {
@@ -93,7 +101,7 @@ const ServiceRequestModal = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <Controller
-            name="service"
+            name="product_id"
             control={control}
             render={({ field }) => (
               <MainInput
@@ -102,7 +110,8 @@ const ServiceRequestModal = () => {
                 label="الخدمة"
                 placeholder="الخدمة"
                 options={services}
-                error={errors.service?.message}
+                error={errors.product_id?.message}
+                disabled={isLoading}
               />
             )}
           />

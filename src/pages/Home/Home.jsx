@@ -6,8 +6,14 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import PreviousWorkSection from "@/components/sections/PreviousWorkSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
+  // const { data: homeData, isLoading } = useQuery({
+  //   queryKey: ["home"],
+  //   queryFn: getHome,
+  // });
+
   return (
     <main>
       <Hero />

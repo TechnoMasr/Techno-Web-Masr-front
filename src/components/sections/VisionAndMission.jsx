@@ -29,9 +29,9 @@ const VisionAndMission = () => {
     },
   ];
 
-  const isLoading = true;
+  // const isLoading = true;
 
-  if (isLoading) return <VisionAndMissionSkeleton />;
+  // if (isLoading) return <VisionAndMissionSkeleton />;
 
   return (
     <section className="container sectionPadding">

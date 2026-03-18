@@ -10,9 +10,9 @@ const TechnologySection = () => {
     image: image,
   }));
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <TechnologySectionSkeleton />;
+  // if (loading) return <TechnologySectionSkeleton />;
 
   return (
     <section className={`sectionPadding`}>

@@ -4,9 +4,9 @@ import GallerySectionSkeleton from "../skeletons/GallerySectionSkeleton";
 const GallerySection = () => {
   const list = [image, image, image, image];
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <GallerySectionSkeleton />;
+  // if (loading) return <GallerySectionSkeleton />;
 
   return (
     <section className="container sectionPadding">

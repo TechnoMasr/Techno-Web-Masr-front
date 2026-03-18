@@ -16,9 +16,9 @@ const Faqs = () => {
     answer: "نقدم خدمات تصميم وتطوير المواقع والتطبيقات والتسويق الإلكتروني.",
   }));
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <FaqsSkeleton />;
+  // if (loading) return <FaqsSkeleton />;
 
   return (
     <section

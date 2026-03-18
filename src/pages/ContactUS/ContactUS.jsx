@@ -1,6 +1,8 @@
+import { getContactUsPage } from "@/api/contactServices";
 import SectionTitle from "@/components/common/SectionTitle";
 import PageBanner from "@/components/sections/PageBanner";
 import BranchesSectionSkeleton from "@/components/skeletons/BranchesSectionSkeleton";
+import { useQuery } from "@tanstack/react-query";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FiPhone } from "react-icons/fi";
@@ -9,116 +11,74 @@ import { SlLocationPin } from "react-icons/sl";
 import { useNavigate, useParams } from "react-router";
 
 const ContactUS = () => {
-  const list = [
-    {
-      id: 1,
-      title: "فروع تكنو ويب مصر",
-      description:
-        "نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي النمو والتفوق",
-      info: [
-        {
-          id: 1,
-          label: "العنوان",
-          value: "القاهرة - مصر",
-          icon: <SlLocationPin />,
-        },
-        {
-          id: 2,
-          label: "رقم الجوال",
-          value: "+20123456789",
-          icon: <FiPhone />,
-        },
-        {
-          id: 3,
-          label: "البريد الالكتروني",
-          value: "hB4m8@example.com",
-          icon: <MdOutlineMailOutline />,
-        },
-      ],
-      social: [
-        {
-          id: 1,
-          link: "/",
-          icon: <FaInstagram />,
-        },
-        {
-          id: 2,
-          link: "/",
-          icon: <FaLinkedinIn />,
-        },
-        {
-          id: 3,
-          link: "/",
-          icon: <FaXTwitter />,
-        },
-      ],
-    },
-    {
-      id: 1,
-      title: "فروع تكنو ويب مصر",
-      description:
-        "نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي النمو والتفوق",
-      info: [
-        {
-          id: 1,
-          label: "العنوان",
-          value: "القاهرة - مصر",
-          icon: <SlLocationPin />,
-        },
-        {
-          id: 2,
-          label: "رقم الجوال",
-          value: "+20123456789",
-          icon: <FiPhone />,
-        },
-        {
-          id: 3,
-          label: "البريد الالكتروني",
-          value: "hB4m8@example.com",
-          icon: <MdOutlineMailOutline />,
-        },
-      ],
-      social: [
-        {
-          id: 1,
-          link: "/",
-          icon: <FaInstagram />,
-        },
-        {
-          id: 2,
-          link: "/",
-          icon: <FaLinkedinIn />,
-        },
-        {
-          id: 3,
-          link: "/",
-          icon: <FaXTwitter />,
-        },
-      ],
-    },
-  ];
-
   const { lang } = useParams();
 
   const navigate = useNavigate();
+
+  const { data: contactData, isLoading } = useQuery({
+    queryKey: ["contactUsPage"],
+    queryFn: getContactUsPage,
+  });
+
+  const branches =
+    contactData?.branches?.map((item) => ({
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      info: [
+        {
+          id: 1,
+          label: "العنوان",
+          value: item.address,
+          icon: <SlLocationPin />,
+        },
+        {
+          id: 2,
+          label: "رقم الجوال",
+          value: item.phone,
+          icon: <FiPhone />,
+        },
+        {
+          id: 3,
+          label: "البريد الالكتروني",
+          value: item.email,
+          icon: <MdOutlineMailOutline />,
+        },
+      ],
+      social: [
+        {
+          id: 1,
+          link: "/",
+          icon: <FaInstagram />,
+        },
+        {
+          id: 2,
+          link: "/",
+          icon: <FaLinkedinIn />,
+        },
+        {
+          id: 3,
+          link: "/",
+          icon: <FaXTwitter />,
+        },
+      ],
+    })) || [];
 
   return (
     <main>
       <PageBanner title={"تواصل معنا"} />
 
-      {true ? (
+      {isLoading ? (
         <BranchesSectionSkeleton />
       ) : (
         <section className="container pagePadding">
           <SectionTitle
-            title={"فروع تكنو ويب مصر"}
-            description={
-              "تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير المواقع الإلكترونية، المتاجر الإلكترونية، والتطبيقات، بالإضافة إلى أنظمة البرمجيات المخصصة للشركات. تهدف الشركة إلى"
-            }
+            title={contactData?.title}
+            description={contactData?.description}
           />
 
           <div className="container grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10">
-            {list.map((item) => (
+            {branches?.map((item) => (
               <div
                 onClick={() => navigate(`/${lang}/contact/${item.id}`)}
                 className="flex flex-col gap-2 bg-white p-3 border shadow rounded-lg font-medium"
@@ -131,7 +91,7 @@ const ContactUS = () => {
                   allowFullScreen
                 ></iframe>
 
-                <h3 className="text-xl text-primary">{item.title}</h3>
+                <h3 className="text-xl text-primary">{item.name}</h3>
                 <p className="text-sm">{item.description}</p>
 
                 <ul className="flex flex-col gap-4">
@@ -143,9 +103,9 @@ const ContactUS = () => {
                       >
                         {info.icon}
                       </div>
-                      <div>
+                      <div className="flex flex-col gap-1 flex-1">
                         <p className="text-gray-400 text-xs">{info.label}</p>
-                        <span className="text-black">{info.value}</span>
+                        <span className="text-black text-sm">{info.value}</span>
                       </div>
                     </li>
                   ))}
@@ -153,7 +113,7 @@ const ContactUS = () => {
 
                 <hr className="my-3" />
 
-                <ul className="flex gap-4">
+                {/* <ul className="flex gap-4">
                   {item.social.map((social) => (
                     <li key={social.id}>
                       <a
@@ -167,7 +127,7 @@ const ContactUS = () => {
                       </a>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
               </div>
             ))}
           </div>

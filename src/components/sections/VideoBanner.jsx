@@ -3,9 +3,9 @@ import VideoBannerSkeleton from "../skeletons/VideoBannerSkeleton";
 
 const VideoBanner = () => {
 
-const loading = true;
+// const loading = true;
 
-  if (loading) return <VideoBannerSkeleton />;
+  // if (loading) return <VideoBannerSkeleton />;
 
   return (
     <section className="container sectionPadding">

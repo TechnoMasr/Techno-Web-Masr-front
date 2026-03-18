@@ -12,9 +12,9 @@ const Statistics = () => {
       "احصائيات تيكنو ويب مصر في هذه احصائيات تيكنو ويب مصر في هذه الاحصائيات",
   }));
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <StatisticsSkeleton />;
+  // if (loading) return <StatisticsSkeleton />;
 
   return (
     <section

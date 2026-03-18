@@ -35,9 +35,9 @@ const WhyChooseUs = () => {
     },
   ];
 
-  const isLoading = true;
+  // const isLoading = true;
 
-  if (isLoading) return <WhyChooseUsSkeleton />;
+  // if (isLoading) return <WhyChooseUsSkeleton />;
 
   return (
     <section className="relative overflow-hidden">

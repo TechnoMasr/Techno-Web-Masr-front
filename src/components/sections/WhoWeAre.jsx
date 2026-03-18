@@ -23,9 +23,9 @@ const WhoWeAre = () => {
     },
   ];
 
-  const isLoading = true;
+  // const isLoading = true;
 
-  if (isLoading) return <WhoWeAreSkeleton />;
+  // if (isLoading) return <WhoWeAreSkeleton />;
 
   return (
     <section className="relative overflow-hidden">

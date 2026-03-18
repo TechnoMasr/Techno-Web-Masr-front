@@ -9,9 +9,9 @@ const TitleAndSteps = () => {
     description: "فهم مطلبات العميل بطريقة واضحة",
   }));
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <TitleAndStepsSkeleton />;
+  // if (loading) return <TitleAndStepsSkeleton />;
 
   return (
     <section className={`sectionPadding`}>

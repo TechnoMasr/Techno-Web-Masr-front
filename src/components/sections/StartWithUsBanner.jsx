@@ -6,9 +6,9 @@ import StartWithUsBannerSkeleton from "../skeletons/StartWithUsBannerSkeleton";
 
 const StartWithUsBanner = () => {
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <StartWithUsBannerSkeleton />;
+  // if (loading) return <StartWithUsBannerSkeleton />;
 
   return (
     <section className="container sectionPadding">

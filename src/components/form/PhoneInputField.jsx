@@ -23,7 +23,7 @@ const PhoneInputField = ({
       <PhoneInput
         id={name}
         international
-        defaultCountry="AE"
+        defaultCountry="EG"
         value={value}
         onChange={onChange}
         disabled={disabled}

@@ -28,9 +28,9 @@ const ImagesSliderSection = () => {
     image,
   ];
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <ImagesSliderSectionSkeleton />;
+  // if (loading) return <ImagesSliderSectionSkeleton />;
 
   return (
     <section className="container pagePadding grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">

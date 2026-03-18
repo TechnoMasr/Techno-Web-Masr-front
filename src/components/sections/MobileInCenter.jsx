@@ -47,9 +47,9 @@ const MobileInCenter = () => {
   const leftItems = list.filter((_, i) => i % 2 === 0); // index 0, 2, 4
   const rightItems = list.filter((_, i) => i % 2 === 1); // index 1, 3, 5
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <MobileInCenterSkeleton />;
+  // if (loading) return <MobileInCenterSkeleton />;
 
   return (
     <section className="sectionPadding relative overflow-hidden" dir="rtl">

@@ -6,8 +6,8 @@ import { HiArrowNarrowLeft } from "react-icons/hi";
 import PageBannerWithImgSkeleton from "../skeletons/PageBannerWithImgSkeleton";
 
 const PageBannerWithImg = () => {
-  const loading = true;
-  if (loading) return <PageBannerWithImgSkeleton />;
+  // const loading = true;
+  // if (loading) return <PageBannerWithImgSkeleton />;
   return (
     <section
       className="bg-center bg-cover w-full h-screen md:h-[80vh] content-center pt-24 pb-16 md:mb-14"

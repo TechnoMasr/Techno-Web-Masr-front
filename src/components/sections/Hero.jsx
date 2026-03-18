@@ -9,9 +9,9 @@ import HeroSkeleton from "../skeletons/HeroSkeleton";
 const Hero = () => {
   const dispatch = useDispatch();
 
-  const loading = true;
+  // const loading = true;
 
-  if (loading) return <HeroSkeleton />;
+  // if (loading) return <HeroSkeleton />;
 
   return (
     <section
