@@ -1,0 +1,61 @@
+import { useMemo } from "react";
+import bgImg from "@/assets/images/bg-img.png";
+
+const defaultTitle = "لماذا تختار تكنو ويب مصر";
+const defaultDescription =
+  "نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي النمو والتفوق في التخصص الخاص بهم من خلال التطبيق او الموقع";
+
+function getLocalized(value) {
+  if (value == null) return "";
+  if (typeof value === "string") return value;
+  const lang = typeof document !== "undefined" && document.documentElement.lang === "en" ? "en" : "ar";
+  return value[lang] ?? value.ar ?? value.en ?? "";
+}
+
+const WhyChooseUsBanner = ({ block }) => {
+  const title = useMemo(() => getLocalized(block?.title) || defaultTitle, [block?.title]);
+  const description = useMemo(() => getLocalized(block?.description) || defaultDescription, [block?.description]);
+  const bgImage = useMemo(() => {
+    if (block?.image) {
+      try {
+        return typeof block.image === "string" && block.image.startsWith("http")
+          ? block.image
+          : import.meta.env.VITE_STORAGE_URL
+            ? `${import.meta.env.VITE_STORAGE_URL}/${block.image}`
+            : bgImg;
+      } catch {
+        return bgImg;
+      }
+    }
+    return bgImg;
+  }, [block?.image]);
+
+  return (
+    <section
+      className="relative w-full min-h-[320px] md:min-h-[380px] flex flex-col items-center justify-center text-center py-20 px-4 overflow-hidden"
+      dir="rtl"
+    >
+      {/* Blurred background image */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center scale-105 -z-20"
+        style={{ backgroundImage: `url(${bgImage})`, filter: "blur(8px)" }}
+      />
+      {/* Dark teal overlay */}
+      <div
+        className="absolute inset-0 w-full h-full -z-10"
+        style={{ backgroundColor: "rgba(10, 54, 46, 0.88)" }}
+      />
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center gap-6 max-w-4xl mx-auto">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          {title}
+        </h2>
+        <p className="text-white text-lg md:text-xl max-w-4xl leading-relaxed opacity-95">
+          {description}
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default WhyChooseUsBanner;
