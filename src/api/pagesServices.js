@@ -1,5 +1,10 @@
 import api from "./api";
 
+export const getHeaderMenu = async () => {
+  const { data } = await api.get("/utilize/headerMenu");
+  return data?.data || { pages: [], ourService: [], products: [] };
+};
+
 export const getTestimonials = async () => {
   const { data } = await api.get(`/testimonials`);
   return data?.data || [];
@@ -37,6 +42,8 @@ export const getPortfolio = async (slug) => {
   return data?.data || [];
 };
 
+
+
 export const getPortfolioCategories = async () => {
   const { data } = await api.get(`/portfolio/categories`);
   return data?.data || [];
@@ -46,3 +53,12 @@ export const getPortfolioDetails = async (slug) => {
   const { data } = await api.get(`/portfolio/${slug}`);
   return data?.data || [];
 };
+
+
+
+export const pageDetails = async (slug) => {
+  const { data } = await api.get(`pages/${slug}`);
+  return data?.data || {};
+};
+
+

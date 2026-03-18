@@ -146,7 +146,7 @@ const BlocksRender = ({ blocks }) => {
             )}
             {/* 'page_banner س', 'page_banner' */}
             {block.type === "page_banner" && (
-              <PageBanner title={"خدماتنا"} block={block} />
+              <PageBanner  block={block} />
             )}
             {/* 'سلايدر الخدمات في الرئيسيه', 'services_slider' */}
             {block.type === "services_slider" && (

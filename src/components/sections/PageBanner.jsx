@@ -1,7 +1,7 @@
 import bgImg from "@/assets/images/bg-img.png";
 import PageBannerSkeleton from "../skeletons/PageBannerSkeleton";
 
-const PageBanner = ({ image, title }) => {
+const PageBanner = ({ image, title , block }) => {
   // const loading = true;
   // if (loading) return <PageBannerSkeleton />;
 
@@ -13,9 +13,9 @@ const PageBanner = ({ image, title }) => {
       {/* <div className="absolute inset-0 bg-primary/50" /> */}
 
       <div className="relative z-10 container h-full pt-20 pb-4 lg:pb-10 flex flex-col items-start justify-end gap-2 lg:gap-4">
-        {title && (
+        {(title || block?.title) && (
           <h1 className="text-3xl lg:text-4xl text-white capitalize">
-            {title}
+            {title ? title : block?.title}
           </h1>
         )}
       </div>
