@@ -1,30 +1,37 @@
 import { getAbout } from "@/api/homeServices";
 import BlocksRender from "@/components/sections/BlocksRender";
+import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import { useQuery } from "@tanstack/react-query";
-
+import PageBanner from "@/components/sections/PageBanner";
+import { useTranslation } from "react-i18next";
+import SeoManager from "@/utils/SeoManager";
 
 const About = () => {
-
-  
+  const { t } = useTranslation();
 
   const { data: aboutData, isLoading } = useQuery({
     queryKey: ["about"],
     queryFn: getAbout,
   });
-  if (isLoading) return <div>Loading...</div>;
+
+  if (isLoading) return <BlocksRenderSkeleton />;
 
   return (
-    <main>
+    <>
+      <SeoManager
+        title={aboutData?.seo?.title}
+        description={aboutData?.seo?.description}
+        keywords={aboutData?.seo?.keywords}
+        canonical={aboutData?.seo?.canonical}
+        ogImage={aboutData?.seo?.ogImage}
+      />
 
-      <BlocksRender blocks={aboutData?.page?.blocks} />
+      <main>
+        <PageBanner title={t("about_us")} />
 
-      {/* <WhoWeAre />
-      <VisionAndMission />
-      <StartWithUsBanner />
-      <Faqs />
-      <WhyChooseUs />
-      <TestimonialsSection /> */}
-    </main>
+        <BlocksRender blocks={aboutData?.page?.blocks} />
+      </main>
+    </>
   );
 };
 

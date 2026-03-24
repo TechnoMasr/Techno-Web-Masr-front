@@ -6,7 +6,7 @@ const Loader = ({ textWhite = false }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-4 min-h-75">
       {/* large spinner */}
-      <div className="w-16 h-16 border-4 border-primary rounded-full animate-spin"></div>
+      <div className="w-16 h-16 border-4 border-t-transparent border-primary rounded-full animate-spin"></div>
 
       <h2
         className={`text-lg font-semibold ${textWhite ? "text-white" : "text-black"}`}

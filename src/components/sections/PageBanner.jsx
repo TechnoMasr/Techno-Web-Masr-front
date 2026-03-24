@@ -1,14 +1,11 @@
 import bgImg from "@/assets/images/bg-img.png";
 import PageBannerSkeleton from "../skeletons/PageBannerSkeleton";
 
-const PageBanner = ({ image, title , block }) => {
-  // const loading = true;
-  // if (loading) return <PageBannerSkeleton />;
-
+const PageBanner = ({ title, block }) => {
   return (
     <article
       className="w-full min-h-64 bg-cover bg-center bg-primary relative content-end"
-      style={{ backgroundImage: `url(${image || bgImg})` }}
+      style={{ backgroundImage: `url(${block?.bg_image || bgImg})` }}
     >
       {/* <div className="absolute inset-0 bg-primary/50" /> */}
 

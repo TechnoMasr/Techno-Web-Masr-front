@@ -1,6 +1,7 @@
-
 import { getHome } from "@/api/homeServices";
 import BlocksRender from "@/components/sections/BlocksRender";
+import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
+import SeoManager from "@/utils/SeoManager";
 import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
@@ -8,22 +9,23 @@ const Home = () => {
     queryKey: ["home"],
     queryFn: getHome,
   });
-  if (isLoading) return <div>Loading...</div>;
 
-  console.log("homeData", homeData);
+  if (isLoading) return <BlocksRenderSkeleton />;
+
   return (
-    <main>
-      <BlocksRender blocks={homeData?.page?.blocks} />
+    <>
+      <SeoManager
+        title={homeData?.seo?.title}
+        description={homeData?.seo?.description}
+        keywords={homeData?.seo?.keywords}
+        canonical={homeData?.seo?.canonical}
+        ogImage={homeData?.seo?.ogImage}
+      />
 
-      {/* <Hero />
-      <StatisticsSection />
-      <WhoWeAre />
-      <ServicesSection />
-      <WhyChooseUs />
-      <PreviousWorkSection />
-      <PartnersSection />
-      <TestimonialsSection /> */}
-    </main>
+      <main>
+        <BlocksRender blocks={homeData?.page?.blocks} />
+      </main>
+    </>
   );
 };
 

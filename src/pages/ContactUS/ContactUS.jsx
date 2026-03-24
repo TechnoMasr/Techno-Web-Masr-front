@@ -10,10 +10,11 @@ import { FiPhone } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 import { useNavigate, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const ContactUS = () => {
+  const { t } = useTranslation();
   const { lang } = useParams();
-
   const navigate = useNavigate();
 
   const { data: contactData, isLoading } = useQuery({
@@ -31,50 +32,38 @@ const ContactUS = () => {
       info: [
         {
           id: 1,
-          label: "العنوان",
+          label: t("ContactUS.address"),
           value: item.address,
           icon: <SlLocationPin />,
         },
         {
           id: 2,
-          label: "رقم الجوال",
+          label: t("ContactUS.phone"),
           value: item.phone,
           icon: <FiPhone />,
         },
         {
           id: 3,
-          label: "البريد الالكتروني",
+          label: t("ContactUS.email"),
           value: item.email,
           icon: <MdOutlineMailOutline />,
         },
       ],
       social: [
-        {
-          id: 1,
-          link: "/",
-          icon: <FaInstagram />,
-        },
-        {
-          id: 2,
-          link: "/",
-          icon: <FaLinkedinIn />,
-        },
-        {
-          id: 3,
-          link: "/",
-          icon: <FaXTwitter />,
-        },
+        { id: 1, link: "/", icon: <FaInstagram /> },
+        { id: 2, link: "/", icon: <FaLinkedinIn /> },
+        { id: 3, link: "/", icon: <FaXTwitter /> },
       ],
     })) || [];
 
   return (
     <main>
-      <PageBanner title={"تواصل معنا"} />
+      <PageBanner title={t("ContactUS.title")} />
 
       {isLoading ? (
         <BranchesSectionSkeleton />
       ) : contactData?.branches?.length === 0 ? (
-        <EmptyDataSection msg={"لا يوجد فروع حاليا"} />
+        <EmptyDataSection msg={t("ContactUS.noBranches")} />
       ) : (
         <section className="container pagePadding">
           <SectionTitle
@@ -100,10 +89,7 @@ const ContactUS = () => {
                 <ul className="flex flex-col gap-4">
                   {item.info.map((info) => (
                     <li className="flex items-center gap-3 py-1" key={info.id}>
-                      <div
-                        className="w-8 aspect-square grid place-items-center
-                    bg-gray-100 text-primary rounded-full border shadow"
-                      >
+                      <div className="w-8 aspect-square grid place-items-center bg-gray-100 text-primary rounded-full border shadow">
                         {info.icon}
                       </div>
                       <div className="flex flex-col gap-1 flex-1">
@@ -113,10 +99,19 @@ const ContactUS = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </main>
+  );
+};
 
-                <hr className="my-3" />
+export default ContactUS;
 
-                {/* <ul className="flex gap-4">
+{
+  /* <ul className="flex gap-4">
                   {item.social.map((social) => (
                     <li key={social.id}>
                       <a
@@ -130,14 +125,5 @@ const ContactUS = () => {
                       </a>
                     </li>
                   ))}
-                </ul> */}
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-    </main>
-  );
-};
-
-export default ContactUS;
+                </ul> */
+}

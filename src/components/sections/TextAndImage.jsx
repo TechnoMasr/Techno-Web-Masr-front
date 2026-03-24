@@ -34,7 +34,12 @@ const TextAndImage = ({
           />
 
           <Button
-            onClick={() => handleAction(block?.other_data?.btn_1_url)}
+            onClick={() =>
+              handleAction(block?.other_data?.btn_1_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
             variant={backgroundImage ? "secondary" : "default"}
             className={`${backgroundImage ? "bg-white" : ""} lg:mt-8`}
           >
@@ -46,6 +51,7 @@ const TextAndImage = ({
           className={`w-full h-100 hidden md:block ${imageFirst ? "md:order-1" : ""}`}
         >
           <img
+            loading="lazy"
             src={block.image_url}
             alt="image"
             className="w-full h-full object-contain drop-shadow-xl"

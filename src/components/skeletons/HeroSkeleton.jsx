@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const HeroSkeleton = () => {
   return (
-    <section className="bg-center bg-cover w-full min-h-screen content-center pt-24 pb-16">
+    <section className="bg-center bg-cover w-full min-h-screen content-center pt-24 pb-16 bg-primary">
       <div className="container w-full h-full flex flex-col md:flex-row items-center gap-4 md:gap-10">
         {/* Image Skeleton */}
         <div className="w-full md:w-1/2 h-62.5 md:h-100 flex items-center justify-center">

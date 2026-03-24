@@ -1,11 +1,11 @@
 import SectionTitle from "@/components/common/SectionTitle";
-import image from "@/assets/images/bg-img.png";
 import { LuFolderCode } from "react-icons/lu";
 import { PiPaintBrushHouseholdLight } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import WhoWeAreSkeleton from "../skeletons/WhoWeAreSkeleton";
+import useHandleAction from "@/hooks/useHandleAction";
 
-const WhoWeAre = ({ block, loading }) => {
+const WhoWeAre = ({ block, loading, top_title, top_desc }) => {
   const list = [
     {
       id: 1,
@@ -23,6 +23,10 @@ const WhoWeAre = ({ block, loading }) => {
     },
   ];
 
+  console.log("top_title", top_title, top_desc);
+
+  const handleAction = useHandleAction();
+
   if (loading) return <WhoWeAreSkeleton />;
 
   return (
@@ -30,34 +34,37 @@ const WhoWeAre = ({ block, loading }) => {
       <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
 
       <div className="container sectionPadding">
-        <SectionTitle title={block.title} description={block.description} />
+        <SectionTitle title={block?.top_title} description={block?.top_desc} />
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8">
           <div className="col-span-1 md:col-span-2 aspect-12/9 md:aspect-11/12 overflow-hidden rounded-2xl shadow">
-            <img src={image} alt="" className="w-full h-full object-cover" />
+            <img
+              loading="lazy"
+              src={block.image_url}
+              alt=""
+              className="w-full h-full object-cover"
+            />
           </div>
 
           <div className="flex flex-col gap-4 lg:gap-6 md:col-span-3">
             <h3 className="text-xl font-semibold text-primary">
-              تعرف علي بعض التفاصيل عن شركتنا وسبب نجاحنا في جميع الاسواق التي
-              نعمل بها الان
+              {block.title}
             </h3>
 
             <p className="text-foreground font-medium text-sm">
-              تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير
-              الــمـــواقـــع الإلــكــتــرونـيـة، المـتـاجـر الإلكـتـرونـيـة،
-              والتـطبيقات، بالإضافة إلى أنــظــمــة الــبــرمجــيــات
-              المــخــصصــة لـلـشركــات. تــهدف الشركة إلى تمكين الأعــمــال من
-              التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع
-              بين التصميم الاحترافي، الأداء التقني العالي، وتجربة المستخدم
-              المتطورة.
+              {block.description}
             </p>
 
             <ul className="grid grid-cols-2 gap-4 md:gap-8">
-              {list.map((item) => (
+              {block?.block_items?.map((item) => (
                 <li key={item.id} className="flex flex-col gap-2 text-primary">
-                  <span className="text-2xl bg-secondary/20 w-10 h-10 flex items-center justify-center rounded-full">
-                    {item.icon}
+                  <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
+                    <img
+                      loading="lazy"
+                      src={item.image_url}
+                      alt="icon"
+                      className="w-5 h-5"
+                    />
                   </span>
                   <h2 className="font-semibold">{item.title}</h2>
                   <p className="text-xs text-foreground font-medium">
@@ -68,8 +75,27 @@ const WhoWeAre = ({ block, loading }) => {
             </ul>
 
             <div className="flex items-center gap-3 mt-auto">
-              <Button>تواصل معنا</Button>
-              <Button variant="outline">تواصل معنا</Button>
+              <Button
+                onClick={() =>
+                  handleAction(block.other_data.btn_1_url, {
+                    serviceId: block?.serviceId,
+                    serviceTitle: block?.serviceTitle,
+                  })
+                }
+              >
+                {block.other_data.btn_1_text}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() =>
+                  handleAction(block.other_data.btn_2_url, {
+                    serviceId: block?.serviceId,
+                    serviceTitle: block?.serviceTitle,
+                  })
+                }
+              >
+                {block.other_data.btn_2_text}
+              </Button>
             </div>
           </div>
         </div>

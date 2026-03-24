@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getSettings } from "../../api/mainServices";
+import { getSettings } from "@/api/mainServices";
 
 export const fetchSettings = createAsyncThunk(
   "settings/fetchSettings",

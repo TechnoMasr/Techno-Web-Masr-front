@@ -11,7 +11,6 @@ const Hero = ({ block, loading }) => {
   const [title, setTitle] = useState(block.title);
 
   useEffect(() => {
-    console.log("block", block);
     setTitle(block.title.split("#"));
   }, [block]);
 
@@ -20,11 +19,12 @@ const Hero = ({ block, loading }) => {
   return (
     <section
       className="bg-center bg-cover w-full min-h-screen content-center pt-24 pb-16"
-      style={{ backgroundImage: `url(${bgImg})` }}
+      style={{ backgroundImage: `url(${block.bg_image || bgImg})` }}
     >
       <div className="container w-full h-full flex flex-col md:flex-row items-center gap-4 md:gap-10">
         <div className="w-full md:w-1/2 h-62.5 md:h-100">
           <img
+            loading="lazy"
             src={block.image_url}
             alt=""
             className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
@@ -43,7 +43,12 @@ const Hero = ({ block, loading }) => {
           <p className="text-white/80 text-sm">{block.description}</p>
 
           <Button
-            onClick={() => handleAction(block?.other_data?.btn_1_url)}
+            onClick={() =>
+              handleAction(block?.other_data?.btn_1_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
             variant="secondary"
             className="mt-6 group"
           >

@@ -275,7 +275,7 @@ input::-webkit-inner-spin-button {
 /* wrapper */
 .phone-input-wrapper {
   @apply flex items-center border border-input rounded-md bg-white
-  px-2 h-9 transition-[color,box-shadow];
+  px-2 h-10 transition-[color,box-shadow];
 }
 
 .phone-input-wrapper:focus-within {
@@ -284,7 +284,7 @@ input::-webkit-inner-spin-button {
 
 /* input */
 .phone-input-wrapper .PhoneInputInput {
-  @apply bg-transparent outline-none border-none w-full text-sm;
+  @apply bg-transparent outline-none border-none w-full text-black text-sm;
 }
 
 /* country select */

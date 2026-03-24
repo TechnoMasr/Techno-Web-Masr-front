@@ -2,20 +2,21 @@ import { Outlet, useLocation } from "react-router";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
 import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Toaster } from "@/components/ui/sonner";
 import ScrollToTopBtn from "./components/behaviors/ScrollToTopBtn";
 import ModalManager from "./components/modals/ModalManager";
 import LanguageHandler from "./components/behaviors/LanguageHandler";
-// import { fetchSettings } from "./store/settings/settingsActions";
+import FixedSection from "./components/behaviors/FixedSection";
+import { fetchSettings } from "./store/settings/settingsActions";
 
 function App() {
   const { pathname } = useLocation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchSettings());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchSettings());
+  }, [dispatch]);
 
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -40,6 +41,7 @@ function App() {
       <Toaster position="top-center" />
 
       <ScrollToTopBtn />
+      <FixedSection />
 
       {/* modals */}
       <ModalManager />

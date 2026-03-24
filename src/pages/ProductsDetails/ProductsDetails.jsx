@@ -1,13 +1,10 @@
-import PageBanner from "@/components/sections/PageBanner";
 import { getProductDetails } from "@/api/pagesServices";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import PreviousWorkInfoSkeleton from "@/components/skeletons/PreviousWorkInfoSkeleton";
-import GallerySectionSkeleton from "@/components/skeletons/GallerySectionSkeleton";
-import StartWithUsBannerSkeleton from "@/components/skeletons/StartWithUsBannerSkeleton";
-import TestimonialsSectionSkeleton from "@/components/skeletons/TestimonialsSectionSkeleton";
 import BlocksRender from "@/components/sections/BlocksRender";
+import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
+import SeoManager from "@/utils/SeoManager";
 
 const ProductsDetails = () => {
   const { slug } = useParams();
@@ -17,7 +14,6 @@ const ProductsDetails = () => {
     queryFn: () => getProductDetails(slug),
   });
 
- 
   const [blocks, setBlocks] = useState([]);
 
   useEffect(() => {
@@ -26,18 +22,29 @@ const ProductsDetails = () => {
     }
   }, [productDetailsData]);
 
-  if (isLoading) return  <>
-    <PreviousWorkInfoSkeleton />
-  <GallerySectionSkeleton />
-  <StartWithUsBannerSkeleton />
-  <TestimonialsSectionSkeleton />
-  </>;
-  return <main>  {blocks.length > 0 && <BlocksRender blocks={blocks}/>  } </main>;
+  if (isLoading) return <BlocksRenderSkeleton />;
 
+  return (
+    <>
+      <SeoManager
+        title={productDetailsData?.seo?.title}
+        description={productDetailsData?.seo?.description}
+        keywords={productDetailsData?.seo?.keywords}
+        canonical={productDetailsData?.seo?.canonical}
+        ogImage={productDetailsData?.seo?.ogImage}
+      />
 
-
-
-
+      <main>
+        {blocks.length > 0 && (
+          <BlocksRender
+            blocks={blocks}
+            serviceId={productDetailsData?.product?.id}
+            serviceTitle={productDetailsData?.product?.title}
+          />
+        )}
+      </main>
+    </>
+  );
 };
 
 export default ProductsDetails;

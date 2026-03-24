@@ -1,29 +1,37 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { getHeaderMenu } from "@/api/pagesServices";
-
-const getTranslated = (field, lang) => {
-  if (field == null) return "";
-  if (typeof field === "string") return field;
-  return field[lang] ?? field.ar ?? field.en ?? "";
-};
-
-const getDefaultLinks = (locale) => [
-  { name: "الرئيسية", href: `/${locale}`, items: [] },
-  { name: "من نحن", href: `/${locale}/about`, items: [] },
-  { name: "خدماتنا", href: `/${locale}/services`, items: [] },
-  { name: "سابقة الأعمال", href: `/${locale}/previous-work`, items: [] },
-  { name: "عمالائنا", href: `/${locale}/partners`, items: [] },
-  { name: "تواصل معنا", href: `/${locale}/contact`, items: [] },
-];
+import { useTranslation } from "react-i18next";
 
 const useNavigationLinks = () => {
+  const { t } = useTranslation();
+
+  const getTranslated = (field, lang) => {
+    if (field == null) return "";
+    if (typeof field === "string") return field;
+    return field[lang] ?? field.ar ?? field.en ?? "";
+  };
+
+  const getDefaultLinks = (locale) => [
+    { name: t("Header.home"), href: `/${locale}`, items: [] },
+    { name: t("Header.about"), href: `/${locale}/about`, items: [] },
+    { name: t("Header.services"), href: `/${locale}/services`, items: [] },
+    {
+      name: t("Header.previousWork"),
+      href: `/${locale}/previous-work`,
+      items: [],
+    },
+    { name: t("Header.partners"), href: `/${locale}/partners`, items: [] },
+    { name: t("Header.contact"), href: `/${locale}/contact`, items: [] },
+  ];
+
   const { lang } = useParams();
   const locale = lang || "ar";
   const [links, setLinks] = useState(() => getDefaultLinks(locale));
 
   useEffect(() => {
     setLinks(getDefaultLinks(locale));
+
     const buildLinks = (menu) => {
       const pages = menu?.pages ?? [];
       const ourService = menu?.ourService ?? [];
@@ -32,7 +40,7 @@ const useNavigationLinks = () => {
       const servicesList = [
         {
           id: 1,
-          title: "خدمات",
+          title: t("Header.services"),
           href: `/${locale}/services`,
           list: ourService.map((s) => ({
             id: s.id,
@@ -42,7 +50,7 @@ const useNavigationLinks = () => {
         },
         {
           id: 2,
-          title: "منتجات",
+          title: t("Header.products"),
           href: `/${locale}/products`,
           list: products.map((p) => ({
             id: p.id,
@@ -53,21 +61,25 @@ const useNavigationLinks = () => {
       ].filter((s) => s.list.length > 0);
 
       const baseLinks = [
-        { name: "الرئيسية", href: `/${locale}`, items: [] },
-        { name: "من نحن", href: `/${locale}/about`, items: [] },
+        { name: t("Header.home"), href: `/${locale}`, items: [] },
+        { name: t("Header.about"), href: `/${locale}/about`, items: [] },
         {
-          name: "خدماتنا",
+          name: t("Header.services"),
           href: `/${locale}/services`,
           items: servicesList,
         },
-        { name: "سابقة الأعمال", href: `/${locale}/previous-work`, items: [] },
-        { name: "عمالائنا", href: `/${locale}/partners`, items: [] },
+        {
+          name: t("Header.previousWork"),
+          href: `/${locale}/previous-work`,
+          items: [],
+        },
+        { name: t("Header.partners"), href: `/${locale}/partners`, items: [] },
       ];
 
       if (pages.length > 0) {
         const otherLinksSection = {
           id: 1,
-          title: "الصفحات",
+          title: t("Header.pages"),
           href: `/${locale}/pages`,
           list: pages.map((p) => ({
             id: p.id,
@@ -76,14 +88,14 @@ const useNavigationLinks = () => {
           })),
         };
         baseLinks.push({
-          name: "روابط اخرى",
+          name: t("Header.otherLinks"),
           href: `/${locale}/pages`,
           items: [otherLinksSection],
         });
       }
 
       baseLinks.push({
-        name: "تواصل معنا",
+        name: t("Header.contact"),
         href: `/${locale}/contact`,
         items: [],
       });
@@ -94,7 +106,7 @@ const useNavigationLinks = () => {
     getHeaderMenu()
       .then(buildLinks)
       .catch(() => setLinks(getDefaultLinks(locale)));
-  }, [lang, locale]);
+  }, [lang, locale, t]);
 
   return links;
 };

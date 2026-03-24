@@ -1,4 +1,3 @@
-import image from "@/assets/images/bg-img.png";
 import TitleAndDescription from "../common/TitleAndDescription";
 import { useParams } from "react-router";
 import { useState } from "react";
@@ -30,7 +29,14 @@ const ImagesSliderSection = ({ block, loading }) => {
           description={block.description}
         />
 
-        <Button onClick={() => handleAction(block?.other_data?.btn_1_url)}>
+        <Button
+          onClick={() =>
+            handleAction(block?.other_data?.btn_1_url, {
+              serviceId: block?.serviceId,
+              serviceTitle: block?.serviceTitle,
+            })
+          }
+        >
           {block?.other_data?.btn_1_text}
         </Button>
       </div>

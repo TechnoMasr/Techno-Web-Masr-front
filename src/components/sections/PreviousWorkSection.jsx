@@ -21,13 +21,11 @@ const PreviousWorkSection = ({ block, loading }) => {
     <section>
       <div className="container sectionPadding">
         <SectionTitle
-          title={"سابقة اعمال تكنو ويب مصر"}
-          description={
-            "تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير المواقع الإلكترونية،"
-          }
+          title={block?.title}
+          description={block?.description}
           link={{
-            href: "/portfolio",
-            text: "عرض جميع الاعمال",
+            href: block?.other_data?.btn_1_url || "/previous-work",
+            text: block?.other_data?.btn_1_text || "عرض جميع الاعمال",
           }}
         />
 

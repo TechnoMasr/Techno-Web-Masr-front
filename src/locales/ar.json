@@ -1,5 +1,128 @@
 {
   "loading": "جاري التحميل...",
+  "back": "رجوع",
+  "about_us": "من نحن",
+
+  "ServiceCard": {
+    "serviceDetails": "تفاصيل الخدمة",
+    "productDetails": "تفاصيل المنتج"
+  },
+
+  "Footer": {
+    "mainLinks": "روابط رئيسية",
+    "services": "الخدمات",
+    "products": "المنتجات",
+    "pages": "روابط قد تهمك",
+    "description": "footer_description",
+    "social": {
+      "Facebook": "فيسبوك",
+      "LinkedIn": "لينكدإن",
+      "Twitter": "تويتر",
+      "Youtube": "يوتيوب",
+      "Instagram": "إنستجرام",
+      "Tiktok": "تيك توك",
+      "Telegram": "تليجرام",
+      "Whatsapp": "واتساب"
+    }
+  },
+
+  "HeaderActions": {
+    "requestService": "اطلب الخدمة"
+  },
+
+  "ServiceRequestModal": {
+    "title": "طلب خدمة",
+    "titleProduct": "طلب منتج",
+    "serviceLabel": "الخدمة",
+    "servicePlaceholder": "اختر الخدمة",
+    "productLabel": "المنتج",
+    "productPlaceholder": "اختر المنتج",
+    "nameLabel": "الاسم",
+    "namePlaceholder": "اكتب اسمك",
+    "companyLabel": "اسم الشركة",
+    "companyPlaceholder": "اكتب اسم الشركة",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "اكتب البريد الإلكتروني",
+    "phoneLabel": "رقم الهاتف",
+    "phonePlaceholder": "اكتب رقم الهاتف",
+    "messageLabel": "الرسالة",
+    "messagePlaceholder": "اكتب رسالتك",
+    "submit": "إرسال",
+    "submitting": "جاري الإرسال...",
+    "errors": {
+      "name": "الاسم مطلوب",
+      "company_name": "اسم الشركة مطلوب",
+      "email": "البريد الإلكتروني غير صحيح",
+      "phone": "رقم الهاتف غير صحيح",
+      "message": "الرسالة يجب أن تكون 5 أحرف على الأقل",
+      "product_id": "المنتج مطلوب",
+      "service_id": "الخدمة مطلوبة",
+      "general": "حدث خطأ ما، حاول مرة أخرى"
+    },
+    "success": "تم إرسال الطلب بنجاح"
+  },
+
+  "Header": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "خدماتنا",
+    "products": "المنتجات",
+    "previousWork": "سابقة الأعمال",
+    "partners": "عملائنا",
+    "contact": "تواصل معنا",
+    "pages": "الصفحات",
+    "otherLinks": "روابط اخرى"
+  },
+
+  "ContactUS": {
+    "title": "تواصل معنا",
+    "noBranches": "لا يوجد فروع حاليا",
+    "address": "العنوان",
+    "phone": "رقم الجوال",
+    "email": "البريد الالكتروني"
+  },
+
+  "ContactForm": {
+    "name": "الاسم",
+    "namePlaceholder": "اكتب اسمك",
+    "nameRequired": "الاسم مطلوب",
+    "company": "اسم الشركة",
+    "companyPlaceholder": "اكتب اسم الشركة",
+    "companyRequired": "اسم الشركة مطلوب",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "اكتب البريد الإلكتروني",
+    "invalidEmail": "البريد الإلكتروني غير صحيح",
+    "phone": "رقم الهاتف",
+    "phonePlaceholder": "اكتب رقم الهاتف",
+    "invalidPhone": "رقم الهاتف غير صحيح",
+    "message": "الرسالة",
+    "messagePlaceholder": "اكتب رسالتك",
+    "messageMin": "الرسالة يجب أن تكون 5 أحرف على الأقل",
+    "send": "إرسال",
+    "sending": "جاري الإرسال...",
+    "success": "تم إرسال الرسالة بنجاح",
+    "error": "حدث خطأ ما، حاول مرة أخرى"
+  },
+
+  "Partners": {
+    "title": "عملائنا",
+    "noClients": "لا يوجد عملاء"
+  },
+
+  "PreviousWork": {
+    "title": "سابقة الأعمال",
+    "noWorks": "لا يوجد اعمال"
+  },
+
+  "Products": {
+    "title": "منتجاتنا",
+    "noProducts": "لا يوجد منتجات حاليا"
+  },
+
+  "Services": {
+    "title": "خدماتنا",
+    "noServices": "لا يوجد خدمات حاليا"
+  },
 
   "notFound": {
     "title": "404",

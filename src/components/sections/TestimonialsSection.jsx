@@ -1,6 +1,5 @@
 import SectionTitle from "@/components/common/SectionTitle";
 import MainSlider from "./MainSlider";
-import image from "@/assets/images/pc-img.png";
 import TestimonialsSectionSkeleton from "../skeletons/TestimonialsSectionSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import { getTestimonials } from "@/api/pagesServices";
@@ -28,7 +27,8 @@ const TestimonialsSection = ({ block }) => {
             >
               <div className="w-24 aspect-square p-2 rounded overflow-hidden bg-white">
                 <img
-                  src={testimonial.image_url}
+                  loading="lazy"
+                  src={testimonial.company_logo}
                   alt="testimonials"
                   className="w-full h-full object-contain"
                 />
@@ -42,6 +42,7 @@ const TestimonialsSection = ({ block }) => {
                 <div className="flex items-center gap-2">
                   <div className="w-10 aspect-square rounded-md overflow-hidden">
                     <img
+                      loading="lazy"
                       src={testimonial.image_url}
                       alt="user"
                       className="w-full h-full object-cover"

@@ -8,10 +8,11 @@ const GallerySection = ({ block, loading }) => {
 
   return (
     <section className="container sectionPadding">
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Main Image */}
         <div className="w-full h-75 md:h-95 rounded-2xl overflow-hidden">
           <img
+            loading="lazy"
             src={bigImage}
             alt="gallery"
             className="w-full h-full object-cover"
@@ -23,6 +24,7 @@ const GallerySection = ({ block, loading }) => {
           {images?.map((img, index) => (
             <div key={index} className="aspect-4/3 rounded-xl overflow-hidden">
               <img
+                loading="lazy"
                 src={img}
                 alt="thumb"
                 className="w-full h-full object-cover"

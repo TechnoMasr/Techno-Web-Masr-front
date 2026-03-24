@@ -1,7 +1,10 @@
+import useHandleAction from "@/hooks/useHandleAction";
 import TitleAndDescription from "../common/TitleAndDescription";
 import { Button } from "../ui/button";
 
 const MobileAndSteps = ({ block }) => {
+  const handleAction = useHandleAction();
+
   return (
     <section className={`sectionPadding relative`}>
       <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
@@ -30,13 +33,22 @@ const MobileAndSteps = ({ block }) => {
             ))}
           </ul>
 
-          <Button className={`mx-auto block md:me-auto md:ms-0`}>
-            اطلب الخدمه
+          <Button
+            className={`mx-auto block md:me-auto md:ms-0`}
+            onClick={() =>
+              handleAction(block?.other_data?.btn_1_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
+          >
+            {block?.other_data?.btn_1_text}
           </Button>
         </div>
 
         <div className={`w-full h-125 hidden md:block md:col-span-2`}>
           <img
+            loading="lazy"
             src={block.image_url}
             alt="image"
             className="w-full h-full object-contain"

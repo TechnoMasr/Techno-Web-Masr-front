@@ -10,17 +10,19 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInputField from "@/components/form/PhoneInputField";
 import { sendContactUs } from "@/api/contactServices";
 import { useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const ContactForm = () => {
+  const { t } = useTranslation();
   const { slug } = useParams();
 
   const contactSchema = z.object({
-    name: z.string().min(2, "الاسم مطلوب"),
-    company_name: z.string().min(2, "اسم الشركة مطلوب"),
-    email: z.string().email("البريد الإلكتروني غير صحيح"),
-    message: z.string().min(5, "الرسالة يجب أن تكون 5 أحرف على الأقل"),
+    name: z.string().min(2, t("ContactForm.nameRequired")),
+    company_name: z.string().min(2, t("ContactForm.companyRequired")),
+    email: z.string().email(t("ContactForm.invalidEmail")),
+    message: z.string().min(5, t("ContactForm.messageMin")),
     phone: z.string().refine((value) => isValidPhoneNumber(value || ""), {
-      message: "رقم الهاتف غير صحيح",
+      message: t("ContactForm.invalidPhone"),
     }),
   });
 
@@ -44,7 +46,7 @@ const ContactForm = () => {
     mutationFn: sendContactUs,
     onSuccess: () => {
       reset();
-      toast.success("تم إرسال الرسالة بنجاح");
+      toast.success(t("ContactForm.success"));
     },
   });
 
@@ -62,8 +64,8 @@ const ContactForm = () => {
           render={({ field }) => (
             <MainInput
               {...field}
-              label="الاسم"
-              placeholder="اكتب اسمك"
+              label={t("ContactForm.name")}
+              placeholder={t("ContactForm.namePlaceholder")}
               error={errors.name?.message}
             />
           )}
@@ -75,8 +77,8 @@ const ContactForm = () => {
           render={({ field }) => (
             <MainInput
               {...field}
-              label="اسم الشركة"
-              placeholder="اكتب اسم الشركة"
+              label={t("ContactForm.company")}
+              placeholder={t("ContactForm.companyPlaceholder")}
               error={errors.company_name?.message}
             />
           )}
@@ -89,8 +91,8 @@ const ContactForm = () => {
             <MainInput
               {...field}
               type="email"
-              label="البريد الإلكتروني"
-              placeholder="اكتب البريد الإلكتروني"
+              label={t("ContactForm.email")}
+              placeholder={t("ContactForm.emailPlaceholder")}
               error={errors.email?.message}
             />
           )}
@@ -102,8 +104,8 @@ const ContactForm = () => {
           render={({ field }) => (
             <PhoneInputField
               {...field}
-              label="رقم الهاتف"
-              placeholder="اكتب رقم الهاتف"
+              label={t("ContactForm.phone")}
+              placeholder={t("ContactForm.phonePlaceholder")}
               error={errors.phone?.message}
             />
           )}
@@ -117,8 +119,8 @@ const ContactForm = () => {
           <MainInput
             {...field}
             type="textarea"
-            label="الرسالة"
-            placeholder="اكتب رسالتك"
+            label={t("ContactForm.message")}
+            placeholder={t("ContactForm.messagePlaceholder")}
             error={errors.message?.message}
           />
         )}
@@ -129,14 +131,12 @@ const ContactForm = () => {
         disabled={isPending}
         className="w-fit mx-auto min-w-32"
       >
-        {isPending ? "جاري الإرسال..." : "إرسال"}
+        {isPending ? t("ContactForm.sending") : t("ContactForm.send")}
       </Button>
 
       {error && (
         <FormError
-          errorMsg={
-            error?.response?.data?.message || "حدث خطأ ما، حاول مرة أخرى"
-          }
+          errorMsg={error?.response?.data?.message || t("ContactForm.error")}
         />
       )}
     </form>

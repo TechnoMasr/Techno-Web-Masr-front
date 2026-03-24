@@ -1,10 +1,9 @@
+import useHandleAction from "@/hooks/useHandleAction";
 import TitleAndDescription from "../common/TitleAndDescription";
-import TechnologySectionSkeleton from "../skeletons/TechnologySectionSkeleton";
 import { Button } from "../ui/button";
-import image from "@/assets/images/pc-img.png";
 
 const TechnologySection = ({ block }) => {
-
+  const handleAction = useHandleAction();
 
   return (
     <section className={`sectionPadding`}>
@@ -20,6 +19,7 @@ const TechnologySection = ({ block }) => {
             >
               <div className="h-20 aspect-video overflow-hidden mb-2">
                 <img
+                  loading="lazy"
                   src={item.image_url}
                   alt="partner"
                   className="w-full h-full object-contain"
@@ -31,7 +31,17 @@ const TechnologySection = ({ block }) => {
           ))}
         </ul>
 
-        <Button className={`mx-auto block`}>اطلب الخدمه</Button>
+        <Button
+          className={`mx-auto block`}
+          onClick={() =>
+            handleAction(block.other_data.btn_1_url, {
+              serviceId: block?.serviceId,
+              serviceTitle: block?.serviceTitle,
+            })
+          }
+        >
+          {block.other_data.btn_1_text}
+        </Button>
       </div>
     </section>
   );

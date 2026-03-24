@@ -24,8 +24,8 @@ const ServicesSection = ({ block, loading }) => {
           title={block?.title}
           description={block?.description}
           link={{
-            href: "/services",
-            text: "عرض جميع الخدمات",
+            href: block?.other_data?.btn_1_url || "/services",
+            text: block?.other_data?.btn_1_text || "عرض جميع الخدمات",
           }}
         />
 

@@ -17,14 +17,24 @@ const TechnoMasrTextBanner = ({ block, loading }) => {
 
         <div className="flex gap-2">
           <Button
-            onClick={() => handleAction(block?.other_data?.btn_1_url)}
+            onClick={() =>
+              handleAction(block?.other_data?.btn_1_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
             variant="secondary"
           >
             {block?.other_data?.btn_1_text}
           </Button>
 
           <Button
-            onClick={() => handleAction(block?.other_data?.btn_2_url)}
+            onClick={() =>
+              handleAction(block?.other_data?.btn_2_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
             variant="outline"
           >
             {block?.other_data?.btn_2_text}

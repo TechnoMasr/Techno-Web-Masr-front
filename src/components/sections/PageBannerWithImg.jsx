@@ -12,11 +12,12 @@ const PageBannerWithImg = ({ block, loading }) => {
   return (
     <section
       className="bg-center bg-cover w-full h-screen md:h-[80vh] content-center pt-24 pb-16 md:mb-14"
-      style={{ backgroundImage: `url(${bgImg})` }}
+      style={{ backgroundImage: `url(${block.bg_image || bgImg})` }}
     >
       <div className="container w-full h-full flex flex-col justify-center md:flex-row items-center gap-10">
         <div className="w-full md:w-1/2 h-62.5 md:h-full">
           <img
+            loading="lazy"
             src={block.image_url}
             alt=""
             className="w-[90%] sm:w-[60%] md:w-full h-full object-contain mx-auto md:translate-y-[35%] drop-shadow-xl"
@@ -31,7 +32,12 @@ const PageBannerWithImg = ({ block, loading }) => {
           <p className="text-white/80 text-sm">{block.description}</p>
 
           <Button
-            onClick={() => handleAction(block?.other_data?.btn_1_url)}
+            onClick={() =>
+              handleAction(block?.other_data?.btn_1_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
             variant="secondary"
             className="mt-6 group"
           >

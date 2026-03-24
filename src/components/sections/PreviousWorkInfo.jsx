@@ -4,17 +4,27 @@ import { RiGlobalLine } from "react-icons/ri";
 import TitleAndDescription from "../common/TitleAndDescription";
 import PreviousWorkInfoSkeleton from "../skeletons/PreviousWorkInfoSkeleton";
 
-const PreviousWorkInfo = () => {
+const PreviousWorkInfo = ({ data }) => {
   // const loading = true;
 
   // if (loading) return <PreviousWorkInfoSkeleton />;
+
+  const formatedDate = new Date(data?.delivered_date).toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  );
 
   return (
     <section className="container sectionPadding flex flex-col-reverse md:flex-row gap-6 lg:gap-12">
       <TitleAndDescription
         title={`تفاصيل المشروع`}
-        description={`تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير الــمـــواقـــع الإلــكــتــرونـيـة، المـتـاجـر الإلكـتـرونـيـة، والتـطبيقات، بالإضافة إلى أنــظــمــة الــبــرمجــيــات المــخــصصــة لـلـشركــات. تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع بين التصميم الاحترافي، الأداء التقني العالي، وتجربة المستخدم المتطورة. تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير الــمـــواقـــع الإلــكــتــرونـيـة، المـتـاجـر الإلكـتـرونـيـة، والتـطبيقات، بالإضافة إلى أنــظــمــة الــبــرمجــيــات المــخــصصــة لـلـشركــات. تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع بين التصميم الاحترافي، الأداء التقني العالي، وتجربة المستخدم المتطورة. تكنو ويب مصر هي شركة متخصصة في الحلول الرقمية وتصميم وتطوير الــمـــواقـــع الإلــكــتــرونـيـة، المـتـاجـر الإلكـتـرونـيـة، والتـطبيقات، بالإضافة إلى أنــظــمــة الــبــرمجــيــات المــخــصصــة لـلـشركــات. تــهدف الشركة إلى تمكين الأعــمــال من التــحول الرقــمي مــن خـــلال تــقــديم حــلــول مـبـتكرة تجمع بين التصميم الاحترافي، الأداء التقني العالي،`}
+        description={data?.content}
         className="flex-1"
+        html
       />
 
       <div
@@ -23,31 +33,32 @@ const PreviousWorkInfo = () => {
       >
         <div className="h-20 aspect-video overflow-hidden mb-2">
           <img
+            loading="lazy"
             src={image}
             alt="partner"
             className="w-full h-full object-contain"
           />
         </div>
 
-        <h3 className="font-semibold text-primary">شركة ليفا للتامين</h3>
-        <p className="text-xs font-medium">قطاع التطوير التاميني بالرياض</p>
+        <h3 className="font-semibold text-primary">{data?.company}</h3>
+        <p className="text-xs font-medium">{data?.description}</p>
 
         <hr className="my-2" />
 
         <ul className="flex flex-col gap-4">
           <li className="w-full flex items-center justify-between gap-2 text-xs font-bold">
-            <p className="text-gray-400">الدوله:</p>
-            <span className="text-primary">المملكة العربية السعودية</span>
+            <p className="text-gray-400">المالك:</p>
+            <span className="text-primary">{data.owner}</span>
           </li>
 
           <li className="w-full flex items-center justify-between gap-2 text-xs font-bold">
             <p className="text-gray-400">الدوله:</p>
-            <span className="text-primary">المملكة العربية السعودية</span>
+            <span className="text-primary">{data.country}</span>
           </li>
 
           <li className="w-full flex items-center justify-between gap-2 text-xs font-bold">
-            <p className="text-gray-400">الدوله:</p>
-            <span className="text-primary">المملكة العربية السعودية</span>
+            <p className="text-gray-400">تاريخ التسليم:</p>
+            <span className="text-primary">{formatedDate}</span>
           </li>
         </ul>
 
@@ -56,7 +67,7 @@ const PreviousWorkInfo = () => {
         <ul className="flex items-center justify-center flex-wrap gap-4">
           <li>
             <a
-              href="#"
+              href={data?.ios_url}
               target="_blank"
               className="w-10 aspect-square flex items-center justify-center rounded-lg border 
                   text-2xl text-black hover:bg-primary hover:text-white transition-all duration-300"
@@ -67,7 +78,7 @@ const PreviousWorkInfo = () => {
 
           <li>
             <a
-              href="#"
+              href={data?.android_url}
               target="_blank"
               className="w-10 aspect-square flex items-center justify-center rounded-lg border 
                   text-2xl text-black hover:bg-primary hover:text-white transition-all duration-300"
@@ -78,7 +89,7 @@ const PreviousWorkInfo = () => {
 
           <li>
             <a
-              href="#"
+              href={data?.web_url}
               target="_blank"
               className="w-10 aspect-square flex items-center justify-center rounded-lg border 
                   text-2xl text-black hover:bg-primary hover:text-white transition-all duration-300"

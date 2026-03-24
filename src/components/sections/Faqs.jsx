@@ -11,25 +11,23 @@ import FaqsSkeleton from "../skeletons/FaqsSkeleton";
 import { getFaq } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 
-const Faqs = ({ block, loading, imageRight }) => {
+const Faqs = ({ block, loading, imageRight, callApi = false }) => {
   const { data: faqsData, isLoading } = useQuery({
-    queryKey: ["faqs"],
+    queryKey: ["faqs" + block?.id],
     queryFn: getFaq,
-    enabled: !block?.block_items?.length,
+    enabled: callApi || !block?.block_items?.length,
   });
 
   if (loading || isLoading) return <FaqsSkeleton />;
 
-  const faqs =
-    block?.block_items?.length > 0 ? block.block_items : faqsData || [];
+  const faqs = faqsData?.length > 0 ? faqsData || [] : block.block_items;
 
   return (
     <section
       className="bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${image})` }}
+      style={{ backgroundImage: `url(${block.bg_image || image})` }}
     >
       <div className="absolute inset-0 bg-gray-100/90" />
-
       <div className="container sectionPadding relative z-10">
         <SectionTitle title={block.title} />
 
@@ -45,11 +43,11 @@ const Faqs = ({ block, loading, imageRight }) => {
                   className={` bg-gray-200 rounded-lg`}
                 >
                   <AccordionTrigger className="text-black p-2 py-4 font-semibold cursor-pointer">
-                    {item.title}
+                    {item.title || item.question}
                   </AccordionTrigger>
 
                   <AccordionContent className="text-muted-foreground p-2 font-medium">
-                    {item.description}
+                    {item.description || item.answer}
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -58,6 +56,7 @@ const Faqs = ({ block, loading, imageRight }) => {
 
           <div className="w-1/3 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden">
             <img
+              loading="lazy"
               src={block.image_url}
               alt="faq"
               className="w-full h-full object-cover"

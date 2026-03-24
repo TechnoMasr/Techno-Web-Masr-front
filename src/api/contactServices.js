@@ -20,7 +20,12 @@ export const getBranchDetails = async (slug) => {
   return data?.data || [];
 };
 
-export const getContactServices = async () => {
+export const getContactProducts = async () => {
   const { data } = await api.get(`/products/select`);
+  return data?.data || [];
+};
+
+export const getContactServices = async () => {
+  const { data } = await api.get(`/our-services/select`);
   return data?.data || [];
 };

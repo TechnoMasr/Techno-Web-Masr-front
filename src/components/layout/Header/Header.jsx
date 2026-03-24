@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import HeaderActions from "./HeaderActions/HeaderActions";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -20,6 +21,7 @@ const Header = () => {
   }, []);
 
   const { lang } = useParams();
+  const { settings } = useSelector((state) => state.settings);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50`}>
@@ -36,7 +38,7 @@ const Header = () => {
           <Link to={`/${lang}`} className="w-24">
             <img
               loading="lazy"
-              src={logo}
+              src={settings?.footer_logo || logo}
               alt="Company Logo"
               className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
             />

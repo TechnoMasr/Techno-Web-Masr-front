@@ -15,6 +15,7 @@ import useNavigationLinks from "@/hooks/useNavigationLinks";
 import { getFooter } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 import FooterSkeleton from "@/components/skeletons/FooterSkeleton";
+import { useTranslation } from "react-i18next";
 
 const getTranslated = (field, lang) => {
   if (field == null) return "";
@@ -23,6 +24,8 @@ const getTranslated = (field, lang) => {
 };
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   const { lang } = useParams();
   const locale = lang || "ar";
   const links = useNavigationLinks();
@@ -100,7 +103,8 @@ const Footer = () => {
           </div>
 
           <p className="text-xs">
-            {footerData?.footer_description_ar ?? footerData?.footer_description_en}
+            {footerData?.footer_description_ar ??
+              footerData?.footer_description_en}
           </p>
 
           <div className="flex items-center justify-center flex-wrap gap-4 border-t pt-4 w-full">
@@ -119,7 +123,7 @@ const Footer = () => {
 
         <div className="flex flex-col gap-4 min-w-1/6">
           <h3 className="text-lg lg:text-xl font-medium uppercase">
-            روابط رئيسية
+            {t("Footer.mainLinks")}
           </h3>
           <ul className="space-y-2">
             {links
@@ -139,7 +143,7 @@ const Footer = () => {
 
         <div className="flex flex-col gap-4 min-w-1/6">
           <h3 className="text-lg lg:text-xl font-medium uppercase">
-            الخدمات
+            {t("Footer.services")}
           </h3>
           <ul className="space-y-2">
             {ourService.map((item) => (
@@ -157,7 +161,7 @@ const Footer = () => {
 
         <div className="flex flex-col gap-4 min-w-1/6">
           <h3 className="text-lg lg:text-xl font-medium uppercase">
-            المنتجات
+            {t("Footer.products")}
           </h3>
           <ul className="space-y-2">
             {products.map((item) => (
@@ -176,7 +180,7 @@ const Footer = () => {
         {pages.length > 0 && (
           <div className="flex flex-col gap-4 min-w-1/6">
             <h3 className="text-lg lg:text-xl font-medium uppercase">
-              روابط قد تهمك
+              {t("Footer.pages")}
             </h3>
             <ul className="space-y-2">
               {pages.map((item) => (

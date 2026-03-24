@@ -9,31 +9,28 @@ const PhoneInputField = ({
   disabled = false,
   value,
   onChange,
-  icon = null,
   error,
 }) => {
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       {label && (
-        <label htmlFor={name} className="text-sm font-medium text-black">
+        <label htmlFor={name} className="font-medium text-black inline-block">
           {label}
         </label>
       )}
 
-      <PhoneInput
-        id={name}
-        international
-        defaultCountry="EG"
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        placeholder={placeholder}
-        className={cn(
-          "phone-input-wrapper",
-          icon && "ps-2",
-          error && "aria-invalid",
-        )}
-      />
+      <div dir="ltr">
+        <PhoneInput
+          id={name}
+          international
+          defaultCountry="EG"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          placeholder={placeholder}
+          className={cn("phone-input-wrapper", error && "aria-invalid")}
+        />
+      </div>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
     </div>

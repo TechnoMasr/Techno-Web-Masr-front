@@ -8,7 +8,7 @@ const PartnersSection = ({ block, loading }) => {
   return (
     <section
       className="bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${image})` }}
+      style={{ backgroundImage: `url(${block.bg_image || image})` }}
     >
       <div className="absolute inset-0 bg-gray-100/90" />
 
@@ -22,6 +22,7 @@ const PartnersSection = ({ block, loading }) => {
               className="bg-white shadow rounded-2xl border w-full aspect-video overflow-hidden p-2"
             >
               <img
+                loading="lazy"
                 src={item.image_url}
                 alt="partner"
                 className="w-full h-full object-contain"

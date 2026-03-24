@@ -15,7 +15,12 @@ const VisionAndMission = ({ block, loading }) => {
             className="flex flex-col gap-2 bg-white text-primary shadow rounded-xl border p-3"
           >
             {/* <span className="text-3xl">{item.icon}</span> */}
-            <img src={item.image_url} alt="" className="w-8 h-8" />
+            <img
+              loading="lazy"
+              src={item.image_url}
+              alt=""
+              className="w-8 h-8"
+            />
             <h3 className="text-lg font-semibold">{item.title}</h3>
             <p className="text-xs font-medium">{item.description}</p>
           </li>

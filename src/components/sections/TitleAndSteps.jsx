@@ -1,9 +1,10 @@
+import useHandleAction from "@/hooks/useHandleAction";
 import TitleAndDescription from "../common/TitleAndDescription";
 import TitleAndStepsSkeleton from "../skeletons/TitleAndStepsSkeleton";
 import { Button } from "../ui/button";
 
 const TitleAndSteps = ({ block }) => {
-  console.log("block", block);
+  const handleAction = useHandleAction();
 
   return (
     <section className={`sectionPadding`}>
@@ -31,7 +32,19 @@ const TitleAndSteps = ({ block }) => {
           ))}
         </ul>
 
-        <Button className={`mx-auto block`}>اطلب الخدمه</Button>
+        {block.other_data && (
+          <Button
+            className={`mx-auto block`}
+            onClick={() =>
+              handleAction(block.other_data.btn_1_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
+          >
+            {block.other_data.btn_1_text}
+          </Button>
+        )}
       </div>
     </section>
   );

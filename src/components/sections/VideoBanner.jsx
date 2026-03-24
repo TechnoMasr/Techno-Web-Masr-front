@@ -31,6 +31,7 @@ const VideoBanner = ({ block }) => {
             {/* Poster image */}
             {posterUrl && (
               <img
+                loading="lazy"
                 src={posterUrl}
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -50,7 +51,10 @@ const VideoBanner = ({ block }) => {
               </svg>
             </span>
             {/* Subtle pulse ring */}
-            <span className="absolute z-10 w-24 h-24 md:w-28 md:h-28 rounded-full border-4 border-white/40 animate-ping pointer-events-none opacity-60" aria-hidden />
+            <span
+              className="absolute z-10 w-24 h-24 md:w-28 md:h-28 rounded-full border-4 border-white/40 animate-ping pointer-events-none opacity-60"
+              aria-hidden
+            />
           </button>
         )}
 
@@ -74,8 +78,18 @@ const VideoBanner = ({ block }) => {
               className="absolute top-4 left-4 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
               aria-label="إيقاف وإغلاق الفيديو"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </>

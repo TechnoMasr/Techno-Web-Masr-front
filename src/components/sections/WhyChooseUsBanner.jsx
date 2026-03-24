@@ -32,7 +32,7 @@ const WhyChooseUsBanner = ({ block }) => {
 
   return (
     <section
-      className="relative w-full min-h-[320px] md:min-h-[380px] flex flex-col items-center justify-center text-center py-20 px-4 overflow-hidden"
+      className="relative w-full min-h-80 md:min-h-95 flex flex-col items-center justify-center text-center py-20 px-4 overflow-hidden"
       dir="rtl"
     >
       {/* Blurred background image */}

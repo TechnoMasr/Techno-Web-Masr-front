@@ -3,6 +3,7 @@ const TitleAndDescription = ({
   description,
   className = "",
   textColor = "",
+  html = false,
 }) => {
   return (
     <div className={`mb-4 ${className}`}>
@@ -14,7 +15,11 @@ const TitleAndDescription = ({
 
       {description && (
         <p className={`mt-2 text-sm font-medium leading-relaxed ${textColor}`}>
-          {description}
+          {html ? (
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+          ) : (
+            description
+          )}
         </p>
       )}
     </div>

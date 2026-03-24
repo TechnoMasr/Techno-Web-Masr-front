@@ -7,8 +7,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getBranchDetails } from "@/api/contactServices";
 import { useParams } from "react-router";
 import BranchSkeleton from "@/components/skeletons/BranchSkeleton";
+import { useTranslation } from "react-i18next";
 
 const ContactUsBranch = () => {
+  const { t } = useTranslation();
+
   const { slug } = useParams();
 
   const { data: branchData, isLoading } = useQuery({
@@ -25,19 +28,19 @@ const ContactUsBranch = () => {
     info: [
       {
         id: 1,
-        label: "العنوان",
+        label: t("ContactUS.address"),
         value: branchData?.address,
         icon: <SlLocationPin />,
       },
       {
         id: 2,
-        label: "رقم الجوال",
+        label: t("ContactUS.phone"),
         value: branchData?.phone,
         icon: <FiPhone />,
       },
       {
         id: 3,
-        label: "البريد الالكتروني",
+        label: t("ContactUS.email"),
         value: branchData?.email,
         icon: <MdOutlineMailOutline />,
       },
@@ -53,7 +56,7 @@ const ContactUsBranch = () => {
           <BranchSkeleton />
         ) : !branchData ? null : (
           <div
-            className="flex flex-col md:flex-row-reverse gap-2 md:gap-6 bg-white p-3 border shadow rounded-lg font-medium"
+            className="flex flex-col md:flex-row-reverse gap-2 md:gap-8 bg-white p-3 border rounded-lg font-medium"
             key={item.id}
           >
             <div
@@ -65,7 +68,7 @@ const ContactUsBranch = () => {
               <h3 className="text-xl text-primary">{item.name}</h3>
               <p className="text-sm">{item.description}</p>
 
-              <ul className="flex flex-col gap-4">
+              <ul className="flex flex-col gap-2">
                 {item.info.map((info) => (
                   <li className="flex items-center gap-3 py-1" key={info.id}>
                     <div
