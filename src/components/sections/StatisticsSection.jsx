@@ -20,7 +20,7 @@ const Statistics = ({ block, loading }) => {
   return (
     <section
       className="bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${block.bg_image || image})` }}
+      style={{ backgroundImage: `url(${block.bg_image_url || image})` }}
     >
       <div className="absolute inset-0 bg-gray-100/90" />
 

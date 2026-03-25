@@ -110,7 +110,7 @@ const BlocksRender = ({ blocks, serviceId = "", serviceTitle = "" }) => {
             {/* 'صورع على اليسار + نص +فقره + زر على اليمين', 'left_images_right_text_paragraph_button' */}
             {block.type === "left_images_right_text_paragraph_button" && (
               <TextAndImage
-                backgroundImage={block.bg_image || image}
+                backgroundImage={block.bg_image_url || image}
                 block={{ ...block, serviceId, serviceTitle }}
               />
             )}

@@ -46,47 +46,50 @@ const Footer = () => {
     {
       name: "Facebook",
       icon: <FaFacebookF />,
-      url: footerData?.footer_facebook || "/",
+      url: footerData?.footer_facebook,
     },
     {
       name: "LinkedIn",
       icon: <FaLinkedinIn />,
-      url: footerData?.footer_linkedin || "/",
+      url: footerData?.footer_linkedin,
     },
-    { name: "Twitter", icon: <FaXTwitter />, url: footerData?.footer_x || "/" },
+    { name: "Twitter", icon: <FaXTwitter />, url: footerData?.footer_x },
     {
       name: "Youtube",
       icon: <FaYoutube />,
-      url: footerData?.footer_youtube || "/",
+      url: footerData?.footer_youtube,
     },
     {
       name: "Instagram",
       icon: <RiInstagramFill />,
-      url: footerData?.footer_instagram || "/",
+      url: footerData?.footer_instagram,
     },
     {
       name: "Tiktok",
       icon: <FaTiktok />,
-      url: footerData?.footer_tiktok || "/",
+      url: footerData?.footer_tiktok,
     },
     {
       name: "Telegram",
       icon: <FaTelegramPlane />,
-      url: footerData?.footer_telegram || "/",
+      url: footerData?.footer_telegram,
     },
     {
       name: "Whatsapp",
       icon: <IoLogoWhatsapp />,
-      url: footerData?.footer_whatsapp || "/",
+      url: footerData?.footer_whatsapp,
     },
   ];
 
   return (
     <footer
-      className="sectionPadding bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${bgImg})` }}
+      className="sectionPadding bg-center bg-cover bg-primary relative"
+      style={{
+        backgroundImage: `url(${footerData?.footer_background || bgImg})`,
+      }}
     >
-      {/* <div className="absolute inset-0 bg-primary/95" /> */}
+      {/* <div className="absolute inset-0 bg-primary/20" /> */}
+      <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[70%] h-[50%] bg-secondary/10 rounded-[50%] blur-[50px]" />
 
       <div
         className="container relative z-10 text-white
@@ -108,16 +111,18 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center justify-center flex-wrap gap-4 border-t pt-4 w-full">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                className="hover:text-secondary hover:border-secondary transition-colors text-xl"
-              >
-                {link.icon}
-              </a>
-            ))}
+            {socialLinks
+              .filter((link) => link.url)
+              .map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  className="hover:text-secondary hover:border-secondary transition-colors text-xl"
+                >
+                  {link.icon}
+                </a>
+              ))}
           </div>
         </div>
 

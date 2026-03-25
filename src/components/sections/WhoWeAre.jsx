@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import WhoWeAreSkeleton from "../skeletons/WhoWeAreSkeleton";
 import useHandleAction from "@/hooks/useHandleAction";
 import { motion } from "framer-motion";
+import Union from "@/assets/icons/Union.png";
+import wIcon from "@/assets/icons/w-icon.png";
 
 const WhoWeAre = ({ block, loading }) => {
   const handleAction = useHandleAction();
@@ -17,6 +19,20 @@ const WhoWeAre = ({ block, loading }) => {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
+
+      <img
+        loading="lazy"
+        src={Union}
+        alt="Decorative background"
+        className="absolute bottom-0 inset-e-10 opacity-60 w-26 -z-10"
+      />
+
+      <img
+        loading="lazy"
+        src={wIcon}
+        alt="Decorative background"
+        className="absolute top-10 inset-s-10 w-1/5 -z-10"
+      />
 
       <div className="container sectionPadding">
         <motion.div

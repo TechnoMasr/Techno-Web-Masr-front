@@ -28,8 +28,8 @@ const PageBannerWithImg = ({ block, loading }) => {
 
   return (
     <section
-      className="bg-center bg-cover w-full h-screen md:h-[80vh] content-center pt-24 pb-16 md:mb-14"
-      style={{ backgroundImage: `url(${block.bg_image || bgImg})` }}
+      className="bg-center bg-cover bg-primary w-full h-screen md:h-[80vh] content-center pt-24 pb-16 md:mb-24"
+      style={{ backgroundImage: `url(${block.bg_image_url || bgImg})` }}
     >
       <motion.div
         variants={containerVariant}

@@ -67,9 +67,9 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
       whileInView="show"
       viewport={{ once: true }}
       className="bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${block.bg_image || image})` }}
+      style={{ backgroundImage: `url(${block.bg_image_url || image})` }}
     >
-      <div className="absolute inset-0 bg-gray-100/90" />
+      <div className="absolute inset-0 bg-gray-100/50" />
 
       <div className="container sectionPadding relative z-10">
         {/* 🔥 Title Animation */}
@@ -106,7 +106,7 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
                       {item.title || item.question}
                     </AccordionTrigger>
 
-                    <AccordionContent className="text-muted-foreground p-2 font-medium">
+                    <AccordionContent className="p-2 font-medium">
                       {item.description || item.answer}
                     </AccordionContent>
                   </AccordionItem>

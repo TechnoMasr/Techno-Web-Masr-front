@@ -14,28 +14,32 @@ const FixedSection = () => {
       title: t("whatsapp"),
       link: `https://wa.me/${(settings?.footer_whatsapp || "").replace(/\s/g, "")}`,
       icon: whatsapp_icon,
+      value: settings?.footer_whatsapp,
     },
     {
       id: 2,
       title: t("phone"),
       link: `tel:${(settings?.footer_phone || "").replace(/\s/g, "")}`,
       icon: phone_icon,
+      value: settings?.footer_phone,
     },
   ];
 
   return (
     <section className="fixed inset-e-4 bottom-1/6 z-40">
       <div className="flex flex-col items-end gap-4">
-        {list.map((item) => (
-          <a
-            key={item.id}
-            href={item.link}
-            target="_blank"
-            className="transition-transform duration-200 hover:scale-110"
-          >
-            <img src={item.icon} alt={item.title} className="w-10 h-10" />
-          </a>
-        ))}
+        {list
+          .filter((item) => item.value)
+          .map((item) => (
+            <a
+              key={item.id}
+              href={item.link}
+              target="_blank"
+              className="transition-transform duration-200 hover:scale-110"
+            >
+              <img src={item.icon} alt={item.title} className="w-10 h-10" />
+            </a>
+          ))}
       </div>
     </section>
   );

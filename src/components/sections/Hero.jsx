@@ -51,8 +51,8 @@ const Hero = ({ block, loading }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="bg-center bg-cover w-full min-h-screen content-center pt-24 pb-16"
-      style={{ backgroundImage: `url(${block.bg_image || bgImg})` }}
+      className="bg-center bg-cover bg-primary w-full min-h-screen content-center pt-24 pb-16"
+      style={{ backgroundImage: `url(${block.bg_image_url || bgImg})` }}
     >
       <div className="container w-full h-full flex flex-col md:flex-row items-center gap-4 md:gap-10">
         {/* 🔥 Image */}

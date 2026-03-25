@@ -83,7 +83,6 @@ const MainSlider = ({
 
       {/* 🔥 Desktop Buttons */}
       <motion.button
-        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={{ opacity: isBeginning ? 0.4 : 1 }}
         onClick={() => swiperRef.current?.slidePrev()}
@@ -94,7 +93,6 @@ const MainSlider = ({
       </motion.button>
 
       <motion.button
-        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={{ opacity: isEnd ? 0.4 : 1 }}
         onClick={() => swiperRef.current?.slideNext()}
@@ -107,7 +105,6 @@ const MainSlider = ({
       {/* 🔥 Mobile Buttons */}
       <div className="flex items-center justify-center gap-4 mt-4 xl:hidden">
         <motion.button
-          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           animate={{ opacity: isBeginning ? 0.4 : 1 }}
           onClick={() => swiperRef.current?.slidePrev()}
@@ -118,7 +115,6 @@ const MainSlider = ({
         </motion.button>
 
         <motion.button
-          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           animate={{ opacity: isEnd ? 0.4 : 1 }}
           onClick={() => swiperRef.current?.slideNext()}

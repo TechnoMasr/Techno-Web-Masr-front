@@ -28,9 +28,9 @@ const PartnersSection = ({ block, loading }) => {
   return (
     <section
       className="bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${block.bg_image || image})` }}
+      style={{ backgroundImage: `url(${block.bg_image_url || image})` }}
     >
-      <div className="absolute inset-0 bg-gray-100/90" />
+      <div className="absolute inset-0 bg-gray-100/50" />
 
       <div className="container sectionPadding relative z-10">
         <SectionTitle title={block?.title} />

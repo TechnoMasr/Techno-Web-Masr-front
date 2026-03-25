@@ -41,9 +41,9 @@ const StartWithUsBanner = ({ block }) => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="bg-center bg-cover w-full min-h-72 content-center p-8 
+        className="bg-center bg-cover bg-primary w-full min-h-72 content-center p-8 
         flex flex-col md:flex-row items-center gap-4 lg:gap-10 rounded-3xl shadow relative overflow-hidden"
-        style={{ backgroundImage: `url(${block.bg_image || bgImg})` }}
+        style={{ backgroundImage: `url(${block.bg_image_url || bgImg})` }}
       >
         <div className="absolute inset-0 bg-primary/80" />
 
@@ -87,37 +87,33 @@ const StartWithUsBanner = ({ block }) => {
             variants={fadeUp}
             className="flex items-center justify-center flex-wrap gap-2 mt-6"
           >
-            {block.other_data?.btn_1_enabled && (
-              <Button
-                variant="secondary"
-                className="min-w-40 group"
-                onClick={() =>
-                  handleAction(block?.other_data?.btn_1_url, {
-                    serviceId: block?.serviceId,
-                    serviceTitle: block?.serviceTitle,
-                  })
-                }
-              >
-                {block.other_data.btn_1_text}
-                <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
-              </Button>
-            )}
+            <Button
+              variant="secondary"
+              className="min-w-40 group"
+              onClick={() =>
+                handleAction(block?.other_data?.btn_1_url, {
+                  serviceId: block?.serviceId,
+                  serviceTitle: block?.serviceTitle,
+                })
+              }
+            >
+              {block.other_data.btn_1_text}
+              <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
+            </Button>
 
-            {block.other_data?.btn_2_enabled && (
-              <Button
-                variant="outline"
-                className="min-w-40 group"
-                onClick={() =>
-                  handleAction(block.other_data.btn_2_url, {
-                    serviceId: block?.serviceId,
-                    serviceTitle: block?.serviceTitle,
-                  })
-                }
-              >
-                {block.other_data.btn_2_text}
-                <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
-              </Button>
-            )}
+            <Button
+              variant="outline"
+              className="min-w-40 group"
+              onClick={() =>
+                handleAction(block.other_data.btn_2_url, {
+                  serviceId: block?.serviceId,
+                  serviceTitle: block?.serviceTitle,
+                })
+              }
+            >
+              {block.other_data.btn_2_text}
+              <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
+            </Button>
           </motion.div>
         </motion.div>
       </motion.div>
