@@ -2,31 +2,58 @@ import SectionTitle from "@/components/common/SectionTitle";
 import { Button } from "@/components/ui/button";
 import WhoWeAreSkeleton from "../skeletons/WhoWeAreSkeleton";
 import useHandleAction from "@/hooks/useHandleAction";
+import { motion } from "framer-motion";
 
 const WhoWeAre = ({ block, loading }) => {
-
   const handleAction = useHandleAction();
 
   if (loading) return <WhoWeAreSkeleton />;
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
 
   return (
     <section className="relative overflow-hidden">
       <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
 
       <div className="container sectionPadding">
-        <SectionTitle title={block?.top_title} description={block?.top_desc} />
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={fadeUp}
+        >
+          <SectionTitle
+            title={block?.top_title}
+            description={block?.top_desc}
+          />
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8">
-          <div className="col-span-1 md:col-span-2 aspect-12/9 md:aspect-11/12 overflow-hidden rounded-2xl shadow">
+          <motion.div
+            className="col-span-1 md:col-span-2 aspect-12/9 md:aspect-11/12 overflow-hidden rounded-2xl shadow"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
             <img
               loading="lazy"
               src={block.image_url}
               alt=""
               className="w-full h-full object-cover"
             />
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col gap-4 lg:gap-6 md:col-span-3">
+          <motion.div
+            className="flex flex-col gap-4 lg:gap-6 md:col-span-3"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
             <h3 className="text-xl font-semibold text-primary">
               {block.title}
             </h3>
@@ -77,7 +104,7 @@ const WhoWeAre = ({ block, loading }) => {
                 {block.other_data.btn_2_text}
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

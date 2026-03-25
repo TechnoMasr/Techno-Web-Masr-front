@@ -8,10 +8,10 @@ import { getBranchDetails } from "@/api/contactServices";
 import { useParams } from "react-router";
 import BranchSkeleton from "@/components/skeletons/BranchSkeleton";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const ContactUsBranch = () => {
   const { t } = useTranslation();
-
   const { slug } = useParams();
 
   const { data: branchData, isLoading } = useQuery({
@@ -47,6 +47,25 @@ const ContactUsBranch = () => {
     ],
   };
 
+  // Framer Motion Variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const infoVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
     <main>
       <PageBanner title={item.name} />
@@ -55,37 +74,53 @@ const ContactUsBranch = () => {
         {isLoading ? (
           <BranchSkeleton />
         ) : !branchData ? null : (
-          <div
+          <motion.div
             className="flex flex-col md:flex-row-reverse gap-2 md:gap-8 bg-white p-3 border rounded-lg font-medium"
             key={item.id}
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
           >
             <div
               className="rounded-lg [&>iframe]:w-full md:w-1/2 [&>iframe]:h-60 rich_content"
               dangerouslySetInnerHTML={{ __html: item.map_embed }}
             />
 
-            <div className="flex flex-col gap-2">
-              <h3 className="text-xl text-primary">{item.name}</h3>
-              <p className="text-sm">{item.description}</p>
+            <motion.div
+              className="flex flex-col gap-2 md:w-1/2"
+              initial="hidden"
+              animate="visible"
+              variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
+            >
+              <motion.h3
+                className="text-xl text-primary"
+                variants={infoVariants}
+              >
+                {item.name}
+              </motion.h3>
+              <motion.p className="text-sm" variants={infoVariants}>
+                {item.description}
+              </motion.p>
 
               <ul className="flex flex-col gap-2">
                 {item.info.map((info) => (
-                  <li className="flex items-center gap-3 py-1" key={info.id}>
-                    <div
-                      className="w-8 aspect-square grid place-items-center
-                        bg-gray-100 text-primary rounded-full border shadow"
-                    >
+                  <motion.li
+                    className="flex items-center gap-3 py-1"
+                    key={info.id}
+                    variants={infoVariants}
+                  >
+                    <div className="w-8 aspect-square grid place-items-center bg-gray-100 text-primary rounded-full border shadow">
                       {info.icon}
                     </div>
                     <div className="flex flex-col gap-1 flex-1">
                       <p className="text-gray-400 text-xs">{info.label}</p>
                       <span className="text-black text-sm">{info.value}</span>
                     </div>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
 
         <ContactForm />

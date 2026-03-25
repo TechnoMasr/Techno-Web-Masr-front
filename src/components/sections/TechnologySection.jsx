@@ -1,21 +1,49 @@
 import useHandleAction from "@/hooks/useHandleAction";
 import TitleAndDescription from "../common/TitleAndDescription";
 import { Button } from "../ui/button";
+import { motion } from "framer-motion";
 
 const TechnologySection = ({ block }) => {
   const handleAction = useHandleAction();
 
+  // 🔹 motion variants
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.1 } },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
   return (
     <section className={`sectionPadding`}>
       <div className="container space-y-8">
-        <TitleAndDescription title={block.title} />
+        {/* Title */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <TitleAndDescription title={block.title} />
+        </motion.div>
 
-        <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Items Grid */}
+        <motion.ul
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           {block.block_items.map((item) => (
-            <li
+            <motion.li
               key={item.id}
               className="bg-white shadow rounded-md border w-full aspect-video
               flex flex-col items-center text-center gap-2 p-4"
+              variants={fadeUp}
             >
               <div className="h-20 aspect-video overflow-hidden mb-2">
                 <img
@@ -27,21 +55,29 @@ const TechnologySection = ({ block }) => {
               </div>
 
               <h3 className="font-semibold text-primary">{item.title}</h3>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
 
-        <Button
-          className={`mx-auto block`}
-          onClick={() =>
-            handleAction(block.other_data.btn_1_url, {
-              serviceId: block?.serviceId,
-              serviceTitle: block?.serviceTitle,
-            })
-          }
+        {/* Button */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
         >
-          {block.other_data.btn_1_text}
-        </Button>
+          <Button
+            className={`mx-auto block`}
+            onClick={() =>
+              handleAction(block.other_data.btn_1_url, {
+                serviceId: block?.serviceId,
+                serviceTitle: block?.serviceTitle,
+              })
+            }
+          >
+            {block.other_data.btn_1_text}
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

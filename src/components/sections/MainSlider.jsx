@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -32,8 +33,32 @@ const MainSlider = ({
 
   const { lang } = useParams();
 
+  // 🔥 Variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { duration: 0.5 },
+    },
+  };
+
+  const slideItem = {
+    hidden: { opacity: 0, scale: 0.95 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.4 },
+    },
+  };
+
   return (
-    <div className="relative w-full">
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      className="relative w-full"
+    >
       <Swiper
         dir={lang === "ar" ? "rtl" : "ltr"}
         modules={[Autoplay]}
@@ -46,47 +71,64 @@ const MainSlider = ({
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
+        speed={600} // 🔥 smoother transition
         className={`${className}`}
       >
         {data?.map((item, index) => (
-          <SwiperSlide key={item?.id || index}>{renderItem(item)}</SwiperSlide>
+          <SwiperSlide key={item?.id || index}>
+            <motion.div variants={slideItem}>{renderItem(item)}</motion.div>
+          </SwiperSlide>
         ))}
       </Swiper>
 
-      <button
+      {/* 🔥 Desktop Buttons */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        animate={{ opacity: isBeginning ? 0.4 : 1 }}
         onClick={() => swiperRef.current?.slidePrev()}
         disabled={isBeginning}
         className="main_slider_btn layout prev"
       >
         <FaArrowLeftLong />
-      </button>
+      </motion.button>
 
-      <button
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        animate={{ opacity: isEnd ? 0.4 : 1 }}
         onClick={() => swiperRef.current?.slideNext()}
         disabled={isEnd}
         className="main_slider_btn layout next"
       >
         <FaArrowRightLong />
-      </button>
+      </motion.button>
 
+      {/* 🔥 Mobile Buttons */}
       <div className="flex items-center justify-center gap-4 mt-4 xl:hidden">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          animate={{ opacity: isBeginning ? 0.4 : 1 }}
           onClick={() => swiperRef.current?.slidePrev()}
           disabled={isBeginning}
           className="main_slider_btn"
         >
           <FaArrowLeftLong />
-        </button>
+        </motion.button>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          animate={{ opacity: isEnd ? 0.4 : 1 }}
           onClick={() => swiperRef.current?.slideNext()}
           disabled={isEnd}
           className="main_slider_btn"
         >
           <FaArrowRightLong />
-        </button>
+        </motion.button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

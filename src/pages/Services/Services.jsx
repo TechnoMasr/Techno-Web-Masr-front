@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import EmptyDataSection from "@/components/sections/EmptyDataSection";
 import { useTranslation } from "react-i18next";
 import SeoManager from "@/utils/SeoManager";
+import { motion } from "framer-motion";
 
 const Services = () => {
   const { t } = useTranslation();
@@ -16,6 +17,22 @@ const Services = () => {
   });
 
   const seo = servicesData?.seo;
+
+  // Framer Motion Variants
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   return (
     <>
@@ -36,11 +53,22 @@ const Services = () => {
           ) : servicesData?.services?.length === 0 ? (
             <EmptyDataSection msg={t("Services.noServices")} />
           ) : (
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <motion.ul
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {servicesData?.services?.map((service) => (
-                <ServiceCard key={service.id} service={service} />
+                <motion.li
+                  key={service.id}
+                  variants={cardVariants}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <ServiceCard service={service} />
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           )}
         </section>
       </main>

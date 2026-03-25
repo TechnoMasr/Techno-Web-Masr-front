@@ -3,6 +3,7 @@ import MainSlider from "./MainSlider";
 import TestimonialsSectionSkeleton from "../skeletons/TestimonialsSectionSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import { getTestimonials } from "@/api/pagesServices";
+import { motion } from "framer-motion";
 
 const TestimonialsSection = ({ block }) => {
   const { data: testimonialsData, isLoading } = useQuery({
@@ -13,17 +14,27 @@ const TestimonialsSection = ({ block }) => {
   if (isLoading) {
     return <TestimonialsSectionSkeleton />;
   }
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
   return (
     <section>
       <div className="container sectionPadding">
         <SectionTitle title={block.title || "أراء العملاء"} />
+
         <MainSlider
           data={testimonialsData || []}
           renderItem={(testimonial) => (
-            <div
+            <motion.div
               key={testimonial.id}
-              // service={service}
               className="flex gap-2 bg-gray-50 rounded-md p-2"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeUp}
             >
               <div className="w-24 aspect-square p-2 rounded overflow-hidden bg-white">
                 <img
@@ -54,11 +65,12 @@ const TestimonialsSection = ({ block }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
         />
       </div>
     </section>
   );
 };
+
 export default TestimonialsSection;

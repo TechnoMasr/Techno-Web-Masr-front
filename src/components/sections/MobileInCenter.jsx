@@ -1,106 +1,225 @@
+import { motion } from "framer-motion";
 import MobileInCenterSkeleton from "../skeletons/MobileInCenterSkeleton";
 
 const MobileInCenter = ({ block, loading }) => {
-  // Split list into left (odd indices) and right (even indices)
-  const leftItems = block?.block_items?.filter((_, i) => i % 2 === 0); // index 0, 2, 4
-  const rightItems = block?.block_items?.filter((_, i) => i % 2 === 1); // index 1, 3, 5
+  const leftItems = block?.block_items?.filter((_, i) => i % 2 === 0);
+  const rightItems = block?.block_items?.filter((_, i) => i % 2 === 1);
 
   if (loading) return <MobileInCenterSkeleton />;
 
+  // 🔥 Variants
+  const phoneVariant = {
+    hidden: { opacity: 0, scale: 0.8, y: 40 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.7 },
+    },
+  };
+
+  const leftContainer = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.12 },
+    },
+  };
+
+  const rightContainer = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.12 },
+    },
+  };
+
+  const leftItem = {
+    hidden: { opacity: 0, x: -50 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4 },
+    },
+  };
+
+  const rightItem = {
+    hidden: { opacity: 0, x: 50 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4 },
+    },
+  };
+
+  const mobileItem = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.4 },
+    },
+  };
+
   return (
     <section className="sectionPadding relative overflow-hidden" dir="rtl">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[70%] h-[80%] bg-secondary/20 rounded-full blur-[120px]" />
+      {/* 🔥 Background Glow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[70%] h-[80%] bg-secondary/20 rounded-full blur-[120px]"
+      />
 
       <div className="container">
-        {/* Desktop Layout */}
-        <div className="grid md:grid-cols-[1fr_auto_1fr] gap-8 items-center">
-          {/* Left Column — 3 items */}
-          <ul className="flex flex-col gap-10">
+        {/* 🔥 Desktop Layout */}
+        <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] gap-8 items-center">
+          {/* Left */}
+          <motion.ul
+            variants={leftContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-col gap-10"
+          >
             {leftItems.map((item) => (
-              <li
+              <motion.li
                 key={item.id}
+                variants={leftItem}
+                whileHover={{ scale: 1.05 }}
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
-                <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ type: "spring" }}
+                  viewport={{ once: true }}
+                  className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center"
+                >
                   <img
                     loading="lazy"
                     src={item.image_url}
                     alt="icon"
                     className="w-5 h-5"
                   />
-                </span>
+                </motion.span>
+
                 <h3 className="font-semibold text-base">{item.title}</h3>
                 <p className="text-foreground font-medium text-sm max-w-45">
                   {item.description}
                 </p>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
 
-          {/* Center — Phone Image */}
-          <div className="flex justify-center">
-            <img
+          {/* 🔥 Phone */}
+          <motion.div
+            variants={phoneVariant}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
+            <motion.img
               loading="lazy"
               src={block?.image_url}
               alt="phone mockup"
               className="w-45 object-contain drop-shadow-2xl"
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              transition={{ duration: 0.4 }}
             />
-          </div>
+          </motion.div>
 
-          {/* Right Column — 3 items */}
-          <ul className="flex flex-col gap-10">
+          {/* Right */}
+          <motion.ul
+            variants={rightContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-col gap-10"
+          >
             {rightItems.map((item) => (
-              <li
+              <motion.li
                 key={item.id}
+                variants={rightItem}
+                whileHover={{ scale: 1.05 }}
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
-                <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ type: "spring" }}
+                  viewport={{ once: true }}
+                  className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center"
+                >
                   <img
                     loading="lazy"
                     src={item.image_url}
                     alt="icon"
                     className="w-5 h-5"
                   />
-                </span>
+                </motion.span>
+
                 <h3 className="font-semibold text-base">{item.title}</h3>
                 <p className="text-foreground font-medium text-sm max-w-45">
                   {item.description}
                 </p>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </div>
 
-        {/* Mobile Layout — Phone on top, items in 2-col grid below */}
+        {/* 🔥 Mobile Layout */}
         <div className="flex flex-col items-center gap-10 md:hidden">
-          <img
+          {/* Phone */}
+          <motion.img
+            variants={phoneVariant}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
             loading="lazy"
             src={block?.image_url}
             alt="phone mockup"
             className="w-50 object-contain drop-shadow-2xl"
           />
-          <ul className="grid grid-cols-2 gap-6 w-full">
+
+          {/* Items */}
+          <motion.ul
+            variants={leftContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 gap-6 w-full"
+          >
             {block?.block_items?.map((item) => (
-              <li
+              <motion.li
                 key={item.id}
+                variants={mobileItem}
+                whileHover={{ scale: 1.05 }}
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
-                <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ type: "spring" }}
+                  viewport={{ once: true }}
+                  className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center"
+                >
                   <img
                     loading="lazy"
                     src={item.image_url}
                     alt="icon"
                     className="w-5 h-5"
                   />
-                </span>
+                </motion.span>
+
                 <h3 className="font-semibold text-sm">{item.title}</h3>
                 <p className="text-foreground font-medium text-xs">
                   {item.description}
                 </p>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </div>
       </div>
     </section>

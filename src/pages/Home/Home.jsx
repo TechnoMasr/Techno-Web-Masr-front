@@ -10,7 +10,7 @@ const Home = () => {
     queryFn: getHome,
   });
 
-  if (isLoading) return <BlocksRenderSkeleton />;
+  if (isLoading) return <BlocksRenderSkeleton hero={true} />;
 
   const seo = homeData?.seo;
 

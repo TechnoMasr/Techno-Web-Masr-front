@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import SectionTitle from "@/components/common/SectionTitle";
 import image from "@/assets/images/bg-img.png";
 
@@ -22,49 +23,116 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
 
   const faqs = faqsData?.length > 0 ? faqsData || [] : block.block_items;
 
+  // 🔥 Variants
+  const sectionVariants = {
+    hidden: { opacity: 0, scale: 0.98 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4 },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, x: imageRight ? -50 : 50 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
   return (
-    <section
+    <motion.section
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
       className="bg-center bg-cover relative"
       style={{ backgroundImage: `url(${block.bg_image || image})` }}
     >
       <div className="absolute inset-0 bg-gray-100/90" />
+
       <div className="container sectionPadding relative z-10">
-        <SectionTitle title={block.title} />
+        {/* 🔥 Title Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <SectionTitle title={block.title} />
+        </motion.div>
 
         <div
-          className={`flex items-start gap-4 lg:gap-8 ${imageRight && "flex-row-reverse"}`}
+          className={`flex items-start gap-4 lg:gap-8 ${
+            imageRight && "flex-row-reverse"
+          }`}
         >
-          <div className="flex-1 max-w-2xl mx-auto">
+          {/* 🔥 Accordion */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex-1 max-w-2xl mx-auto"
+          >
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs?.map((item) => (
-                <AccordionItem
-                  key={item.id}
-                  value={`item-${item.id}`}
-                  className={` bg-gray-200 rounded-lg`}
-                >
-                  <AccordionTrigger className="text-black p-2 py-4 font-semibold cursor-pointer">
-                    {item.title || item.question}
-                  </AccordionTrigger>
+                <motion.div key={item.id} variants={itemVariants}>
+                  <AccordionItem
+                    value={`item-${item.id}`}
+                    className="bg-gray-200 rounded-lg transition hover:shadow-md"
+                  >
+                    <AccordionTrigger className="text-black p-2 py-4 font-semibold cursor-pointer">
+                      {item.title || item.question}
+                    </AccordionTrigger>
 
-                  <AccordionContent className="text-muted-foreground p-2 font-medium">
-                    {item.description || item.answer}
-                  </AccordionContent>
-                </AccordionItem>
+                    <AccordionContent className="text-muted-foreground p-2 font-medium">
+                      {item.description || item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </motion.div>
               ))}
             </Accordion>
-          </div>
+          </motion.div>
 
-          <div className="w-1/3 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden">
+          {/* 🔥 Image Animation */}
+          <motion.div
+            variants={imageVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="w-1/3 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden"
+          >
             <img
               loading="lazy"
               src={block.image_url}
               alt="faq"
               className="w-full h-full object-cover"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

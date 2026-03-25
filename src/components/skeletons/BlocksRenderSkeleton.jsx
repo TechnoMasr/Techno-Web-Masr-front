@@ -1,11 +1,12 @@
 import HeroSkeleton from "./HeroSkeleton";
+import PageBannerSkeleton from "./PageBannerSkeleton";
 import TextAndImageSkeleton from "./TextAndImageSkeleton";
 import TitleAndStepsSkeleton from "./TitleAndStepsSkeleton";
 
-const BlocksRenderSkeleton = () => {
+const BlocksRenderSkeleton = ({ hero = false }) => {
   return (
     <main>
-      <HeroSkeleton />
+      {hero ? <HeroSkeleton /> : <PageBannerSkeleton />}
       <TextAndImageSkeleton />
       <TitleAndStepsSkeleton />
     </main>

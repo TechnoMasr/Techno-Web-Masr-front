@@ -11,6 +11,7 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 import { useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const ContactUS = () => {
   const { t } = useTranslation();
@@ -56,6 +57,30 @@ const ContactUS = () => {
       ],
     })) || [];
 
+  // Framer Motion variants
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.2 } },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <main>
       <PageBanner title={t("ContactUS.title")} />
@@ -65,18 +90,26 @@ const ContactUS = () => {
       ) : contactData?.branches?.length === 0 ? (
         <EmptyDataSection msg={t("ContactUS.noBranches")} />
       ) : (
-        <section className="container pagePadding">
-          <SectionTitle
-            title={contactData?.title}
-            description={contactData?.description}
-          />
+        <motion.section
+          className="container pagePadding"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={textVariants}>
+            <SectionTitle
+              title={contactData?.title}
+              description={contactData?.description}
+            />
+          </motion.div>
 
-          <div className="container grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10">
+          <div className="container grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10 mt-6">
             {branches?.map((item) => (
-              <div
+              <motion.div
+                key={item.id}
                 onClick={() => navigate(`/${lang}/contact/${item.slug}`)}
                 className="flex flex-col gap-2 bg-white p-3 border shadow rounded-lg font-medium cursor-pointer"
-                key={item.id}
+                variants={cardVariants}
               >
                 <div
                   className="rounded-lg [&>iframe]:w-full [&>iframe]:h-60 rich_content"
@@ -99,10 +132,10 @@ const ContactUS = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
       )}
     </main>
   );

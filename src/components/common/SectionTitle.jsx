@@ -1,27 +1,62 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
+import { motion } from "framer-motion";
 
 const SectionTitle = ({ title, description, link }) => {
+  // 🔥 Variants
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12 } },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <hgroup className="mb-6 lg:mb-12 flex flex-col items-center justify-center text-center gap-4 px-4">
+    <motion.hgroup
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      className="mb-6 lg:mb-12 flex flex-col items-center justify-center text-center gap-4 px-4"
+    >
       {title && (
         <>
-          <h2 className="text-xl lg:text-2xl capitalize font-semibold text-primary">
+          <motion.h2
+            variants={fadeUp}
+            className="text-xl lg:text-2xl capitalize font-semibold text-primary"
+          >
             {title}
-          </h2>
+          </motion.h2>
 
-          <span className="w-32 lg:w-44 h-0.5 bg-primary rounded-full" />
+          <motion.span
+            variants={fadeUp}
+            className="w-32 lg:w-44 h-0.5 bg-primary rounded-full"
+          />
         </>
       )}
 
-      {description && <p className="max-w-3xl font-medium">{description}</p>}
+      {description && (
+        <motion.p variants={fadeUp} className="max-w-3xl font-medium">
+          {description}
+        </motion.p>
+      )}
 
       {link?.href && link?.text && (
-        <Link to={link?.href}>
-          <Button variant="outline">{link?.text}</Button>
-        </Link>
+        <motion.div variants={fadeUp}>
+          <Link to={link.href}>
+            <Button variant="outline">{link.text}</Button>
+          </Link>
+        </motion.div>
       )}
-    </hgroup>
+    </motion.hgroup>
   );
 };
 

@@ -5,16 +5,37 @@ import { getPartners } from "@/api/pagesServices";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import SeoManager from "@/utils/SeoManager";
+import { motion } from "framer-motion";
 
 const Partners = () => {
   const { t } = useTranslation();
-
   const { data: PartnersData, isLoading } = useQuery({
     queryKey: ["Partners"],
     queryFn: getPartners,
   });
 
   const seo = PartnersData?.seo;
+
+  // Framer Motion variants
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const contentVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+  };
 
   return (
     <>
@@ -35,27 +56,47 @@ const Partners = () => {
           ) : PartnersData?.clients?.length === 0 ? (
             <EmptyDataSection msg={t("Partners.noClients")} />
           ) : (
-            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:gap-8">
+            <motion.ul
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:gap-8"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {PartnersData?.clients?.map((item) => (
-                <li
+                <motion.li
                   key={item.id}
                   className="bg-white shadow rounded-md border w-full aspect-video
-                flex flex-col items-center text-center gap-2 p-4"
+                    flex flex-col items-center text-center gap-2 p-4"
+                  variants={cardVariants}
+                  whileHover={{ scale: 1.05 }}
                 >
-                  <div className="h-24 aspect-video overflow-hidden mb-2">
+                  <motion.div
+                    className="h-24 aspect-video overflow-hidden mb-2"
+                    variants={contentVariants}
+                  >
                     <img
                       loading="lazy"
                       src={item.image_url}
                       alt={item.title}
                       className="w-full h-full object-contain"
                     />
-                  </div>
+                  </motion.div>
 
-                  <h3 className="font-semibold text-primary">{item.title}</h3>
-                  <p className="text-xs font-medium">{item.description}</p>
-                </li>
+                  <motion.h3
+                    className="font-semibold text-primary"
+                    variants={contentVariants}
+                  >
+                    {item.title}
+                  </motion.h3>
+                  <motion.p
+                    className="text-xs font-medium"
+                    variants={contentVariants}
+                  >
+                    {item.description}
+                  </motion.p>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           )}
         </section>
       </main>
