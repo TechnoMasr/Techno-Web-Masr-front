@@ -14,14 +14,16 @@ const Partners = () => {
     queryFn: getPartners,
   });
 
+  const seo = PartnersData?.seo;
+
   return (
     <>
       <SeoManager
-        title={PartnersData?.seo?.title}
-        description={PartnersData?.seo?.description}
-        keywords={PartnersData?.seo?.keywords}
-        canonical={PartnersData?.seo?.canonical}
-        ogImage={PartnersData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>

@@ -39,7 +39,7 @@ const Header = () => {
             <img
               loading="lazy"
               src={settings?.footer_logo || logo}
-              alt="Company Logo"
+              alt="Logo"
               className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
             />
           </Link>

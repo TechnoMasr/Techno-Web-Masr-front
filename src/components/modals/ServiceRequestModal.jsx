@@ -30,6 +30,8 @@ const ServiceRequestModal = () => {
   const dispatch = useDispatch();
   const { modalName, modalData } = useSelector((state) => state.modals);
 
+  console.log("modalData:", modalData);
+
   const contactSchema = z.object({
     name: z.string().min(2, t("ServiceRequestModal.errors.name")),
     company_name: z
@@ -139,8 +141,6 @@ const ServiceRequestModal = () => {
     }
   }, [modalName, reset, queryClient, resetMutation]);
 
-  console.log("contactServices :", contactServices);
-
   return (
     <Dialog
       open={modalName === "ServiceRequestModal"}
@@ -149,7 +149,11 @@ const ServiceRequestModal = () => {
       <DialogContent className="md:max-w-3xl! max-h-[90vh] overflow-y-auto custom_scrollbar">
         <DialogHeader>
           <DialogTitle className="text-black">
-            {modalData?.serviceTitle || modalData?.type === "service_request" ? t("ServiceRequestModal.title") : t("ServiceRequestModal.titleProduct")}
+            {modalData?.serviceTitle
+              ? modalData.serviceTitle
+              : modalData?.type === "service_request"
+                ? t("ServiceRequestModal.title")
+                : t("ServiceRequestModal.titleProduct")}
           </DialogTitle>
           <DialogDescription className="sr-only"></DialogDescription>
         </DialogHeader>

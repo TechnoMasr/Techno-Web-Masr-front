@@ -6,11 +6,10 @@ const PreviousWorkFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category");
 
-  const { data: portfolioCategories, isLoading: isLoadingCategories } =
-    useQuery({
-      queryKey: ["portfolioCategories"],
-      queryFn: getPortfolioCategories,
-    });
+  const { data: portfolioCategories } = useQuery({
+    queryKey: ["portfolioCategories"],
+    queryFn: getPortfolioCategories,
+  });
 
   return (
     <ul className="flex items-center flex-wrap gap-3">

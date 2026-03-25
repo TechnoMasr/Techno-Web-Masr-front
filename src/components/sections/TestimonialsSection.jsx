@@ -35,9 +35,7 @@ const TestimonialsSection = ({ block }) => {
               </div>
 
               <div className="flex-1 flex flex-col justify-between gap-4">
-                <p className="text-muted-foreground font-medium text-xs">
-                  {testimonial.content}
-                </p>
+                <p className="font-medium text-sm">{testimonial.content}</p>
 
                 <div className="flex items-center gap-2">
                   <div className="w-10 aspect-square rounded-md overflow-hidden">
@@ -48,7 +46,7 @@ const TestimonialsSection = ({ block }) => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div>
+                  <div className="flex-1 text-black">
                     <h3 className="font-semibold text-sm">
                       {testimonial.name}
                     </h3>

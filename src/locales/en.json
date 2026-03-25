@@ -104,6 +104,13 @@
     "email": "Email"
   },
 
+  "PreviousWorkInfo": {
+    "title": "Project Details",
+    "owner": "Owner:",
+    "country": "Country:",
+    "date": "Delivery Date:"
+  },
+
   "Partners": {
     "title": "Our Partners",
     "noClients": "No clients available"

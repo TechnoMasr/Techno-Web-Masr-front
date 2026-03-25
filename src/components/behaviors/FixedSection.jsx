@@ -24,14 +24,14 @@ const FixedSection = () => {
   ];
 
   return (
-    <section className="fixed inset-e-2 bottom-1/6 z-40">
+    <section className="fixed inset-e-4 bottom-1/6 z-40">
       <div className="flex flex-col items-end gap-4">
         {list.map((item) => (
           <a
             key={item.id}
             href={item.link}
             target="_blank"
-            className="shadow-md shadow-myGold/20 transition-transform hover:scale-110"
+            className="transition-transform duration-200 hover:scale-110"
           >
             <img src={item.icon} alt={item.title} className="w-10 h-10" />
           </a>

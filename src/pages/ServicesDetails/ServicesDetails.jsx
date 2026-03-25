@@ -25,14 +25,16 @@ const ServicesDetails = () => {
 
   if (isLoading) return <BlocksRenderSkeleton />;
 
+  const seo = serviceDetailsData?.seo;
+
   return (
     <>
       <SeoManager
-        title={serviceDetailsData?.seo?.title}
-        description={serviceDetailsData?.seo?.description}
-        keywords={serviceDetailsData?.seo?.keywords}
-        canonical={serviceDetailsData?.seo?.canonical}
-        ogImage={serviceDetailsData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>

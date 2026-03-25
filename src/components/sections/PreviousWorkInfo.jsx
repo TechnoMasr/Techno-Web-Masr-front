@@ -3,14 +3,13 @@ import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { RiGlobalLine } from "react-icons/ri";
 import TitleAndDescription from "../common/TitleAndDescription";
 import PreviousWorkInfoSkeleton from "../skeletons/PreviousWorkInfoSkeleton";
+import { useTranslation } from "react-i18next";
 
 const PreviousWorkInfo = ({ data }) => {
-  // const loading = true;
-
-  // if (loading) return <PreviousWorkInfoSkeleton />;
+  const { t, i18n } = useTranslation();
 
   const formatedDate = new Date(data?.delivered_date).toLocaleDateString(
-    "en-US",
+    i18n.language === "ar" ? "ar-EG" : "en-US",
     {
       year: "numeric",
       month: "long",
@@ -18,10 +17,46 @@ const PreviousWorkInfo = ({ data }) => {
     },
   );
 
+  const list = [
+    {
+      id: 1,
+      label: t("PreviousWorkInfo.owner"),
+      value: data?.owner,
+    },
+    {
+      id: 2,
+      label: t("PreviousWorkInfo.country"),
+      value: data?.country,
+    },
+    {
+      id: 3,
+      label: t("PreviousWorkInfo.date"),
+      value: formatedDate,
+    },
+  ];
+
+  const downloadList = [
+    {
+      id: 1,
+      icon: <FaApple />,
+      link: data?.ios_url,
+    },
+    {
+      id: 2,
+      icon: <FaGooglePlay />,
+      link: data?.android_url,
+    },
+    {
+      id: 3,
+      icon: <RiGlobalLine />,
+      link: data?.web_url,
+    },
+  ];
+
   return (
     <section className="container sectionPadding flex flex-col-reverse md:flex-row gap-6 lg:gap-12">
       <TitleAndDescription
-        title={`تفاصيل المشروع`}
+        title={t("PreviousWorkInfo.title")}
         description={data?.content}
         className="flex-1"
         html
@@ -35,68 +70,47 @@ const PreviousWorkInfo = ({ data }) => {
           <img
             loading="lazy"
             src={image}
-            alt="partner"
+            alt="project"
             className="w-full h-full object-contain"
           />
         </div>
 
-        <h3 className="font-semibold text-primary">{data?.company}</h3>
-        <p className="text-xs font-medium">{data?.description}</p>
+        <h3 className="font-semibold text-primary text-lg">{data?.company}</h3>
+        <p className="text-sm font-medium">{data?.description}</p>
 
         <hr className="my-2" />
 
         <ul className="flex flex-col gap-4">
-          <li className="w-full flex items-center justify-between gap-2 text-xs font-bold">
-            <p className="text-gray-400">المالك:</p>
-            <span className="text-primary">{data.owner}</span>
-          </li>
-
-          <li className="w-full flex items-center justify-between gap-2 text-xs font-bold">
-            <p className="text-gray-400">الدوله:</p>
-            <span className="text-primary">{data.country}</span>
-          </li>
-
-          <li className="w-full flex items-center justify-between gap-2 text-xs font-bold">
-            <p className="text-gray-400">تاريخ التسليم:</p>
-            <span className="text-primary">{formatedDate}</span>
-          </li>
+          {list
+            .filter((item) => item.value)
+            .map((item) => (
+              <li
+                key={item.id}
+                className="w-full flex items-center justify-between gap-2 text-xs font-bold"
+              >
+                <p className="text-gray-400">{item.label}</p>
+                <span className="text-primary">{item.value}</span>
+              </li>
+            ))}
         </ul>
 
         <hr className="my-2" />
 
         <ul className="flex items-center justify-center flex-wrap gap-4">
-          <li>
-            <a
-              href={data?.ios_url}
-              target="_blank"
-              className="w-10 aspect-square flex items-center justify-center rounded-lg border 
+          {downloadList
+            .filter((item) => item.link)
+            .map((item) => (
+              <li key={item.id}>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  className="w-10 aspect-square flex items-center justify-center rounded-lg border 
                   text-2xl text-black hover:bg-primary hover:text-white transition-all duration-300"
-            >
-              <FaApple />
-            </a>
-          </li>
-
-          <li>
-            <a
-              href={data?.android_url}
-              target="_blank"
-              className="w-10 aspect-square flex items-center justify-center rounded-lg border 
-                  text-2xl text-black hover:bg-primary hover:text-white transition-all duration-300"
-            >
-              <FaGooglePlay />
-            </a>
-          </li>
-
-          <li>
-            <a
-              href={data?.web_url}
-              target="_blank"
-              className="w-10 aspect-square flex items-center justify-center rounded-lg border 
-                  text-2xl text-black hover:bg-primary hover:text-white transition-all duration-300"
-            >
-              <RiGlobalLine />
-            </a>
-          </li>
+                >
+                  {item.icon}
+                </a>
+              </li>
+            ))}
         </ul>
       </div>
     </section>

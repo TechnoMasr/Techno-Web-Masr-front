@@ -15,14 +15,16 @@ const Services = () => {
     queryFn: getServices,
   });
 
+  const seo = servicesData?.seo;
+
   return (
     <>
       <SeoManager
-        title={servicesData?.seo?.title}
-        description={servicesData?.seo?.description}
-        keywords={servicesData?.seo?.keywords}
-        canonical={servicesData?.seo?.canonical}
-        ogImage={servicesData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>

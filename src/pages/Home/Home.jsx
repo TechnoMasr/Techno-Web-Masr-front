@@ -12,14 +12,16 @@ const Home = () => {
 
   if (isLoading) return <BlocksRenderSkeleton />;
 
+  const seo = homeData?.seo;
+
   return (
     <>
       <SeoManager
-        title={homeData?.seo?.title}
-        description={homeData?.seo?.description}
-        keywords={homeData?.seo?.keywords}
-        canonical={homeData?.seo?.canonical}
-        ogImage={homeData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>

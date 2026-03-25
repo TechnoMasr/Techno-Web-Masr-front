@@ -1,29 +1,9 @@
 import SectionTitle from "@/components/common/SectionTitle";
-import { LuFolderCode } from "react-icons/lu";
-import { PiPaintBrushHouseholdLight } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 import WhoWeAreSkeleton from "../skeletons/WhoWeAreSkeleton";
 import useHandleAction from "@/hooks/useHandleAction";
 
-const WhoWeAre = ({ block, loading, top_title, top_desc }) => {
-  const list = [
-    {
-      id: 1,
-      title: "تصميم المواقع",
-      description:
-        "احصائيات تيكنو ويب مصر في هذه احصائيات تيكنو ويب مصر في هذه الاحصائيات",
-      icon: <PiPaintBrushHouseholdLight />,
-    },
-    {
-      id: 2,
-      title: "تصميم المواقع",
-      description:
-        "احصائيات تيكنو ويب مصر في هذه احصائيات تيكنو ويب مصر في هذه الاحصائيات",
-      icon: <LuFolderCode />,
-    },
-  ];
-
-  console.log("top_title", top_title, top_desc);
+const WhoWeAre = ({ block, loading }) => {
 
   const handleAction = useHandleAction();
 

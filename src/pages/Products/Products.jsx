@@ -15,14 +15,16 @@ const Products = () => {
     queryFn: getProducts,
   });
 
+  const seo = productsData?.seo;
+
   return (
     <>
       <SeoManager
-        title={productsData?.seo?.title}
-        description={productsData?.seo?.description}
-        keywords={productsData?.seo?.keywords}
-        canonical={productsData?.seo?.canonical}
-        ogImage={productsData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>

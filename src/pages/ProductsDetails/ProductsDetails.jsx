@@ -24,14 +24,16 @@ const ProductsDetails = () => {
 
   if (isLoading) return <BlocksRenderSkeleton />;
 
+  const seo = productDetailsData?.seo;
+
   return (
     <>
       <SeoManager
-        title={productDetailsData?.seo?.title}
-        description={productDetailsData?.seo?.description}
-        keywords={productDetailsData?.seo?.keywords}
-        canonical={productDetailsData?.seo?.canonical}
-        ogImage={productDetailsData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>
@@ -39,7 +41,7 @@ const ProductsDetails = () => {
           <BlocksRender
             blocks={blocks}
             serviceId={productDetailsData?.product?.id}
-            serviceTitle={productDetailsData?.product?.title}
+            serviceTitle={productDetailsData?.product?.name}
           />
         )}
       </main>

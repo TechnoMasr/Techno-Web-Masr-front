@@ -8,13 +8,13 @@ const TitleAndDescription = ({
   return (
     <div className={`mb-4 ${className}`}>
       {title && (
-        <h1 className={`text-xl font-semibold text-primary ${textColor}`}>
+        <h1 className={`text-2xl font-semibold text-primary ${textColor}`}>
           {title}
         </h1>
       )}
 
       {description && (
-        <p className={`mt-2 text-sm font-medium leading-relaxed ${textColor}`}>
+        <p className={`mt-2 font-medium leading-relaxed ${textColor}`}>
           {html ? (
             <div dangerouslySetInnerHTML={{ __html: description }} />
           ) : (

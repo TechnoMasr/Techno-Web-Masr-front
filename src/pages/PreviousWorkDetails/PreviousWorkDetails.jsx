@@ -29,20 +29,28 @@ const PreviousWorkDetails = () => {
 
   if (isLoading) return <BlocksRenderSkeleton />;
 
+  const seo = portfolioDetailsData?.seo;
+
   return (
     <>
       <SeoManager
-        title={portfolioDetailsData?.seo?.title}
-        description={portfolioDetailsData?.seo?.description}
-        keywords={portfolioDetailsData?.seo?.keywords}
-        canonical={portfolioDetailsData?.seo?.canonical}
-        ogImage={portfolioDetailsData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>
         <PageBanner title={portfolioDetailsData?.portfolio?.name} />
         <PreviousWorkInfo data={portfolioDetailsData?.portfolio} />
-        {blocks.length > 0 && <BlocksRender blocks={blocks} />}{" "}
+        {blocks.length > 0 && (
+          <BlocksRender
+            blocks={blocks}
+            serviceId={portfolioDetailsData?.portfolio?.id}
+            serviceTitle={portfolioDetailsData?.portfolio?.name}
+          />
+        )}
       </main>
     </>
   );

@@ -16,14 +16,16 @@ const About = () => {
 
   if (isLoading) return <BlocksRenderSkeleton />;
 
+  const seo = aboutData?.seo;
+
   return (
     <>
       <SeoManager
-        title={aboutData?.seo?.title}
-        description={aboutData?.seo?.description}
-        keywords={aboutData?.seo?.keywords}
-        canonical={aboutData?.seo?.canonical}
-        ogImage={aboutData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>

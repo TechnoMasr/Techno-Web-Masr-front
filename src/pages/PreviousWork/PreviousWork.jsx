@@ -19,14 +19,16 @@ const PreviousWork = () => {
     queryFn: () => getPortfolio(selectedCategory),
   });
 
+  const seo = portfolioData?.seo;
+
   return (
     <>
       <SeoManager
-        title={portfolioData?.seo?.title}
-        description={portfolioData?.seo?.description}
-        keywords={portfolioData?.seo?.keywords}
-        canonical={portfolioData?.seo?.canonical}
-        ogImage={portfolioData?.seo?.ogImage}
+        title={seo?.meta_title}
+        description={seo?.meta_description}
+        keywords={seo?.keywords}
+        canonical={seo?.canonical_url}
+        ogImage={seo?.og_image_url}
       />
 
       <main>
