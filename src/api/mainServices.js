@@ -29,3 +29,8 @@ export const getFaq = async () => {
   const { data } = await api.get("/fqas");
   return data?.data || {};
 };
+
+export const getHeadCode = async () => {
+  const { data } = await api.get("/settings/codes");
+  return data?.data || {};
+};

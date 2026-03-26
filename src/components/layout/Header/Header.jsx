@@ -38,7 +38,7 @@ const Header = () => {
           <Link to={`/${lang}`} className="w-24">
             <img
               loading="lazy"
-              src={settings?.footer_logo || logo}
+              src={settings?.site_logo || logo}
               alt="Logo"
               className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
             />

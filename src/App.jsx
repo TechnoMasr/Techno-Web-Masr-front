@@ -9,6 +9,7 @@ import ModalManager from "./components/modals/ModalManager";
 import LanguageHandler from "./components/behaviors/LanguageHandler";
 import FixedSection from "./components/behaviors/FixedSection";
 import { fetchSettings } from "./store/settings/settingsActions";
+import HeadInjector from "./HeadInjector";
 
 function App() {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ function App() {
   return (
     <main>
       <LanguageHandler />
+      <HeadInjector />
 
       <Header />
 

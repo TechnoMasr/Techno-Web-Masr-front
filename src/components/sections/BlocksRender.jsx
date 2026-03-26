@@ -26,7 +26,7 @@ import GallerySection from "./GallerySection";
 const BlocksRender = ({ blocks, serviceId = "", serviceTitle = "" }) => {
   return (
     <>
-      {blocks.map((block, index) => {
+      {blocks?.map((block, index) => {
         const nextBlock = blocks[index + 1];
         if (
           block.type === "header_title_and_desc_2" &&
