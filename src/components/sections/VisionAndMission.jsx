@@ -25,7 +25,7 @@ const VisionAndMission = ({ block, loading }) => {
         {block?.block_items.map((item) => (
           <motion.li
             key={item.id}
-            className="flex flex-col gap-2 bg-white text-primary shadow rounded-xl border p-3"
+            className="flex flex-col gap-2 bg-white text-primary shadow rounded-lg border p-3 hover:bg-primary hover:text-white duration-300 group"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
@@ -35,7 +35,7 @@ const VisionAndMission = ({ block, loading }) => {
               loading="lazy"
               src={item.image_url}
               alt=""
-              className="w-8 h-8"
+              className="w-8 h-8 group-hover:invert group-hover:brightness-10 duration-300 object-contain"
             />
             <h3 className="text-lg font-semibold">{item.title}</h3>
             <p className="text-xs font-medium">{item.description}</p>

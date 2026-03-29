@@ -28,7 +28,10 @@ const MainInput = ({
   return (
     <div className="space-y-2">
       {label && (
-        <label htmlFor={name} className="font-medium text-black inline-block">
+        <label
+          htmlFor={name}
+          className="font-medium text-black text-lg inline-block"
+        >
           {label}
         </label>
       )}
@@ -42,14 +45,14 @@ const MainInput = ({
           onChange={onChange}
           placeholder={placeholder}
           disabled={disabled}
-          className="resize-none bg-white text-black min-h-20"
+          className=" bg-white text-black min-h-26"
         />
       )}
 
       {/* SELECT */}
       {type === "select" && (
         <Select value={value} onValueChange={onChange} disabled={disabled}>
-          <SelectTrigger className={"w-full bg-white text-black h-10"}>
+          <SelectTrigger className={"w-full bg-white text-black h-12"}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
 
@@ -69,7 +72,7 @@ const MainInput = ({
           id={name}
           type="file"
           disabled={disabled}
-          className={"bg-white text-black h-10"}
+          className={"bg-white text-black h-12"}
           // onChange={(e) => onChange(e.target.files?.[0])}
           onChange={(e) => onChange(e.target.files)}
         />
@@ -92,7 +95,7 @@ const MainInput = ({
             type={isPassword ? (showPassword ? "text" : "password") : type}
             placeholder={placeholder}
             disabled={disabled}
-            className={`bg-white text-black h-10
+            className={`bg-white text-black h-12
                 ${icon ? "ps-10" : ""}
                 ${isPassword ? "pe-10" : ""}`}
           />

@@ -46,8 +46,7 @@ const PartnersSection = ({ block, loading }) => {
             <motion.li
               key={itemData.id}
               variants={item}
-              whileHover={{ scale: 1.05 }}
-              className="bg-white shadow rounded-2xl border w-full aspect-video overflow-hidden p-2"
+              className="bg-white shadow rounded-2xl border w-full h-32 overflow-hidden p-2 border-transparent hover:border-primary duration-200"
             >
               <img
                 loading="lazy"

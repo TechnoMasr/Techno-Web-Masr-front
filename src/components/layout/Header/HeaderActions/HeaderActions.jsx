@@ -16,6 +16,7 @@ const HeaderActions = () => {
       <LanguageSwitcher />
 
       <Button
+        className={`py-2! text-sm!`}
         onClick={() =>
           // dispatch(openModal({ modalName: "ServiceRequestModal" }))
           handleAction("request_form")

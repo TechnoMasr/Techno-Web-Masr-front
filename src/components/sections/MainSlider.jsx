@@ -72,7 +72,7 @@ const MainSlider = ({
           pauseOnMouseEnter: true,
         }}
         speed={600} // 🔥 smoother transition
-        className={`${className}`}
+        className={`${className} py-6!`}
       >
         {data?.map((item, index) => (
           <SwiperSlide key={item?.id || index}>

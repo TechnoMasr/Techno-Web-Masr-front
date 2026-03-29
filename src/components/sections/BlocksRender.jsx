@@ -22,6 +22,7 @@ import WhyChooseUsBanner from "./WhyChooseUsBanner";
 import TestimonialsSection from "./TestimonialsSection";
 import Faqs from "./Faqs";
 import GallerySection from "./GallerySection";
+import CkEditorSection from "./CkEditorSection";
 
 const BlocksRender = ({ blocks, serviceId = "", serviceTitle = "" }) => {
   return (
@@ -103,13 +104,13 @@ const BlocksRender = ({ blocks, serviceId = "", serviceTitle = "" }) => {
             {block.type === "right_images_left_text_paragraph_button" && (
               <TextAndImage
                 yellowCircle={true}
-                imageFirst={true}
                 block={{ ...block, serviceId, serviceTitle }}
               />
             )}
             {/* 'صورع على اليسار + نص +فقره + زر على اليمين', 'left_images_right_text_paragraph_button' */}
             {block.type === "left_images_right_text_paragraph_button" && (
               <TextAndImage
+                imageFirst={true}
                 backgroundImage={block.bg_image_url || image}
                 block={{ ...block, serviceId, serviceTitle }}
               />
@@ -191,8 +192,10 @@ const BlocksRender = ({ blocks, serviceId = "", serviceTitle = "" }) => {
               <PreviousWorkSection
                 block={{ ...block, serviceId, serviceTitle }}
               />
-            )}{" "}
-            {/** مشترك مع السابقه الاعمال */}
+            )}
+            {block.type === "ck_editor" && (
+              <CkEditorSection block={{ ...block, serviceId, serviceTitle }} />
+            )}
           </div>
         );
       })}

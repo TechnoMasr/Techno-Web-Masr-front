@@ -47,7 +47,7 @@ const WhoWeAre = ({ block, loading }) => {
           />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-12">
           <motion.div
             className="col-span-1 md:col-span-2 aspect-12/9 md:aspect-11/12 overflow-hidden rounded-2xl shadow"
             initial="hidden"
@@ -70,18 +70,18 @@ const WhoWeAre = ({ block, loading }) => {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <h3 className="text-xl font-semibold text-primary">
+            <h3 className="text-xl md:text-2xl font-semibold text-black">
               {block.title}
             </h3>
 
-            <p className="text-foreground font-medium text-sm">
+            <p className="text-foreground font-medium text-sm md:text-base max-w-xl">
               {block.description}
             </p>
 
-            <ul className="grid grid-cols-2 gap-4 md:gap-8">
+            <ul className="grid grid-cols-2 gap-4 md:gap-8 my-auto">
               {block?.block_items?.map((item) => (
                 <li key={item.id} className="flex flex-col gap-2 text-primary">
-                  <span className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center">
+                  <span className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center">
                     <img
                       loading="lazy"
                       src={item.image_url}
@@ -89,8 +89,8 @@ const WhoWeAre = ({ block, loading }) => {
                       className="w-5 h-5"
                     />
                   </span>
-                  <h2 className="font-semibold">{item.title}</h2>
-                  <p className="text-xs text-foreground font-medium">
+                  <h2 className="font-semibold md:text-xl">{item.title}</h2>
+                  <p className="leading-tight text-sm text-foreground font-medium max-w-70">
                     {item.description}
                   </p>
                 </li>

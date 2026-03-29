@@ -17,12 +17,6 @@ import { useQuery } from "@tanstack/react-query";
 import FooterSkeleton from "@/components/skeletons/FooterSkeleton";
 import { useTranslation } from "react-i18next";
 
-const getTranslated = (field, lang) => {
-  if (field == null) return "";
-  if (typeof field === "string") return field;
-  return field[lang] ?? field.ar ?? field.en ?? "";
-};
-
 const Footer = () => {
   const { t } = useTranslation();
 
@@ -38,8 +32,7 @@ const Footer = () => {
   if (isLoading) return <FooterSkeleton />;
 
   const footerData = footerResponse?.footerData ?? footerResponse ?? {};
-  const ourService = footerResponse?.ourService ?? [];
-  const products = footerResponse?.products ?? [];
+  const portfolios = footerResponse?.portfolios ?? [];
   const pages = footerResponse?.pages ?? [];
 
   const socialLinks = [
@@ -96,10 +89,10 @@ const Footer = () => {
 
       <div
         className="container relative z-10 text-white
-        flex flex-col md:flex-row justify-evenly gap-8"
+        flex flex-col lg:flex-row justify-evenly gap-8"
       >
-        <div className="flex flex-col items-center text-center md:items-start md:text-start gap-4 md:max-w-75">
-          <div className="w-26 overflow-hidden">
+        <div className="flex flex-col items-center text-center md:items-start md:text-start gap-6 md:max-w-96">
+          <div className="w-32 overflow-hidden">
             <img
               loading="lazy"
               src={footerData?.footer_logo || logo}
@@ -108,12 +101,12 @@ const Footer = () => {
             />
           </div>
 
-          <p className="text-xs">
+          <p className="text-">
             {footerData?.footer_description_ar ??
               footerData?.footer_description_en}
           </p>
 
-          <div className="flex items-center justify-center flex-wrap gap-4 border-t pt-4 w-full">
+          <div className="flex items-center justify-center flex-wrap gap-6 border-t pt-4 w-full">
             {socialLinks
               .filter((link) => link.url)
               .map((link) => (
@@ -121,7 +114,7 @@ const Footer = () => {
                   key={link.name}
                   href={link.url}
                   target="_blank"
-                  className="hover:text-secondary hover:border-secondary transition-colors text-xl"
+                  className="hover:text-secondary hover:border-secondary transition-colors text-2xl"
                 >
                   {link.icon}
                 </a>
@@ -133,8 +126,7 @@ const Footer = () => {
           <h3 className="text-lg lg:text-xl font-medium uppercase">
             {t("Footer.mainLinks")}
           </h3>
-          <ul className="space-y-2">
-            {/* .filter((link) => !link.items?.length) */}
+          <ul className="space-y-4">
             {links.map((link) => (
               <li key={link.name} title={link.name}>
                 <Link
@@ -148,39 +140,19 @@ const Footer = () => {
           </ul>
         </div>
 
-        {ourService.length > 0 && (
+        {portfolios.length > 0 && (
           <div className="flex flex-col gap-4 min-w-1/6">
             <h3 className="text-lg lg:text-xl font-medium uppercase">
-              {t("Footer.services")}
+              {t("Footer.portfolios")}
             </h3>
-            <ul className="space-y-2">
-              {ourService.map((item) => (
-                <li key={item.id} title={getTranslated(item.title, locale)}>
+            <ul className="space-y-4">
+              {portfolios.map((item) => (
+                <li key={item.id} title={item.name}>
                   <Link
-                    to={`/${locale}/services/${item.slug}`}
+                    to={`/${locale}/previous-work/${item.slug}`}
                     className="text-muted hover:text-secondary transition-colors"
                   >
-                    {getTranslated(item.title, locale)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {products.length > 0 && (
-          <div className="flex flex-col gap-4 min-w-1/6">
-            <h3 className="text-lg lg:text-xl font-medium uppercase">
-              {t("Footer.products")}
-            </h3>
-            <ul className="space-y-2">
-              {products.map((item) => (
-                <li key={item.id} title={getTranslated(item.name, locale)}>
-                  <Link
-                    to={`/${locale}/products/${item.slug}`}
-                    className="text-muted hover:text-secondary transition-colors"
-                  >
-                    {getTranslated(item.name, locale)}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -193,14 +165,14 @@ const Footer = () => {
             <h3 className="text-lg lg:text-xl font-medium uppercase">
               {t("Footer.pages")}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-4">
               {pages.map((item) => (
-                <li key={item.id} title={getTranslated(item.name, locale)}>
+                <li key={item.id} title={item.name}>
                   <Link
                     to={`/${locale}/pages/${item.slug}`}
                     className="text-muted hover:text-secondary transition-colors"
                   >
-                    {getTranslated(item.name, locale)}
+                    {item.name}
                   </Link>
                 </li>
               ))}

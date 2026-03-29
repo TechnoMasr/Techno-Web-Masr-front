@@ -68,7 +68,7 @@ const MobileInCenter = ({ block, loading }) => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[70%] h-[80%] bg-secondary/20 rounded-full blur-[120px]"
+        className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]"
       />
 
       <div className="container">
@@ -94,7 +94,7 @@ const MobileInCenter = ({ block, loading }) => {
                   whileInView={{ scale: 1 }}
                   transition={{ type: "spring" }}
                   viewport={{ once: true }}
-                  className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center"
+                  className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center"
                 >
                   <img
                     loading="lazy"
@@ -104,8 +104,8 @@ const MobileInCenter = ({ block, loading }) => {
                   />
                 </motion.span>
 
-                <h3 className="font-semibold text-base">{item.title}</h3>
-                <p className="text-foreground font-medium text-sm max-w-45">
+                <h3 className="font-semibold text-xl">{item.title}</h3>
+                <p className="text-foreground font-medium text-sm max-w-70 leading-tight">
                   {item.description}
                 </p>
               </motion.li>
@@ -118,13 +118,13 @@ const MobileInCenter = ({ block, loading }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex justify-center"
+            className="flex justify-center w-full"
           >
             <motion.img
               loading="lazy"
               src={block?.image_url}
               alt="phone mockup"
-              className="w-45 object-contain drop-shadow-2xl"
+              className="w-full h-full object-contain drop-shadow-2xl"
               whileHover={{ scale: 1.05, rotate: 1 }}
               transition={{ duration: 0.4 }}
             />
@@ -141,7 +141,7 @@ const MobileInCenter = ({ block, loading }) => {
             {rightItems.map((item) => (
               <motion.li
                 key={item.id}
-                variants={rightItem}
+                variants={leftItem}
                 whileHover={{ scale: 1.05 }}
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
@@ -150,7 +150,7 @@ const MobileInCenter = ({ block, loading }) => {
                   whileInView={{ scale: 1 }}
                   transition={{ type: "spring" }}
                   viewport={{ once: true }}
-                  className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center"
+                  className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center"
                 >
                   <img
                     loading="lazy"
@@ -160,8 +160,8 @@ const MobileInCenter = ({ block, loading }) => {
                   />
                 </motion.span>
 
-                <h3 className="font-semibold text-base">{item.title}</h3>
-                <p className="text-foreground font-medium text-sm max-w-45">
+                <h3 className="font-semibold text-xl">{item.title}</h3>
+                <p className="text-foreground font-medium text-sm max-w-70 leading-tight">
                   {item.description}
                 </p>
               </motion.li>
@@ -170,7 +170,7 @@ const MobileInCenter = ({ block, loading }) => {
         </div>
 
         {/* 🔥 Mobile Layout */}
-        <div className="flex flex-col items-center gap-10 md:hidden">
+        <div className="flex flex-col items-center gap-4 md:hidden">
           {/* Phone */}
           <motion.img
             variants={phoneVariant}
@@ -194,7 +194,7 @@ const MobileInCenter = ({ block, loading }) => {
             {block?.block_items?.map((item) => (
               <motion.li
                 key={item.id}
-                variants={mobileItem}
+                variants={leftItem}
                 whileHover={{ scale: 1.05 }}
                 className="flex flex-col items-center text-center gap-2 text-primary"
               >
@@ -203,7 +203,7 @@ const MobileInCenter = ({ block, loading }) => {
                   whileInView={{ scale: 1 }}
                   transition={{ type: "spring" }}
                   viewport={{ once: true }}
-                  className="text-lg font-bold bg-secondary/30 rounded-full w-10 h-10 flex items-center justify-center"
+                  className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center"
                 >
                   <img
                     loading="lazy"
@@ -213,8 +213,8 @@ const MobileInCenter = ({ block, loading }) => {
                   />
                 </motion.span>
 
-                <h3 className="font-semibold text-sm">{item.title}</h3>
-                <p className="text-foreground font-medium text-xs">
+                <h3 className="font-semibold text-xl">{item.title}</h3>
+                <p className="text-foreground font-medium text-sm max-w-70 leading-tight">
                   {item.description}
                 </p>
               </motion.li>

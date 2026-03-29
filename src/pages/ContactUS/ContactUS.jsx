@@ -108,25 +108,29 @@ const ContactUS = () => {
               <motion.div
                 key={item.id}
                 onClick={() => navigate(`/${lang}/contact/${item.slug}`)}
-                className="flex flex-col gap-2 bg-white p-3 border shadow rounded-lg font-medium cursor-pointer"
+                className="flex flex-col gap-4 bg-white p-3 border shadow rounded-lg font-medium cursor-pointer"
                 variants={cardVariants}
               >
                 <div
-                  className="rounded-lg [&>iframe]:w-full [&>iframe]:h-60 rich_content"
+                  className="rounded-lg [&>iframe]:w-full [&>iframe]:h-72 rich_content"
                   dangerouslySetInnerHTML={{ __html: item.map_embed }}
                 />
 
-                <h3 className="text-xl text-primary">{item.name}</h3>
-                <p className="text-sm">{item.description}</p>
+                <h3 className="text-xl md:text-2xl text-primary">
+                  {item.name}
+                </h3>
+                <p>{item.description}</p>
 
-                <ul className="flex flex-col gap-4">
+                <ul className="flex flex-col gap-6">
                   {item.info.map((info) => (
                     <li className="flex items-center gap-3 py-1" key={info.id}>
-                      <div className="w-8 aspect-square grid place-items-center bg-gray-100 text-primary rounded-full border shadow">
+                      <div className="w-10 aspect-square grid place-items-center bg-gray-100 text-primary rounded-full border shadow">
                         {info.icon}
                       </div>
                       <div className="flex flex-col gap-1 flex-1">
-                        <p className="text-gray-400 text-xs">{info.label}</p>
+                        <p className="text-gray-500 text-sm font-medium">
+                          {info.label}
+                        </p>
                         <span className="text-black text-sm">{info.value}</span>
                       </div>
                     </li>

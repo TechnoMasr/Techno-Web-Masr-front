@@ -56,7 +56,7 @@ const PageBannerWithImg = ({ block, loading }) => {
         {/* 🔥 Text Content */}
         <motion.div
           variants={fadeUp}
-          className="w-full md:w-1/2 flex flex-col gap-2 items-center md:items-start text-center md:text-start capitalize"
+          className="w-full md:w-1/2 flex flex-col gap-4 items-center md:items-start text-center md:text-start capitalize"
         >
           <motion.h1
             variants={fadeUp}
@@ -65,7 +65,7 @@ const PageBannerWithImg = ({ block, loading }) => {
             {block.title}
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="text-white/80 text-sm">
+          <motion.p variants={fadeUp} className="text-white/70 text-sm leading-relaxed">
             {block.description}
           </motion.p>
 

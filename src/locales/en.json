@@ -10,9 +10,8 @@
 
   "Footer": {
     "mainLinks": "Main Links",
-    "services": "Services",
-    "products": "Products",
-    "pages": "Pages You May Like",
+    "portfolios": "Best Projects",
+    "pages": "Terms and Conditions",
     "description": "footer_description",
     "social": {
       "Facebook": "Facebook",
@@ -45,6 +44,7 @@
     "messagePlaceholder": "Write your message",
     "submit": "Submit",
     "submitting": "Sending...",
+    "recaptcha": "Please verify that you are not a robot",
     "errors": {
       "name": "Name is required",
       "company_name": "Company name is required",
@@ -53,6 +53,7 @@
       "message": "Message must be at least 5 characters",
       "product_id": "Product is required",
       "service_id": "Service is required",
+      "recaptcha": "Please verify that you are not a robot",
       "general": "Something went wrong, please try again"
     },
     "success": "Request sent successfully"
@@ -90,6 +91,7 @@
     "message": "Message",
     "messagePlaceholder": "Enter your message",
     "messageMin": "Message must be at least 5 characters",
+    "recaptchaRequired": "Please verify that you are not a robot",
     "send": "Send",
     "sending": "Sending...",
     "success": "Message sent successfully",

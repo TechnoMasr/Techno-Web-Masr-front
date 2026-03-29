@@ -19,7 +19,7 @@ const VideoBanner = ({ block }) => {
 
   return (
     <section className="container sectionPadding" dir="rtl">
-      <div className="relative w-full aspect-video max-h-[75vh] md:max-h-[85vh] rounded-2xl overflow-hidden bg-neutral-900 shadow-2xl ring-1 ring-white/10">
+      <div className="relative w-full h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden bg-neutral-900 shadow-2xl ring-1 ring-white/10">
         {/* Poster + play button */}
         {!isPlaying && (
           <button

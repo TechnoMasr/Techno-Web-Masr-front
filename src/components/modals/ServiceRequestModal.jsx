@@ -24,15 +24,18 @@ import {
 } from "@/api/contactServices";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRef } from "react";
 
 const ServiceRequestModal = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { modalName, modalData } = useSelector((state) => state.modals);
 
-  console.log("modalData:", modalData);
+  const recaptchaRef = useRef(null);
+  const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-  const contactSchema = z.object({
+  const schema = z.object({
     name: z.string().min(2, t("ServiceRequestModal.errors.name")),
     company_name: z
       .string()
@@ -50,6 +53,10 @@ const ServiceRequestModal = () => {
       modalData?.type === "service_request"
         ? z.string().min(1, t("ServiceRequestModal.errors.service_id"))
         : z.string().optional(),
+
+    recaptcha_token: z
+      .string()
+      .min(1, t("ServiceRequestModal.errors.recaptcha")),
   });
 
   const {
@@ -58,7 +65,7 @@ const ServiceRequestModal = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       name: "",
       company_name: "",
@@ -67,6 +74,7 @@ const ServiceRequestModal = () => {
       phone: "",
       product_id: "",
       service_id: "",
+      recaptcha_token: "",
     },
   });
 
@@ -79,6 +87,7 @@ const ServiceRequestModal = () => {
     mutationFn: sendServiceRequest,
     onSuccess: () => {
       reset();
+      recaptchaRef.current?.reset(); // 👈 مهم
       toast.success(t("ServiceRequestModal.success"));
       dispatch(closeModal());
     },
@@ -94,6 +103,8 @@ const ServiceRequestModal = () => {
   }, [modalData, reset]);
 
   const onSubmit = (data) => {
+    if (!data.recaptcha_token) return;
+
     const payload = { ...data };
 
     if (modalData?.type === "product_request") {
@@ -134,6 +145,7 @@ const ServiceRequestModal = () => {
         phone: "",
         product_id: "",
         service_id: "",
+        recaptcha_token: "",
       });
 
       resetMutation();
@@ -146,7 +158,7 @@ const ServiceRequestModal = () => {
       open={modalName === "ServiceRequestModal"}
       onOpenChange={() => dispatch(closeModal())}
     >
-      <DialogContent className="md:max-w-3xl! max-h-[90vh] overflow-y-auto custom_scrollbar">
+      <DialogContent className="md:max-w-3xl! lg:max-w-4xl! max-h-[90vh] overflow-y-auto custom_scrollbar">
         <DialogHeader>
           <DialogTitle className="text-black">
             {modalData?.serviceTitle
@@ -271,6 +283,25 @@ const ServiceRequestModal = () => {
                 placeholder={t("ServiceRequestModal.messagePlaceholder")}
                 error={errors.message?.message}
               />
+            )}
+          />
+
+          <Controller
+            name="recaptcha_token"
+            control={control}
+            render={({ field }) => (
+              <div className="flex flex-col items-center">
+                <ReCAPTCHA
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  ref={recaptchaRef}
+                  onChange={(token) => field.onChange(token)}
+                />
+                {errors.recaptcha_token && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.recaptcha_token.message}
+                  </p>
+                )}
+              </div>
             )}
           />
 

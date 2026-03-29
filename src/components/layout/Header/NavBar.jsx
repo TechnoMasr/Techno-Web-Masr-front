@@ -41,6 +41,7 @@ const NavBar = () => {
             key={link.name}
             open={openPopover === index}
             onOpenChange={(isOpen) => setOpenPopover(isOpen ? index : null)}
+            modal={true}
           >
             <PopoverTrigger asChild>
               <button className="nav_link">{link.name}</button>
@@ -48,40 +49,46 @@ const NavBar = () => {
 
             <PopoverContent
               align="center"
-              className="w-150 p-6 bg-primary border-0 hidden lg:block"
+              className="w-screen h-screen! p-0 border-0 hidden lg:block bg-black/20 shadow-none rounded-none"
+              onClick={() => setOpenPopover(null)}
             >
-              <div className="grid grid-cols-2 gap-6">
-                {link.items.map((section) => (
-                  <div key={section.id}>
-                    <NavLink
-                      to={section.href}
-                      onClick={() => setOpenPopover(null)}
-                      className="font-semibold text-lg inline-block text-secondary mb-3"
-                    >
-                      {section.title}
-                    </NavLink>
+              <div
+                className="container mx-auto p-6 bg-primary shadow-lg rounded-lg mt-6"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex justify-between gap-6">
+                  {link.items.map((section) => (
+                    <div key={section.id} className="min-w-5/12">
+                      <NavLink
+                        to={section.href}
+                        onClick={() => setOpenPopover(null)}
+                        className="inline-block text-secondary mb-3 text-xl"
+                      >
+                        {section.title}
+                      </NavLink>
 
-                    <ul className="space-y-2">
-                      {section.list.map((item) => (
-                        <li key={item.id}>
-                          <NavLink
-                            to={item.href}
-                            onClick={() => setOpenPopover(null)}
-                            className={({ isActive }) =>
-                              `block text-sm transition ${
-                                isActive
-                                  ? "text-secondary"
-                                  : "text-white hover:text-secondary"
-                              }`
-                            }
-                          >
-                            {item.title}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                      <ul className="grid grid-cols-2 gap-2">
+                        {section.list.map((item) => (
+                          <li key={item.id}>
+                            <NavLink
+                              to={item.href}
+                              onClick={() => setOpenPopover(null)}
+                              className={({ isActive }) =>
+                                `block transition text-lg ${
+                                  isActive
+                                    ? "text-secondary"
+                                    : "text-white hover:text-secondary"
+                                }`
+                              }
+                            >
+                              {item.title}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </PopoverContent>
           </Popover>

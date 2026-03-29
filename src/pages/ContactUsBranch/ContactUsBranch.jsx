@@ -82,7 +82,7 @@ const ContactUsBranch = () => {
             animate="visible"
           >
             <div
-              className="rounded-lg [&>iframe]:w-full md:w-1/2 [&>iframe]:h-60 rich_content"
+              className="rounded-lg [&>iframe]:w-full md:w-1/2 [&>iframe]:h-72 rich_content"
               dangerouslySetInnerHTML={{ __html: item.map_embed }}
             />
 
@@ -93,27 +93,27 @@ const ContactUsBranch = () => {
               variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
             >
               <motion.h3
-                className="text-xl text-primary"
+                className="text-xl md:text-2xl text-primary"
                 variants={infoVariants}
               >
                 {item.name}
               </motion.h3>
-              <motion.p className="text-sm" variants={infoVariants}>
+              <motion.p className="" variants={infoVariants}>
                 {item.description}
               </motion.p>
 
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-4">
                 {item.info.map((info) => (
                   <motion.li
                     className="flex items-center gap-3 py-1"
                     key={info.id}
                     variants={infoVariants}
                   >
-                    <div className="w-8 aspect-square grid place-items-center bg-gray-100 text-primary rounded-full border shadow">
+                    <div className="w-10 aspect-square grid place-items-center bg-gray-100 text-primary rounded-full border shadow">
                       {info.icon}
                     </div>
                     <div className="flex flex-col gap-1 flex-1">
-                      <p className="text-gray-400 text-xs">{info.label}</p>
+                      <p className="text-gray-500 text-sm">{info.label}</p>
                       <span className="text-black text-sm">{info.value}</span>
                     </div>
                   </motion.li>

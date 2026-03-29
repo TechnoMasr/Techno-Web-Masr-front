@@ -75,7 +75,7 @@ const MobileAndSteps = ({ block }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-4 lg:w-xl"
           >
             {block.block_items.map((step, index) => (
               <motion.li
@@ -90,13 +90,13 @@ const MobileAndSteps = ({ block }) => {
                   whileInView={{ scale: 1 }}
                   transition={{ delay: index * 0.1, type: "spring" }}
                   viewport={{ once: true }}
-                  className="text-lg font-bold border-2 border-secondary rounded-full w-10 h-10 flex items-center justify-center"
+                  className="text-3xl font-bold border-2 border-secondary rounded-full w-14 h-14 flex items-center justify-center"
                 >
                   {index + 1}
                 </motion.span>
 
-                <h3 className="font-semibold">{step.title}</h3>
-                <p className="text-foreground font-medium text-sm">
+                <h3 className="font-semibold text-xl">{step.title}</h3>
+                <p className="text-foreground font-medium max-w-[200px] mx-auto">
                   {step.description}
                 </p>
               </motion.li>
@@ -111,7 +111,6 @@ const MobileAndSteps = ({ block }) => {
             viewport={{ once: true }}
           >
             <Button
-              className={`mx-auto block md:me-auto md:ms-0`}
               onClick={() =>
                 handleAction(block?.other_data?.btn_1_url, {
                   serviceId: block?.serviceId,
@@ -130,7 +129,7 @@ const MobileAndSteps = ({ block }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className={`w-full h-125 hidden md:block md:col-span-2`}
+          className={`w-full h-150 hidden md:block md:col-span-2`}
         >
           <motion.img
             loading="lazy"

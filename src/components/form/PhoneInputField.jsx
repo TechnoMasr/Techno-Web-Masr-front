@@ -14,7 +14,7 @@ const PhoneInputField = ({
   return (
     <div className="space-y-2">
       {label && (
-        <label htmlFor={name} className="font-medium text-black inline-block">
+        <label htmlFor={name} className="font-medium text-black inline-block text-lg">
           {label}
         </label>
       )}

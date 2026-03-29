@@ -37,11 +37,11 @@ const WhyChooseUs = ({ block, loading }) => {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <h3 className="text-xl font-semibold text-primary">
+            <h3 className="text-2xl font-semibold text-black">
               {block.title}
             </h3>
 
-            <p className="text-foreground font-medium text-sm">
+            <p className="text-foreground font-medium">
               {block.description}
             </p>
 
@@ -75,7 +75,7 @@ const WhyChooseUs = ({ block, loading }) => {
                     className="w-8 h-8"
                   />
                   <h2 className="font-semibold">{item.title}</h2>
-                  <p className="text-xs opacity-80 font-medium">
+                  <p className="text-xs">
                     {item.description}
                   </p>
                 </motion.li>
@@ -94,7 +94,7 @@ const WhyChooseUs = ({ block, loading }) => {
               loading="lazy"
               src={block?.image_url}
               alt={block.title || "Why choose us image"}
-              className="w-full h-full object-cover drop-shadow-xl rounded-xl"
+              className="w-full h-full object-cover drop-shadow-xl rounded-3xl"
             />
           </motion.div>
         </div>

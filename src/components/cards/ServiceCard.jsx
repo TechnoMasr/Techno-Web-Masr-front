@@ -9,7 +9,7 @@ const ServiceCard = ({ service, type = "service" }) => {
   const isService = type === "service";
 
   return (
-    <div className="flex flex-col items-start gap-3 border p-2 rounded-lg bg-white">
+    <div className="flex flex-col h-full gap-3 border p-2 rounded-lg bg-white hover:shadow-lg transition-shadow duration-300 shadow-black/30">
       <div className="w-full aspect-5/3 overflow-hidden rounded-md">
         <img
           loading="lazy"
@@ -27,7 +27,7 @@ const ServiceCard = ({ service, type = "service" }) => {
 
       <Link
         to={`/${lang}/${isService ? "services" : "products"}/${service.slug}`}
-        className="flex items-center gap-2 group text-gray-400 font-medium"
+        className="flex items-center gap-2 group text-gray-400 font-medium mt-auto"
       >
         {isService
           ? t("ServiceCard.serviceDetails")

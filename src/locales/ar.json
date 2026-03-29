@@ -10,9 +10,8 @@
 
   "Footer": {
     "mainLinks": "روابط رئيسية",
-    "services": "الخدمات",
-    "products": "المنتجات",
-    "pages": "روابط قد تهمك",
+    "portfolios": "افضل مشاريعنا",
+    "pages": "الشروط والأحكام",
     "description": "footer_description",
     "social": {
       "Facebook": "فيسبوك",
@@ -49,6 +48,7 @@
     "messagePlaceholder": "اكتب رسالتك",
     "submit": "إرسال",
     "submitting": "جاري الإرسال...",
+    "recaptcha": "يرجى تأكيد أنك لست روبوت",
     "errors": {
       "name": "الاسم مطلوب",
       "company_name": "اسم الشركة مطلوب",
@@ -57,6 +57,7 @@
       "message": "الرسالة يجب أن تكون 5 أحرف على الأقل",
       "product_id": "المنتج مطلوب",
       "service_id": "الخدمة مطلوبة",
+      "recaptcha": "يرجى تأكيد أنك لست روبوت",
       "general": "حدث خطأ ما، حاول مرة أخرى"
     },
     "success": "تم إرسال الطلب بنجاح"
@@ -98,6 +99,7 @@
     "message": "الرسالة",
     "messagePlaceholder": "اكتب رسالتك",
     "messageMin": "الرسالة يجب أن تكون 5 أحرف على الأقل",
+    "recaptchaRequired": "يرجى تأكيد أنك لست روبوت",
     "send": "إرسال",
     "sending": "جاري الإرسال...",
     "success": "تم إرسال الرسالة بنجاح",

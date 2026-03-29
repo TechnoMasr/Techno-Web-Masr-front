@@ -22,7 +22,7 @@ const Statistics = ({ block, loading }) => {
       className="bg-center bg-cover relative"
       style={{ backgroundImage: `url(${block.bg_image_url || image})` }}
     >
-      <div className="absolute inset-0 bg-gray-100/90" />
+      <div className="absolute inset-0 bg-gray-100/95" />
 
       <div className="container sectionPadding relative z-10">
         <motion.div
@@ -47,7 +47,7 @@ const Statistics = ({ block, loading }) => {
             return (
               <motion.li
                 key={item.id}
-                className="w-40 md:w-46 flex flex-col gap-2 p-3 shadow rounded-md bg-white text-primary 
+                className="w-40 md:w-55 flex flex-col gap-2 p-3 rounded-md bg-white text-primary 
                   hover:bg-primary hover:text-white transition-all duration-300 group"
                 variants={fadeUp}
               >
@@ -67,8 +67,8 @@ const Statistics = ({ block, loading }) => {
                   </span>
                 </div>
 
-                <h2 className="font-semibold text-sm">{title}</h2>
-                <p className="text-xs font-medium opacity-70">{desc}</p>
+                <h2 className="font-medium">{title}</h2>
+                <p className="text-[10px] text-foreground font-medium opacity-80 group-hover:text-white duration-200">{desc}</p>
               </motion.li>
             );
           })}

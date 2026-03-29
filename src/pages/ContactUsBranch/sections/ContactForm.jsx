@@ -11,10 +11,14 @@ import PhoneInputField from "@/components/form/PhoneInputField";
 import { sendContactUs } from "@/api/contactServices";
 import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
+import { useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactForm = () => {
   const { t } = useTranslation();
   const { slug } = useParams();
+  const recaptchaRef = useRef(null);
+  const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   const contactSchema = z.object({
     name: z.string().min(2, t("ContactForm.nameRequired")),
@@ -24,6 +28,7 @@ const ContactForm = () => {
     phone: z.string().refine((value) => isValidPhoneNumber(value || ""), {
       message: t("ContactForm.invalidPhone"),
     }),
+    recaptcha_token: z.string().min(1, t("ContactForm.recaptchaRequired")),
   });
 
   const {
@@ -39,6 +44,7 @@ const ContactForm = () => {
       email: "",
       message: "",
       phone: "",
+      recaptcha_token: "",
     },
   });
 
@@ -46,11 +52,14 @@ const ContactForm = () => {
     mutationFn: sendContactUs,
     onSuccess: () => {
       reset();
+      recaptchaRef.current?.reset(); // مهم
       toast.success(t("ContactForm.success"));
     },
   });
 
   const onSubmit = (data) => {
+    if (!data.recaptcha_token) return;
+
     data.branch_slug = slug;
     mutate(data);
   };
@@ -123,6 +132,25 @@ const ContactForm = () => {
             placeholder={t("ContactForm.messagePlaceholder")}
             error={errors.message?.message}
           />
+        )}
+      />
+
+      <Controller
+        name="recaptcha_token"
+        control={control}
+        render={({ field }) => (
+          <div className="flex flex-col items-center">
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY}
+              ref={recaptchaRef}
+              onChange={(token) => field.onChange(token)}
+            />
+            {errors.recaptcha_token && (
+              <p className="text-red-500 font-medium text-sm mt-1">
+                {errors.recaptcha_token.message}
+              </p>
+            )}
+          </div>
         )}
       />
 

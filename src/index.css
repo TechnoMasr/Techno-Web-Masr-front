@@ -9,7 +9,7 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 1rem;
-  max-width: 1024px;
+  max-width: 1200px;
 }
 
 /* fix hover in mobile */
@@ -203,7 +203,7 @@ input::-webkit-inner-spin-button {
   }
 
   .sectionPadding {
-    @apply py-8 md:py-14;
+    @apply py-8 md:py-18;
   }
 
   .pagePadding {
@@ -275,7 +275,7 @@ input::-webkit-inner-spin-button {
 /* wrapper */
 .phone-input-wrapper {
   @apply flex items-center border border-input rounded-md bg-white
-  px-2 h-10 transition-[color,box-shadow];
+  px-2 h-12 transition-[color,box-shadow];
 }
 
 .phone-input-wrapper:focus-within {

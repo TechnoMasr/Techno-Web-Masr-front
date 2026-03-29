@@ -93,16 +93,16 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex-1 max-w-2xl mx-auto"
+            className="flex-1"
           >
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs?.map((item) => (
                 <motion.div key={item.id} variants={itemVariants}>
                   <AccordionItem
                     value={`item-${item.id}`}
-                    className="bg-gray-200 rounded-lg transition hover:shadow-md"
+                    className="bg-gray-200 text-black rounded-lg transition hover:shadow-md"
                   >
-                    <AccordionTrigger className="text-black p-2 py-4 font-semibold cursor-pointer">
+                    <AccordionTrigger className="p-2 py-4 font-medium text-lg cursor-pointer">
                       {item.title || item.question}
                     </AccordionTrigger>
 
@@ -121,7 +121,7 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="w-1/3 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden"
+            className="w-2/5 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden"
           >
             <img
               loading="lazy"

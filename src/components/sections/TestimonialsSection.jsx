@@ -49,7 +49,7 @@ const TestimonialsSection = ({ block }) => {
                 <p className="font-medium text-sm">{testimonial.content}</p>
 
                 <div className="flex items-center gap-2">
-                  <div className="w-10 aspect-square rounded-md overflow-hidden">
+                  <div className="w-12 aspect-square rounded-sm overflow-hidden">
                     <img
                       loading="lazy"
                       src={testimonial.image_url}
@@ -58,10 +58,10 @@ const TestimonialsSection = ({ block }) => {
                     />
                   </div>
                   <div className="flex-1 text-black">
-                    <h3 className="font-semibold text-sm">
+                    <h3 className="font-medium">
                       {testimonial.name}
                     </h3>
-                    <p className="text-xs">{testimonial.job}</p>
+                    <p className="text-sm">{testimonial.job}</p>
                   </div>
                 </div>
               </div>

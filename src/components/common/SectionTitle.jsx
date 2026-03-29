@@ -31,20 +31,20 @@ const SectionTitle = ({ title, description, link }) => {
         <>
           <motion.h2
             variants={fadeUp}
-            className="text-xl lg:text-2xl capitalize font-semibold text-primary"
+            className="text-xl lg:text-3xl capitalize font-semibold text-primary"
           >
             {title}
           </motion.h2>
 
           <motion.span
             variants={fadeUp}
-            className="w-32 lg:w-44 h-0.5 bg-primary rounded-full"
+            className="w-32 lg:w-50 h-0.5 bg-primary rounded-full"
           />
         </>
       )}
 
       {description && (
-        <motion.p variants={fadeUp} className="max-w-3xl font-medium">
+        <motion.p variants={fadeUp} className="max-w-5xl font-medium text-lg">
           {description}
         </motion.p>
       )}

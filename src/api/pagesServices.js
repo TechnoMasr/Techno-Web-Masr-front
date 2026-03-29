@@ -42,8 +42,6 @@ export const getPortfolio = async (slug) => {
   return data?.data || [];
 };
 
-
-
 export const getPortfolioCategories = async () => {
   const { data } = await api.get(`/portfolio/categories`);
   return data?.data || [];
@@ -54,11 +52,7 @@ export const getPortfolioDetails = async (slug) => {
   return data?.data || [];
 };
 
-
-
 export const pageDetails = async (slug) => {
   const { data } = await api.get(`pages/${slug}`);
   return data?.data || {};
 };
-
-

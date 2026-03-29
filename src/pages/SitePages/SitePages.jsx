@@ -17,8 +17,8 @@ const SitePages = () => {
   const [blocks, setBlocks] = useState([]);
 
   useEffect(() => {
-    if (pageDetailsData?.service?.blocks) {
-      setBlocks(pageDetailsData?.service?.blocks);
+    if (pageDetailsData?.page?.blocks) {
+      setBlocks(pageDetailsData?.page?.blocks);
     }
   }, [pageDetailsData]);
 

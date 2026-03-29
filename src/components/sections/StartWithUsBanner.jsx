@@ -67,7 +67,7 @@ const StartWithUsBanner = ({ block }) => {
         >
           <motion.h1
             variants={fadeUp}
-            className="text-3xl lg:text-4xl font-medium text-white"
+            className="text-3xl lg:text-5xl font-medium text-white"
           >
             {title[0]}
           </motion.h1>
@@ -79,7 +79,7 @@ const StartWithUsBanner = ({ block }) => {
             {title[1]}
           </motion.h2>
 
-          <motion.p variants={fadeUp} className="text-white/80 text-sm">
+          <motion.p variants={fadeUp} className="text-white text-lg my-4">
             {block.description}
           </motion.p>
 
@@ -103,7 +103,7 @@ const StartWithUsBanner = ({ block }) => {
 
             <Button
               variant="outline"
-              className="min-w-40 group"
+              className="min-w-40"
               onClick={() =>
                 handleAction(block.other_data.btn_2_url, {
                   serviceId: block?.serviceId,
@@ -112,7 +112,6 @@ const StartWithUsBanner = ({ block }) => {
               }
             >
               {block.other_data.btn_2_text}
-              <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
             </Button>
           </motion.div>
         </motion.div>
