@@ -41,8 +41,8 @@ const StartWithUsBanner = ({ block }) => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="bg-center bg-cover bg-primary w-full min-h-72 content-center p-8 
-        flex flex-col md:flex-row items-center gap-4 lg:gap-10 rounded-3xl shadow relative overflow-hidden"
+        className="bg-center bg-cover bg-primary w-full min-h-72 content-center p-8 lg:p-10 
+        flex flex-col md:flex-row items-center gap-4 lg:gap-10 rounded-[32px] shadow relative overflow-hidden"
         style={{ backgroundImage: `url(${block.bg_image_url || bgImg})` }}
       >
         <div className="absolute inset-0 bg-primary/80" />
@@ -63,29 +63,29 @@ const StartWithUsBanner = ({ block }) => {
         {/* Text + Buttons */}
         <motion.div
           variants={container}
-          className="w-full md:w-1/2 flex flex-col gap-2 items-center md:items-start text-center md:text-start capitalize relative z-10"
+          className="w-full md:w-1/2 flex flex-col gap-6 items-center md:items-start text-center md:text-start capitalize relative z-10"
         >
           <motion.h1
             variants={fadeUp}
-            className="text-3xl lg:text-5xl font-medium text-white"
+            className="text-3xl lg:text-[40px] font-semibold text-white"
           >
             {title[0]}
           </motion.h1>
 
           <motion.h2
             variants={fadeUp}
-            className="text-2xl lg:text-3xl font-medium text-secondary"
+            className="text-2xl lg:text-4xl font-medium text-secondary"
           >
             {title[1]}
           </motion.h2>
 
-          <motion.p variants={fadeUp} className="text-white text-lg my-4">
+          <motion.p variants={fadeUp} className="text-white text-lg">
             {block.description}
           </motion.p>
 
           <motion.div
             variants={fadeUp}
-            className="flex items-center justify-center flex-wrap gap-2 mt-6"
+            className="flex items-center justify-center flex-wrap gap-4 mt-6"
           >
             <Button
               variant="secondary"

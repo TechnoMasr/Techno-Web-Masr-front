@@ -84,7 +84,7 @@ const WhyChooseUs = ({ block, loading }) => {
           </motion.div>
 
           <motion.div
-            className="h-100 overflow-hidden hidden md:block"
+            className="h-full overflow-hidden hidden md:block"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}

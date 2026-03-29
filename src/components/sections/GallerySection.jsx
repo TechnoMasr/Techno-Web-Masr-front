@@ -38,7 +38,7 @@ const GallerySection = ({ block, loading }) => {
 
   return (
     <section className="container sectionPadding">
-      <div className="space-y-4">
+      <div className="space-y-4 lg:space-y-6">
         {/* 🔥 Main Image */}
         <motion.div
           variants={mainImageVariants}
@@ -52,7 +52,6 @@ const GallerySection = ({ block, loading }) => {
             src={bigImage}
             alt="gallery"
             className="w-full h-full object-cover"
-            whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
           />
         </motion.div>
@@ -63,7 +62,7 @@ const GallerySection = ({ block, loading }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
         >
           {images?.map((img, index) => (
             <motion.div
@@ -76,7 +75,6 @@ const GallerySection = ({ block, loading }) => {
                 src={img}
                 alt="thumb"
                 className="w-full h-full object-cover"
-                whileHover={{ scale: 1.08 }}
                 transition={{ duration: 0.3 }}
               />
             </motion.div>

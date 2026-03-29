@@ -50,7 +50,7 @@ const PreviousWorkInfo = ({ data, loading }) => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="container sectionPadding flex flex-col-reverse md:flex-row gap-6 lg:gap-12"
+      className="container sectionPadding flex flex-col-reverse lg:flex-row gap-6 lg:gap-12"
     >
       <motion.div variants={fadeUp} className="flex-1">
         <TitleAndDescription
@@ -62,9 +62,9 @@ const PreviousWorkInfo = ({ data, loading }) => {
 
       <motion.div
         variants={cardVariant}
-        className="w-full md:w-1/3 bg-white rounded-md shadow border p-4 flex flex-col text-center gap-2"
+        className="w-full max-w-sm mx-auto lg:max-w-xs bg-white rounded-md shadow border p-4 flex flex-col text-center gap-2"
       >
-        <div className="h-20 aspect-video overflow-hidden mb-2">
+        <div className="h-28 w-full overflow-hidden mb-2 border border-transparent rounded-2xl hover:border-primary duration-300 py-2">
           <img
             loading="lazy"
             src={image}

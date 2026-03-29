@@ -68,10 +68,9 @@ const Partners = () => {
                   className="bg-white shadow rounded-md border w-full aspect-video
                     flex flex-col items-center text-center gap-2 p-4"
                   variants={cardVariants}
-                  whileHover={{ scale: 1.05 }}
                 >
                   <motion.div
-                    className="h-24 aspect-video overflow-hidden mb-2"
+                    className="h-24 w-full overflow-hidden mb-2 border border-transparent rounded-2xl hover:border-primary duration-300"
                     variants={contentVariants}
                   >
                     <img
