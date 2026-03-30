@@ -87,32 +87,38 @@ const StartWithUsBanner = ({ block }) => {
             variants={fadeUp}
             className="flex items-center justify-center flex-wrap gap-4 mt-6"
           >
-            <Button
-              variant="secondary"
-              className="min-w-40 group"
-              onClick={() =>
-                handleAction(block?.other_data?.btn_1_url, {
-                  serviceId: block?.serviceId,
-                  serviceTitle: block?.serviceTitle,
-                })
-              }
-            >
-              {block.other_data.btn_1_text}
-              <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
-            </Button>
+            {block?.other_data?.btn_1_enabled &&
+              block?.other_data?.btn_1_url && (
+                <Button
+                  variant="secondary"
+                  className="min-w-40 group"
+                  onClick={() =>
+                    handleAction(block?.other_data?.btn_1_url, {
+                      serviceId: block?.serviceId,
+                      serviceTitle: block?.serviceTitle,
+                    })
+                  }
+                >
+                  {block.other_data.btn_1_text}
+                  <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
+                </Button>
+              )}
 
-            <Button
-              variant="outline"
-              className="min-w-40"
-              onClick={() =>
-                handleAction(block.other_data.btn_2_url, {
-                  serviceId: block?.serviceId,
-                  serviceTitle: block?.serviceTitle,
-                })
-              }
-            >
-              {block.other_data.btn_2_text}
-            </Button>
+            {block?.other_data?.btn_2_enabled &&
+              block?.other_data?.btn_2_url && (
+                <Button
+                  variant="outline"
+                  className="min-w-40"
+                  onClick={() =>
+                    handleAction(block.other_data.btn_2_url, {
+                      serviceId: block?.serviceId,
+                      serviceTitle: block?.serviceTitle,
+                    })
+                  }
+                >
+                  {block.other_data.btn_2_text}
+                </Button>
+              )}
           </motion.div>
         </motion.div>
       </motion.div>

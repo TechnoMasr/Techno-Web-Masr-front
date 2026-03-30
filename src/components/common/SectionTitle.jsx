@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 
-const SectionTitle = ({ title, description, link }) => {
+const SectionTitle = ({ title, description, link, margin = true }) => {
   // 🔥 Variants
   const container = {
     hidden: {},
@@ -25,7 +25,7 @@ const SectionTitle = ({ title, description, link }) => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="mb-6 lg:mb-12 flex flex-col items-center justify-center text-center gap-4 px-4"
+      className={`flex flex-col items-center justify-center text-center gap-4 px-4 ${margin ? "mb-6 lg:mb-12" : ""}`}
     >
       {title && (
         <>

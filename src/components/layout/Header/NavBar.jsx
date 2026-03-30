@@ -53,7 +53,7 @@ const NavBar = () => {
               onClick={() => setOpenPopover(null)}
             >
               <div
-                className="container mx-auto p-6 bg-primary shadow-lg rounded-lg mt-6"
+                className="container mx-auto p-6 bg-primary shadow-lg rounded-b-lg mt-6"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-between gap-6">

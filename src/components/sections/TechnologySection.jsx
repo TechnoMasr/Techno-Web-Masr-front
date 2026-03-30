@@ -60,24 +60,26 @@ const TechnologySection = ({ block }) => {
         </motion.ul>
 
         {/* Button */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <Button
-            className={`mx-auto block`}
-            onClick={() =>
-              handleAction(block.other_data.btn_1_url, {
-                serviceId: block?.serviceId,
-                serviceTitle: block?.serviceTitle,
-              })
-            }
+        {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
           >
-            {block.other_data.btn_1_text}
-          </Button>
-        </motion.div>
+            <Button
+              className={`mx-auto block`}
+              onClick={() =>
+                handleAction(block?.other_data?.btn_1_url, {
+                  serviceId: block?.serviceId,
+                  serviceTitle: block?.serviceTitle,
+                })
+              }
+            >
+              {block.other_data.btn_1_text}
+            </Button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

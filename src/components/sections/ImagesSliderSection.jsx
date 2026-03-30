@@ -74,23 +74,25 @@ const ImagesSliderSection = ({ block, loading }) => {
           description={block.description}
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <Button
-            onClick={() =>
-              handleAction(block?.other_data?.btn_1_url, {
-                serviceId: block?.serviceId,
-                serviceTitle: block?.serviceTitle,
-              })
-            }
+        {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
           >
-            {block?.other_data?.btn_1_text}
-          </Button>
-        </motion.div>
+            <Button
+              onClick={() =>
+                handleAction(block?.other_data?.btn_1_url, {
+                  serviceId: block?.serviceId,
+                  serviceTitle: block?.serviceTitle,
+                })
+              }
+            >
+              {block?.other_data?.btn_1_text}
+            </Button>
+          </motion.div>
+        )}
       </motion.div>
 
       {/* 🔥 Slider */}

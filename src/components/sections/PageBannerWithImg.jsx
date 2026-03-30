@@ -65,25 +65,30 @@ const PageBannerWithImg = ({ block, loading }) => {
             {block.title}
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="text-white/70 text-sm leading-relaxed">
+          <motion.p
+            variants={fadeUp}
+            className="text-white/70 text-sm leading-relaxed"
+          >
             {block.description}
           </motion.p>
 
-          <motion.div variants={fadeUp}>
-            <Button
-              onClick={() =>
-                handleAction(block?.other_data?.btn_1_url, {
-                  serviceId: block?.serviceId,
-                  serviceTitle: block?.serviceTitle,
-                })
-              }
-              variant="secondary"
-              className="mt-6 group"
-            >
-              {block?.other_data?.btn_1_text}
-              <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
-            </Button>
-          </motion.div>
+          {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
+            <motion.div variants={fadeUp}>
+              <Button
+                onClick={() =>
+                  handleAction(block?.other_data?.btn_1_url, {
+                    serviceId: block?.serviceId,
+                    serviceTitle: block?.serviceTitle,
+                  })
+                }
+                variant="secondary"
+                className="mt-6 group"
+              >
+                {block?.other_data?.btn_1_text}
+                <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
+              </Button>
+            </motion.div>
+          )}
         </motion.div>
       </motion.div>
     </section>

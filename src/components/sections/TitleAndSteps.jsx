@@ -51,7 +51,7 @@ const TitleAndSteps = ({ block, loading }) => {
           ))}
         </ul>
 
-        {block.other_data && (
+        {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
           <motion.div
             initial="hidden"
             whileInView="show"
@@ -61,7 +61,7 @@ const TitleAndSteps = ({ block, loading }) => {
             <Button
               className="mx-auto block mt-4"
               onClick={() =>
-                handleAction(block.other_data.btn_1_url, {
+                handleAction(block?.other_data?.btn_1_url, {
                   serviceId: block?.serviceId,
                   serviceTitle: block?.serviceTitle,
                 })

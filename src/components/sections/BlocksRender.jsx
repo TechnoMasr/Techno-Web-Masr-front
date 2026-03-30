@@ -23,12 +23,14 @@ import TestimonialsSection from "./TestimonialsSection";
 import Faqs from "./Faqs";
 import GallerySection from "./GallerySection";
 import CkEditorSection from "./CkEditorSection";
+import SectionTitle from "../common/SectionTitle";
 
 const BlocksRender = ({ blocks, serviceId = "", serviceTitle = "" }) => {
   return (
     <>
       {blocks?.map((block, index) => {
-        const nextBlock = blocks[index + 1];
+        {
+          /* const nextBlock = blocks[index + 1];
         if (
           block.type === "header_title_and_desc_2" &&
           nextBlock?.type === "about_us_intro"
@@ -55,11 +57,30 @@ const BlocksRender = ({ blocks, serviceId = "", serviceTitle = "" }) => {
               />
             </div>
           );
+        } */
         }
 
         return (
           <div key={block.id}>
-            {/* 'بانر الرئيسيه العظيم', 'main_hero_banner' */}
+            {block.type === "header_title_and_desc_2" && (
+              <section className="relative sectionPadding pb-0! md:pb-18">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[40%] aspect-square bg-secondary/30 rounded-full blur-[100px]" />
+                <SectionTitle
+                  title={block?.title}
+                  description={block?.description}
+                  margin={false}
+                />
+              </section>
+            )}
+            {block.type === "about_us_intro" && (
+              <WhoWeAre
+                block={{
+                  ...block,
+                  serviceId,
+                  serviceTitle,
+                }}
+              />
+            )}
             {block.type === "main_hero_banner" && (
               <Hero block={{ ...block, serviceId, serviceTitle }} />
             )}

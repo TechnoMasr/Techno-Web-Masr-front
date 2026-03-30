@@ -65,18 +65,20 @@ const TextAndImage = ({
             className={`mt-3 leading-relaxed text-lg  ${backgroundImage ? "text-white" : ""}`}
           />
 
-          <Button
-            onClick={() =>
-              handleAction(block?.other_data?.btn_1_url, {
-                serviceId: block?.serviceId,
-                serviceTitle: block?.serviceTitle,
-              })
-            }
-            variant={backgroundImage ? "secondary" : "default"}
-            className={`${backgroundImage ? "bg-white" : ""} lg:mt-8`}
-          >
-            {block?.other_data?.btn_1_text}
-          </Button>
+          {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
+            <Button
+              onClick={() =>
+                handleAction(block?.other_data?.btn_1_url, {
+                  serviceId: block?.serviceId,
+                  serviceTitle: block?.serviceTitle,
+                })
+              }
+              variant={backgroundImage ? "secondary" : "default"}
+              className={`${backgroundImage ? "bg-white" : ""} lg:mt-8`}
+            >
+              {block?.other_data?.btn_1_text}
+            </Button>
+          )}
         </motion.div>
       </div>
     </section>

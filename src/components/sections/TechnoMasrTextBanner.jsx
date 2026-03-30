@@ -37,29 +37,33 @@ const TechnoMasrTextBanner = ({ block, loading }) => {
         </motion.p>
 
         <motion.div className="flex gap-2" variants={fadeUp}>
-          <Button
-            onClick={() =>
-              handleAction(block?.other_data?.btn_1_url, {
-                serviceId: block?.serviceId,
-                serviceTitle: block?.serviceTitle,
-              })
-            }
-            variant="secondary"
-          >
-            {block?.other_data?.btn_1_text}
-          </Button>
+          {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
+            <Button
+              onClick={() =>
+                handleAction(block?.other_data?.btn_1_url, {
+                  serviceId: block?.serviceId,
+                  serviceTitle: block?.serviceTitle,
+                })
+              }
+              variant="secondary"
+            >
+              {block?.other_data?.btn_1_text}
+            </Button>
+          )}
 
-          <Button
-            onClick={() =>
-              handleAction(block?.other_data?.btn_2_url, {
-                serviceId: block?.serviceId,
-                serviceTitle: block?.serviceTitle,
-              })
-            }
-            variant="outline"
-          >
-            {block?.other_data?.btn_2_text}
-          </Button>
+          {block?.other_data?.btn_2_enabled && block?.other_data?.btn_2_url && (
+            <Button
+              onClick={() =>
+                handleAction(block?.other_data?.btn_2_url, {
+                  serviceId: block?.serviceId,
+                  serviceTitle: block?.serviceTitle,
+                })
+              }
+              variant="outline"
+            >
+              {block?.other_data?.btn_2_text}
+            </Button>
+          )}
         </motion.div>
       </motion.div>
     </section>
