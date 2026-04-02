@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 const MobileAndSteps = ({ block }) => {
   const handleAction = useHandleAction();
 
+  if (!block?.image_url && !block?.block_items?.length) return null;
+
   // 🔥 Variants
   const fadeLeft = {
     hidden: { opacity: 0, x: -50 },
@@ -62,7 +64,9 @@ const MobileAndSteps = ({ block }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className={`space-y-4 lg:space-y-12 md:col-span-3`}
+          className={`space-y-4 lg:space-y-12 ${
+            block?.image_url ? "md:col-span-3" : "md:col-span-5"
+          }`}
         >
           <TitleAndDescription
             title={block.title}
@@ -126,22 +130,24 @@ const MobileAndSteps = ({ block }) => {
         </motion.div>
 
         {/* 🔥 Image */}
-        <motion.div
-          variants={fadeRight}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className={`w-full h-150 hidden md:block md:col-span-2`}
-        >
-          <motion.img
-            loading="lazy"
-            src={block.image_url}
-            alt="image"
-            className="w-full h-full object-contain"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-          />
-        </motion.div>
+        {block?.image_url && (
+          <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="w-full h-150 hidden md:block md:col-span-2"
+          >
+            <motion.img
+              loading="lazy"
+              src={block.image_url}
+              alt="image"
+              className="w-full h-full object-contain"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.4 }}
+            />
+          </motion.div>
+        )}
       </div>
     </section>
   );

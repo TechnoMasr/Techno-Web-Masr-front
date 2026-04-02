@@ -1,5 +1,4 @@
 import SectionTitle from "@/components/common/SectionTitle";
-import image from "@/assets/images/bg-img.png";
 import StatisticsSkeleton from "../skeletons/StatisticsSkeleton";
 import { motion } from "framer-motion";
 
@@ -20,9 +19,9 @@ const Statistics = ({ block, loading }) => {
   return (
     <section
       className="bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${block.bg_image_url || image})` }}
+      style={{ backgroundImage: `url(${block.bg_image_url})` }}
     >
-      <div className="absolute inset-0 bg-gray-100/95" />
+      {/* <div className="absolute inset-0 bg-gray-100/95" /> */}
 
       <div className="container sectionPadding relative z-10">
         <motion.div

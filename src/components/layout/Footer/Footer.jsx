@@ -1,5 +1,4 @@
 import logo from "@/assets/images/logo.png";
-import bgImg from "@/assets/images/bg-img.png";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -78,7 +77,7 @@ const Footer = () => {
     <footer
       className="sectionPadding bg-center bg-cover bg-primary relative"
       style={{
-        backgroundImage: `url(${footerData?.footer_background || bgImg})`,
+        backgroundImage: `url(${footerData?.footer_background})`,
       }}
     >
       {/* <div className="absolute inset-0 bg-primary/20" /> */}

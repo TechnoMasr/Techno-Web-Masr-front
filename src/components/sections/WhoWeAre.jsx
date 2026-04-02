@@ -14,6 +14,17 @@ const WhoWeAre = ({ block, loading }) => {
 
   if (loading) return <WhoWeAreSkeleton />;
 
+  const hasMedia = (block) =>
+    !!(block?.image_url || block?.video_url || block?.video_file);
+
+  if (
+    !hasMedia &&
+    !block?.title &&
+    !block?.description &&
+    !block?.block_items?.length
+  )
+    return null;
+
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
     show: {
@@ -58,29 +69,35 @@ const WhoWeAre = ({ block, loading }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-12">
           {/* media */}
-          <motion.div
-            className="col-span-1 lg:col-span-2 h-full overflow-hidden rounded-2xl shadow"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={fadeUp}
-          >
-            {block?.video_file ? (
-              <VideoBlock src={block.video_file} />
-            ) : block?.video_url ? (
-              <YoutubeBlock url={block.video_url} image={block.image_url} />
-            ) : (
-              <img
-                src={block.image_url}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            )}
-          </motion.div>
+          {hasMedia && (
+            <motion.div
+              className="col-span-1 lg:col-span-2 h-full overflow-hidden rounded-2xl shadow"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              {block?.video_file ? (
+                <VideoBlock src={block.video_file} />
+              ) : block?.video_url ? (
+                <YoutubeBlock url={block.video_url} image={block.image_url} />
+              ) : (
+                block?.image_url && (
+                  <img
+                    src={block.image_url}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                )
+              )}
+            </motion.div>
+          )}
 
           {/* content */}
           <motion.div
-            className="flex flex-col gap-4 lg:gap-6 lg:col-span-3"
+            className={`flex flex-col gap-4 lg:gap-6 ${
+              hasMedia ? "lg:col-span-3" : "lg:col-span-5"
+            }`}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
@@ -90,20 +107,23 @@ const WhoWeAre = ({ block, loading }) => {
               {block.title}
             </h3>
 
-            <p className="text-foreground font-medium text-sm md:text-base lg:max-w-xl">
+            <p className="text-foreground font-medium text-sm md:text-base lg:max-w-lg">
               {block.description}
             </p>
 
-            <ul className="grid grid-cols-2 gap-4 md:gap-8 my-auto">
+            <ul className="grid grid-cols-2 gap-4 md:gap-8 ">
               {block?.block_items?.map((item) => (
                 <li key={item.id} className="flex flex-col gap-2 text-primary">
                   {item.image_url && (
-                    <span className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center">
+                    <span
+                      className="text-lg font-bold bg-secondary/30 rounded-full 
+                      w-16 aspect-square flex items-center justify-center"
+                    >
                       <img
                         loading="lazy"
                         src={item.image_url}
                         alt="icon"
-                        className="w-5 h-5"
+                        className="w-10 aspect-square object-contain"
                       />
                     </span>
                   )}

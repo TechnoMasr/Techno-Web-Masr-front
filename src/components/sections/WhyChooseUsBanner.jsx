@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion"; // <-- استدعاء framer-motion
-import bgImg from "@/assets/images/bg-img.png";
 
 const defaultTitle = "لماذا تختار تكنو ويب مصر";
 const defaultDescription =
@@ -30,14 +29,12 @@ const WhyChooseUsBanner = ({ block }) => {
       try {
         return typeof block.image === "string" && block.image.startsWith("http")
           ? block.image
-          : import.meta.env.VITE_STORAGE_URL
-            ? `${import.meta.env.VITE_STORAGE_URL}/${block.image}`
-            : bgImg;
+          : import.meta.env.VITE_STORAGE_URL &&
+              `${import.meta.env.VITE_STORAGE_URL}/${block.image}`;
       } catch {
-        return bgImg;
+        return;
       }
     }
-    return bgImg;
   }, [block?.image]);
 
   // Framer Motion Variants

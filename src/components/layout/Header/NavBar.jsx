@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { useState } from "react";
 import { useParams } from "react-router";
 import useNavigationLinks from "@/hooks/useNavigationLinks";
@@ -12,6 +12,7 @@ import {
 const NavBar = () => {
   const links = useNavigationLinks();
   const { lang } = useParams();
+  const location = useLocation();
   const locale = lang || "ar";
 
   const [openPopover, setOpenPopover] = useState(null);
@@ -44,7 +45,11 @@ const NavBar = () => {
             modal={true}
           >
             <PopoverTrigger asChild>
-              <button className="nav_link">{link.name}</button>
+              <button
+                className={`nav_link ${location.pathname === link.href ? "active" : ""}`}
+              >
+                {link.name}
+              </button>
             </PopoverTrigger>
 
             <PopoverContent

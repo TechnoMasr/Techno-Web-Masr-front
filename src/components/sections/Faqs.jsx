@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/common/SectionTitle";
-import image from "@/assets/images/bg-img.png";
 
 import {
   Accordion,
@@ -13,15 +12,19 @@ import { getFaq } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 
 const Faqs = ({ block, loading, imageRight, callApi = false }) => {
-  const { data: faqsData, isLoading } = useQuery({
-    queryKey: ["faqs" + block?.id],
-    queryFn: getFaq,
-    enabled: callApi || !block?.block_items?.length,
-  });
+  // const { data: faqsData, isLoading } = useQuery({
+  //   queryKey: ["faqs" + block?.id],
+  //   queryFn: getFaq,
+  //   enabled: callApi || !block?.block_items?.length,
+  // });
 
-  if (loading || isLoading) return <FaqsSkeleton />;
+  if (loading) return <FaqsSkeleton />;
+  // if (loading || isLoading) return <FaqsSkeleton />;
 
-  const faqs = faqsData?.length > 0 ? faqsData || [] : block.block_items;
+  const faqs = block.block_items;
+  // const faqs = faqsData?.length > 0 ? faqsData || [] : block.block_items;
+
+  if (!block?.image_url && !faqs?.length) return null;
 
   // 🔥 Variants
   const sectionVariants = {
@@ -67,9 +70,9 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
       whileInView="show"
       viewport={{ once: true }}
       className="bg-center bg-cover relative"
-      style={{ backgroundImage: `url(${block.bg_image_url || image})` }}
+      style={{ backgroundImage: `url(${block.bg_image_url})` }}
     >
-      <div className="absolute inset-0 bg-gray-100/40" />
+      {/* <div className="absolute inset-0 bg-gray-100/40" /> */}
 
       <div className="container sectionPadding relative z-10">
         {/* 🔥 Title Animation */}
@@ -79,12 +82,12 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
           transition={{ duration: 0.4 }}
           viewport={{ once: true }}
         >
-          <SectionTitle title={block.title} />
+          <SectionTitle title={block.title} description={block.description} />
         </motion.div>
 
         <div
           className={`flex items-start gap-4 lg:gap-8 ${
-            imageRight && "flex-row-reverse"
+            imageRight && block?.image_url ? "flex-row-reverse" : ""
           }`}
         >
           {/* 🔥 Accordion */}
@@ -93,7 +96,7 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex-1"
+            className={`flex-1 ${!block?.image_url ? "w-full" : ""}`}
           >
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs?.map((item) => (
@@ -116,20 +119,22 @@ const Faqs = ({ block, loading, imageRight, callApi = false }) => {
           </motion.div>
 
           {/* 🔥 Image Animation */}
-          <motion.div
-            variants={imageVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="w-2/5 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden"
-          >
-            <img
-              loading="lazy"
-              src={block.image_url}
-              alt="faq"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+          {block?.image_url && (
+            <motion.div
+              variants={imageVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="w-2/5 aspect-4/3 hidden lg:block rounded-2xl shadow overflow-hidden"
+            >
+              <img
+                loading="lazy"
+                src={block.image_url}
+                alt="faq"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          )}
         </div>
       </div>
     </motion.section>

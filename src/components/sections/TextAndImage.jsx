@@ -15,6 +15,8 @@ const TextAndImage = ({
 
   if (loading) return <TextAndImageSkeleton />;
 
+  if (!block?.image_url && !block?.title && !block?.description) return null;
+
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -31,24 +33,30 @@ const TextAndImage = ({
         <div className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]" />
       )}
 
-      <div className="container grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 relative z-10 items-center">
-        <motion.div
-          className={`w-full h-full ${imageFirst ? "md:order-2" : ""}`}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={fadeUp}
-        >
-          <img
-            loading="lazy"
-            src={block.image_url}
-            alt="image"
-            className="w-full h-full object-contain drop-shadow-xl"
-          />
-        </motion.div>
+      <div
+        className={`container grid grid-cols-1 ${
+          block?.image_url ? "md:grid-cols-2" : ""
+        } gap-6 lg:gap-12 relative z-10 items-center`}
+      >
+        {block?.image_url && (
+          <motion.div
+            className={`w-full h-full ${imageFirst ? "md:order-2" : ""}`}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
+            <img
+              loading="lazy"
+              src={block.image_url}
+              alt="image"
+              className="w-full h-full object-contain drop-shadow-xl"
+            />
+          </motion.div>
+        )}
 
         <motion.div
-          className={`${imageFirst ? "md:order-1" : ""} space-y-6`}
+          className={`${imageFirst && block?.image_url ? "md:order-1" : ""} space-y-6`}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}

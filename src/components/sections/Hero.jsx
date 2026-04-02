@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import bgImg from "@/assets/images/bg-img.png";
 import { Button } from "@/components/ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import HeroSkeleton from "../skeletons/HeroSkeleton";
@@ -52,7 +51,7 @@ const Hero = ({ block, loading }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       className="bg-center bg-cover bg-primary w-full min-h-[80vh] content-center pt-24 pb-16"
-      style={{ backgroundImage: `url(${block.bg_image_url || bgImg})` }}
+      style={{ backgroundImage: `url(${block.bg_image_url})` }}
     >
       <div className="container w-full h-full flex flex-col md:flex-row items-center gap-4 md:gap-10">
         {/* 🔥 Image */}

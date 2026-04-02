@@ -1,4 +1,3 @@
-import bgImg from "@/assets/images/bg-img.png";
 import pcImg from "@/assets/images/pc-img.png";
 import { Button } from "@/components/ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
@@ -43,9 +42,9 @@ const StartWithUsBanner = ({ block }) => {
         viewport={{ once: true }}
         className="bg-center bg-cover bg-primary w-full min-h-72 content-center p-8 lg:p-10 
         flex flex-col md:flex-row items-center gap-4 lg:gap-10 rounded-[32px] shadow relative overflow-hidden"
-        style={{ backgroundImage: `url(${block.bg_image_url || bgImg})` }}
+        style={{ backgroundImage: `url(${block.bg_image_url})` }}
       >
-        <div className="absolute inset-0 bg-primary/80" />
+        {/* <div className="absolute inset-0 bg-primary/80" /> */}
 
         {/* Image */}
         <motion.div

@@ -1,4 +1,4 @@
-import bgImg from "@/assets/images/bg-img.png";
+import phone from "@/assets/images/Phone.png";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
@@ -7,6 +7,8 @@ import useHandleAction from "@/hooks/useHandleAction";
 
 const PageBannerWithImg = ({ block, loading }) => {
   const handleAction = useHandleAction();
+
+  console.log("block", block);
 
   if (loading) return <PageBannerWithImgSkeleton />;
 
@@ -28,8 +30,8 @@ const PageBannerWithImg = ({ block, loading }) => {
 
   return (
     <section
-      className="bg-center bg-cover bg-primary w-full h-screen md:h-[80vh] content-center pt-24 pb-16 md:mb-24"
-      style={{ backgroundImage: `url(${block.bg_image_url || bgImg})` }}
+      className="bg-center bg-cover bg-primary w-full h-screen md:h-[500px] content-center pt-24 pb-16 md:mb-10"
+      style={{ backgroundImage: `url(${block.bg_image_url})` }}
     >
       <motion.div
         variants={containerVariant}
@@ -39,19 +41,19 @@ const PageBannerWithImg = ({ block, loading }) => {
         className="container w-full h-full flex flex-col justify-center md:flex-row items-center gap-10"
       >
         {/* 🔥 Phone / Image */}
-        <motion.div
+        {/* <motion.div
           variants={phoneVariant}
           className="w-full md:w-1/2 h-62.5 md:h-full"
-        >
-          <motion.img
-            loading="lazy"
-            src={block.image_url}
-            alt=""
-            className="w-[90%] sm:w-[60%] md:w-full h-full object-contain mx-auto md:translate-y-[35%] drop-shadow-xl"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.3 }}
-          />
-        </motion.div>
+        > */}
+        <motion.img
+          loading="lazy"
+          src={block.image_url}
+          // src={phone}
+          alt=""
+          className="w-[90%] sm:w-[60%] md:w-1/2 h-[200px] md:h-[400px] object-contain mx-auto md:translate-y-[15%] drop-shadow-xl"
+          transition={{ duration: 0.3 }}
+        />
+        {/* </motion.div> */}
 
         {/* 🔥 Text Content */}
         <motion.div
@@ -60,14 +62,14 @@ const PageBannerWithImg = ({ block, loading }) => {
         >
           <motion.h1
             variants={fadeUp}
-            className="text-3xl lg:text-4xl font-medium text-white"
+            className="text-3xl lg:text-3xl font-medium text-white"
           >
             {block.title}
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="text-white/70 text-sm leading-relaxed"
+            className="text-white/70 text-xs leading-relaxed"
           >
             {block.description}
           </motion.p>
@@ -82,7 +84,7 @@ const PageBannerWithImg = ({ block, loading }) => {
                   })
                 }
                 variant="secondary"
-                className="mt-6 group"
+                className="mt-4 group"
               >
                 {block?.other_data?.btn_1_text}
                 <HiArrowNarrowLeft className="ltr:rotate-180 group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all duration-300" />
