@@ -7,17 +7,19 @@ const PreviousWorkCard = ({ item }) => {
   return (
     <div
       onClick={() => navigate(`/${lang}/previous-work/${item.slug}`)}
-      className="bg-cover bg-center bg-no-repeat rounded-lg w-full h-90 relative overflow-hidden cursor-pointer"
-      style={{
-        background: `url(${item.image_url})`,
-      }}
+      className="relative rounded-lg w-full h-90 overflow-hidden cursor-pointer"
     >
+      {item.image_url && (
+        <img
+          src={item.image_url}
+          alt={item.name}
+          className="w-full h-full object-cover"
+        />
+      )}
       <div className="absolute inset-0 bg-linear-to-b from-transparent to-primary/95" />
-
-      <div className="relative z-10 p-4 h-full flex flex-col items-start justify-end gap-2">
+      <div className="absolute z-10 p-4 bottom-0">
         <h1 className="text-2xl text-white capitalize">{item.name}</h1>
-
-        <p className="text-xs text-white max-w-2xl">{item.description}</p>
+        <p className="text-xs text-white line-clamp-3 mt-3">{item.description}</p>
       </div>
     </div>
   );

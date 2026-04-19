@@ -71,7 +71,7 @@ const WhoWeAre = ({ block, loading }) => {
           {/* media */}
           {hasMedia && (
             <motion.div
-              className="col-span-1 lg:col-span-2 h-full overflow-hidden rounded-2xl shadow"
+              className="col-span-1 lg:col-span-2 h-full min-h-75 overflow-hidden rounded-2xl shadow"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
