@@ -34,42 +34,67 @@ const Footer = () => {
   const portfolios = footerResponse?.portfolios ?? [];
   const pages = footerResponse?.pages ?? [];
 
+  const formatLink = (type, value) => {
+    if (!value) return null;
+
+    if (value.startsWith("http")) return value;
+
+    switch (type) {
+      case "whatsapp":
+        return `https://wa.me/${value.replace(/\s/g, "")}`;
+      case "telegram":
+        return `https://t.me/${value}`;
+      case "tiktok":
+        return `https://www.tiktok.com/@${value}`;
+      case "instagram":
+        return `https://instagram.com/${value}`;
+      case "twitter":
+        return `https://x.com/${value}`;
+      default:
+        return value;
+    }
+  };
+
   const socialLinks = [
     {
       name: "Facebook",
       icon: <FaFacebookF />,
-      url: footerData?.footer_facebook,
+      url: formatLink("facebook", footerData?.footer_facebook),
     },
     {
       name: "LinkedIn",
       icon: <FaLinkedinIn />,
-      url: footerData?.footer_linkedin,
+      url: formatLink("linkedin", footerData?.footer_linkedin),
     },
-    { name: "Twitter", icon: <FaXTwitter />, url: footerData?.footer_x },
+    {
+      name: "Twitter",
+      icon: <FaXTwitter />,
+      url: formatLink("twitter", footerData?.footer_x),
+    },
     {
       name: "Youtube",
       icon: <FaYoutube />,
-      url: footerData?.footer_youtube,
+      url: formatLink("youtube", footerData?.footer_youtube),
     },
     {
       name: "Instagram",
       icon: <RiInstagramFill />,
-      url: footerData?.footer_instagram,
+      url: formatLink("instagram", footerData?.footer_instagram),
     },
     {
       name: "Tiktok",
       icon: <FaTiktok />,
-      url: footerData?.footer_tiktok,
+      url: formatLink("tiktok", footerData?.footer_tiktok),
     },
     {
       name: "Telegram",
       icon: <FaTelegramPlane />,
-      url: footerData?.footer_telegram,
+      url: formatLink("telegram", footerData?.footer_telegram),
     },
     {
       name: "Whatsapp",
       icon: <IoLogoWhatsapp />,
-      url: footerData?.footer_whatsapp,
+      url: formatLink("whatsapp", footerData?.footer_whatsapp),
     },
   ];
 
@@ -107,7 +132,7 @@ const Footer = () => {
 
           <div className="flex items-center justify-center flex-wrap gap-6 border-t pt-4 w-full">
             {socialLinks
-              .filter((link) => link.url)
+              .filter((link) => !!link.url)
               .map((link) => (
                 <a
                   key={link.name}
