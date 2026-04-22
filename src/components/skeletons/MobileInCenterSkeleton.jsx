@@ -6,7 +6,7 @@ const MobileInCenterSkeleton = () => {
   const rightItems = list.filter((_, i) => i % 2 === 1);
 
   return (
-    <section className="sectionPadding relative overflow-hidden" dir="rtl">
+    <section className="sectionPadding relative" dir="rtl">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[70%] h-[80%] bg-secondary/20 rounded-full blur-[120px]" />
 

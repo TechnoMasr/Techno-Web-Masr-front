@@ -14,6 +14,8 @@ const ServicesSection = ({ block, loading }) => {
 
   if (loading || isLoading) return <ServicesSectionSkeleton />;
 
+  if (!block?.block_items?.length) return null;
+
   const services =
     block?.block_items?.length > 0 ? block.block_items : servicesData || [];
 

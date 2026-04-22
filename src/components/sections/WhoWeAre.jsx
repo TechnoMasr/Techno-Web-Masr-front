@@ -35,7 +35,7 @@ const WhoWeAre = ({ block, loading }) => {
   };
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 w-[40%] aspect-square bg-secondary/30 rounded-full blur-[100px]" />
 
       <div className="container sectionPadding relative">

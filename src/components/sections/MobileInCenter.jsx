@@ -61,7 +61,7 @@ const MobileInCenter = ({ block, loading }) => {
   };
 
   return (
-    <section className="sectionPadding relative overflow-hidden" dir="rtl">
+    <section className="sectionPadding relative" dir="rtl">
       {/* 🔥 Background Glow */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -172,7 +172,7 @@ const MobileInCenter = ({ block, loading }) => {
         {/* 🔥 Mobile Layout */}
         <div className="flex flex-col items-center gap-4 md:hidden">
           {/* Phone */}
-          <motion.img
+          {/* <motion.img
             variants={phoneVariant}
             initial="hidden"
             whileInView="show"
@@ -181,7 +181,7 @@ const MobileInCenter = ({ block, loading }) => {
             src={block?.image_url}
             alt="phone mockup"
             className="w-50 object-contain drop-shadow-2xl"
-          />
+          /> */}
 
           {/* Items */}
           <motion.ul
