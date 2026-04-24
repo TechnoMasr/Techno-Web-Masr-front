@@ -79,6 +79,7 @@ const ImageLightbox = ({ images, currentIndex, onClose }) => {
                 <div className="swiper-zoom-container w-full flex items-center justify-center">
                   <img
                     src={img}
+                    loading="lazy"
                     alt={`slide-${i}`}
                     className="w-full h-[80vh] object-contain rounded-xl my-auto"
                   />

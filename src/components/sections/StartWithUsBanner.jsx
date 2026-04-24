@@ -47,17 +47,19 @@ const StartWithUsBanner = ({ block }) => {
         {/* <div className="absolute inset-0 bg-primary/80" /> */}
 
         {/* Image */}
-        <motion.div
-          variants={imageVariant}
-          className="w-full md:w-1/2 h-50 md:h-75 relative z-10"
-        >
-          <img
-            loading="lazy"
-            src={pcImg}
-            alt=""
-            className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
-          />
-        </motion.div>
+        {block.image_url && (
+          <motion.div
+            variants={imageVariant}
+            className="w-full md:w-1/2 h-50 md:h-75 relative z-10"
+          >
+            <img
+              loading="lazy"
+              src={block.image_url}
+              alt=""
+              className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
+            />
+          </motion.div>
+        )}
 
         {/* Text + Buttons */}
         <motion.div

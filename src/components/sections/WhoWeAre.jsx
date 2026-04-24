@@ -85,6 +85,7 @@ const WhoWeAre = ({ block, loading }) => {
                 block?.image_url && (
                   <img
                     src={block.image_url}
+                    loading="lazy"
                     alt=""
                     className="w-full h-full object-cover"
                   />
@@ -223,6 +224,7 @@ const YoutubeBlock = ({ url, image }) => {
     >
       <img
         src={thumbnail}
+        loading="lazy"
         alt="youtube thumbnail"
         className="w-full h-full object-cover"
       />

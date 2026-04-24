@@ -116,14 +116,16 @@ const Footer = () => {
         flex flex-col md:flex-row justify-evenly gap-8"
       >
         <div className="flex flex-col items-center text-center md:items-start md:text-start gap-6 md:max-w-96">
-          <div className="w-32 overflow-hidden">
-            <img
-              loading="lazy"
-              src={footerData?.footer_logo || logo}
-              alt={"logo"}
-              className="w-full h-full object-contain"
-            />
-          </div>
+          {footerData?.footer_logo && (
+            <div className="w-32 overflow-hidden">
+              <img
+                loading="lazy"
+                src={footerData?.footer_logo}
+                alt={"logo"}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          )}
 
           <p className="text-">
             {footerData?.footer_description_ar ??

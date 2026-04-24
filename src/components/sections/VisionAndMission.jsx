@@ -31,12 +31,14 @@ const VisionAndMission = ({ block, loading }) => {
             viewport={{ once: true }}
             variants={fadeUp}
           >
-            <img
-              loading="lazy"
-              src={item.image_url}
-              alt=""
-              className="w-8 h-8 group-hover:invert group-hover:brightness-10 duration-300 object-contain"
-            />
+            {item.image_url && (
+              <img
+                loading="lazy"
+                src={item.image_url}
+                alt=""
+                className="w-8 h-8 group-hover:invert group-hover:brightness-10 duration-300 object-contain"
+              />
+            )}
             <h3 className="text-lg font-semibold">{item.title}</h3>
             <p className="text-xs font-medium">{item.description}</p>
           </motion.li>

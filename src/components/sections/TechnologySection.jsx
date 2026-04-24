@@ -45,14 +45,16 @@ const TechnologySection = ({ block }) => {
               flex flex-col items-center text-center gap-2 p-4"
               variants={fadeUp}
             >
-              <div className="h-20 aspect-video overflow-hidden mb-2">
-                <img
-                  loading="lazy"
-                  src={item.image_url}
-                  alt="partner"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              {item.image_url && (
+                <div className="h-20 aspect-video overflow-hidden mb-2">
+                  <img
+                    loading="lazy"
+                    src={item.image_url}
+                    alt="partner"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              )}
 
               <h3 className="font-semibold text-primary">{item.title}</h3>
             </motion.li>

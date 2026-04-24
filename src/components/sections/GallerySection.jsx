@@ -38,22 +38,23 @@ const GallerySection = ({ block, loading }) => {
     <section className="container sectionPadding">
       <div className="space-y-4 lg:space-y-6">
         {/* الصورة الكبيرة - index 0 */}
-        <motion.div
-          variants={mainImageVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="w-full h-75 md:h-95 rounded-2xl overflow-hidden cursor-pointer"
-          onClick={() => openLightbox(0)}
-        >
-          <motion.img
-            loading="lazy"
-            src={bigImage}
-            alt="gallery"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-          />
-        </motion.div>
-
+        {bigImage && (
+          <motion.div
+            variants={mainImageVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="w-full h-75 md:h-95 rounded-2xl overflow-hidden cursor-pointer"
+            onClick={() => openLightbox(0)}
+          >
+            <motion.img
+              loading="lazy"
+              src={bigImage}
+              alt="gallery"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            />
+          </motion.div>
+        )}
         {/* الصور الصغيرة - index 1, 2, 3... */}
         <motion.div
           variants={containerVariants}
@@ -69,12 +70,14 @@ const GallerySection = ({ block, loading }) => {
               className="aspect-4/3 rounded-xl overflow-hidden cursor-pointer"
               onClick={() => openLightbox(index + 1)} // +1 عشان الكبيرة في index 0
             >
-              <motion.img
-                loading="lazy"
-                src={img}
-                alt="thumb"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
+              {img && (
+                <motion.img
+                  loading="lazy"
+                  src={img}
+                  alt="thumb"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              )}
             </motion.div>
           ))}
         </motion.div>

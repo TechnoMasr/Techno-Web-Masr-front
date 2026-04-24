@@ -37,7 +37,12 @@ const FixedSection = () => {
               target="_blank"
               className="transition-transform duration-200 hover:scale-110"
             >
-              <img src={item.icon} alt={item.title} className="w-10 h-10" />
+              <img
+                src={item.icon}
+                alt={item.title}
+                loading="lazy"
+                className="w-10 h-10"
+              />
             </a>
           ))}
       </div>

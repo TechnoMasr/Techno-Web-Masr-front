@@ -64,12 +64,14 @@ const WhyChooseUs = ({ block, loading }) => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <img
-                    loading="lazy"
-                    src={item.image_url}
-                    alt={item.title}
-                    className="w-8 h-8"
-                  />
+                  {item.image_url && (
+                    <img
+                      loading="lazy"
+                      src={item.image_url}
+                      alt={item.title}
+                      className="w-8 h-8"
+                    />
+                  )}
                   <h2 className="font-semibold">{item.title}</h2>
                   <p className="text-xs">{item.description}</p>
                 </motion.li>
@@ -77,20 +79,22 @@ const WhyChooseUs = ({ block, loading }) => {
             </motion.ul>
           </motion.div>
 
-          <motion.div
-            className="h-full overflow-hidden hidden md:block"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={fadeUp}
-          >
-            <img
-              loading="lazy"
-              src={block?.image_url}
-              alt={block.title || "Why choose us image"}
-              className="w-full h-full object-cover drop-shadow-xl rounded-3xl"
-            />
-          </motion.div>
+          {block?.image_url && (
+            <motion.div
+              className="h-full overflow-hidden hidden md:block"
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <img
+                loading="lazy"
+                src={block?.image_url}
+                alt={block.title || "Why choose us image"}
+                className="w-full h-full object-cover drop-shadow-xl rounded-3xl"
+              />
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

@@ -45,14 +45,16 @@ const PageBannerWithImg = ({ block, loading }) => {
           variants={phoneVariant}
           className="w-full md:w-1/2 h-62.5 md:h-full"
         > */}
-        <motion.img
-          loading="lazy"
-          src={block.image_url}
-          // src={phone}
-          alt=""
-          className="w-[90%] sm:w-[60%] md:w-1/2 h-[200px] md:h-[400px] object-contain mx-auto md:translate-y-[15%] drop-shadow-xl"
-          transition={{ duration: 0.3 }}
-        />
+        {block.image_url && (
+          <motion.img
+            loading="lazy"
+            src={block.image_url}
+            // src={phone}
+            alt=""
+            className="w-[90%] sm:w-[60%] md:w-1/2 h-50 md:h-100 object-contain mx-auto md:translate-y-[15%] drop-shadow-xl"
+            transition={{ duration: 0.3 }}
+          />
+        )}
         {/* </motion.div> */}
 
         {/* 🔥 Text Content */}

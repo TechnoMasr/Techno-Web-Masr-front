@@ -47,12 +47,14 @@ const PartnersSection = ({ block, loading }) => {
               variants={item}
               className="bg-white shadow rounded-2xl border w-full h-32 overflow-hidden p-2 border-transparent hover:border-primary duration-200"
             >
-              <img
-                loading="lazy"
-                src={itemData.image_url}
-                alt="partner"
-                className="w-full h-full object-contain"
-              />
+              {itemData.image_url && (
+                <img
+                  loading="lazy"
+                  src={itemData.image_url}
+                  alt="partner"
+                  className="w-full h-full object-contain"
+                />
+              )}
             </motion.li>
           ))}
         </motion.ul>
