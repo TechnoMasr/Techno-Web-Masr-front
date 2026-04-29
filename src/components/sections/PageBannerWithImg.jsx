@@ -4,9 +4,16 @@ import { Button } from "../ui/button";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import PageBannerWithImgSkeleton from "../skeletons/PageBannerWithImgSkeleton";
 import useHandleAction from "@/hooks/useHandleAction";
+import { useEffect, useState } from "react";
 
 const PageBannerWithImg = ({ block, loading }) => {
   const handleAction = useHandleAction();
+
+  const [title, setTitle] = useState([]);
+
+  useEffect(() => {
+    setTitle(block.title.split("#"));
+  }, [block]);
 
   console.log("block", block);
 
@@ -62,17 +69,24 @@ const PageBannerWithImg = ({ block, loading }) => {
         >
           <motion.h1
             variants={fadeUp}
-            className="text-3xl lg:text-3xl font-medium text-white"
+            className="text-2xl lg:text-3xl font-medium text-white"
           >
-            {block.title}
+            {title[0]}
           </motion.h1>
 
-          <motion.p
+          {/* Title line 2 */}
+          <motion.h2
             variants={fadeUp}
-            className="text-white/70 text-xs leading-relaxed"
+            className="text-xl lg:text-2xl font-medium text-secondary -mt-2"
           >
-            {block.description}
-          </motion.p>
+            {title[1]}
+          </motion.h2>
+
+          <motion.div
+            variants={fadeUp}
+            dangerouslySetInnerHTML={{ __html: block.description }}
+            className="text-white/70 text-xs leading-relaxed rich_content"
+          />
 
           {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
             <motion.div variants={fadeUp}>
