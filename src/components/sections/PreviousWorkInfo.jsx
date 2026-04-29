@@ -62,7 +62,7 @@ const PreviousWorkInfo = ({ data, loading }) => {
 
       <motion.div
         variants={cardVariant}
-        className="w-full max-w-sm mx-auto lg:max-w-xs bg-white rounded-md shadow border p-4 flex flex-col text-center gap-2"
+        className="w-full h-fit max-w-sm mx-auto lg:max-w-xs bg-white rounded-md shadow border p-4 flex flex-col text-center gap-2"
       >
         {data?.logo && (
           <div className="h-28 w-full overflow-hidden mb-2 border border-transparent rounded-2xl hover:border-primary duration-300 py-2">

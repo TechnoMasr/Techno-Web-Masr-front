@@ -70,7 +70,7 @@ const TextAndImage = ({
 
           <div
             dangerouslySetInnerHTML={{ __html: block.description }}
-            className={`mt-3 leading-relaxed text-lg  ${backgroundImage ? "text-white" : ""}`}
+            className={`mt-3 leading-relaxed text-lg rich_content ${backgroundImage ? "text-white" : ""}`}
           />
 
           {block?.other_data?.btn_1_enabled && block?.other_data?.btn_1_url && (
