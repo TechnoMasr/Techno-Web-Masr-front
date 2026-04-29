@@ -73,12 +73,14 @@ const Partners = () => {
                     className="h-24 w-full overflow-hidden mb-2 border border-transparent rounded-2xl hover:border-primary duration-300"
                     variants={contentVariants}
                   >
-                    <img
-                      loading="lazy"
-                      src={item.image_url}
-                      alt={item.title}
-                      className="w-full h-full object-contain"
-                    />
+                    {item.image_url && (
+                      <img
+                        loading="lazy"
+                        src={item.image_url}
+                        alt={item.title}
+                        className="w-full h-full object-contain"
+                      />
+                    )}
                   </motion.div>
 
                   <motion.h3

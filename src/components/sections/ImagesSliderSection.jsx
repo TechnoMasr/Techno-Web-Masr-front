@@ -114,17 +114,19 @@ const ImagesSliderSection = ({ block, loading }) => {
           {images?.map((img, index) => (
             <SwiperSlide key={index}>
               <AnimatePresence mode="wait">
-                <motion.img
-                  key={img}
-                  loading="lazy"
-                  src={img}
-                  alt="product"
-                  className="w-full aspect-4/3 object-cover rounded-xl"
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                />
+                {img && (
+                  <motion.img
+                    key={img}
+                    loading="lazy"
+                    src={img}
+                    alt="product"
+                    className="w-full aspect-4/3 object-cover rounded-xl"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                )}
               </AnimatePresence>
             </SwiperSlide>
           ))}
@@ -146,17 +148,19 @@ const ImagesSliderSection = ({ block, loading }) => {
           >
             {images?.map((img, index) => (
               <SwiperSlide key={index}>
-                <motion.img
-                  variants={thumbItem}
-                  loading="lazy"
-                  src={img}
-                  alt="thumb"
-                  className={`w-full aspect-4/3 object-cover rounded-lg cursor-pointer border transition-all ${
-                    index === activeIndex
-                      ? "border-2 border-primary"
-                      : "border-gray-200 opacity-70"
-                  }`}
-                />
+                {img && (
+                  <motion.img
+                    variants={thumbItem}
+                    loading="lazy"
+                    src={img}
+                    alt="thumb"
+                    className={`w-full aspect-4/3 object-cover rounded-lg cursor-pointer border transition-all ${
+                      index === activeIndex
+                        ? "border-2 border-primary"
+                        : "border-gray-200 opacity-70"
+                    }`}
+                  />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>

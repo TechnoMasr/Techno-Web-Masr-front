@@ -55,21 +55,23 @@ const Hero = ({ block, loading }) => {
     >
       <div className="container w-full h-full flex flex-col md:flex-row items-center gap-4 md:gap-10">
         {/* 🔥 Image */}
-        <motion.div
-          variants={imageVariant}
-          initial="hidden"
-          animate="show"
-          className="w-full md:w-1/2 h-62.5 md:h-100"
-        >
-          <motion.img
-            loading="lazy"
-            src={block.image_url}
-            alt=""
-            className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-          />
-        </motion.div>
+        {block.image_url && (
+          <motion.div
+            variants={imageVariant}
+            initial="hidden"
+            animate="show"
+            className="w-full md:w-1/2 h-62.5 md:h-100"
+          >
+            <motion.img
+              loading="lazy"
+              src={block.image_url}
+              alt=""
+              className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.4 }}
+            />
+          </motion.div>
+        )}
 
         {/* 🔥 Content */}
         <motion.div

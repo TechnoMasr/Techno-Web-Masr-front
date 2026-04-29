@@ -64,14 +64,16 @@ const PreviousWorkInfo = ({ data, loading }) => {
         variants={cardVariant}
         className="w-full max-w-sm mx-auto lg:max-w-xs bg-white rounded-md shadow border p-4 flex flex-col text-center gap-2"
       >
-        <div className="h-28 w-full overflow-hidden mb-2 border border-transparent rounded-2xl hover:border-primary duration-300 py-2">
-          <img
-            loading="lazy"
-            src={data?.logo}
-            alt="project"
-            className="w-full h-full object-contain"
-          />
-        </div>
+        {data?.logo && (
+          <div className="h-28 w-full overflow-hidden mb-2 border border-transparent rounded-2xl hover:border-primary duration-300 py-2">
+            <img
+              loading="lazy"
+              src={data?.logo}
+              alt="project"
+              className="w-full h-full object-contain"
+            />
+          </div>
+        )}
 
         <motion.h3
           variants={fadeUp}
@@ -115,12 +117,14 @@ const PreviousWorkInfo = ({ data, loading }) => {
                   rel="noopener noreferrer"
                   className="w-10 aspect-square inline-block p-2 rounded-lg border hover:scale-105 transition-all duration-300"
                 >
-                  <img
-                    loading="lazy"
-                    src={item.icon}
-                    alt="icon"
-                    className="w-full h-full object-contain"
-                  />
+                  {item.icon && (
+                    <img
+                      loading="lazy"
+                      src={item.icon}
+                      alt="icon"
+                      className="w-full h-full object-contain"
+                    />
+                  )}
                 </a>
               </motion.li>
             ))}

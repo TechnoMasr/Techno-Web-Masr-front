@@ -27,7 +27,7 @@ const HeaderActions = () => {
       </Button>
 
       <HiMenuAlt3
-        className="text-white lg:hidden text-3xl!"
+        className="text-white lg:hidden text-3xl! cursor-pointer"
         onClick={() => dispatch(openModal({ modalName: "mobileNav" }))}
       />
     </div>

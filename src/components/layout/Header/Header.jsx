@@ -35,13 +35,15 @@ const Header = () => {
       `}
       >
         <div className="container mx-auto flex justify-between items-center">
-          <Link to={`/${lang}`} className="w-24">
-            <img
-              loading="lazy"
-              src={settings?.site_logo || logo}
-              alt="Logo"
-              className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-            />
+          <Link to={`/${lang}`} className="w-24 h-13">
+            {settings?.site_logo && (
+              <img
+                loading="lazy"
+                src={settings?.site_logo}
+                alt="Logo"
+                className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+              />
+            )}
           </Link>
 
           <NavBar />

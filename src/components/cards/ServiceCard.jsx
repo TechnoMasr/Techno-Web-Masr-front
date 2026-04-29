@@ -11,12 +11,14 @@ const ServiceCard = ({ service, type = "service" }) => {
   return (
     <div className="flex flex-col h-full gap-3 border p-2 rounded-lg bg-white hover:shadow-lg transition-shadow duration-300 shadow-black/30">
       <div className="w-full aspect-5/3 overflow-hidden rounded-md">
-        <img
-          loading="lazy"
-          src={service.image_url}
-          alt={isService ? service.title : service.name}
-          className="w-full h-full object-cover"
-        />
+        {service.image_url && (
+          <img
+            loading="lazy"
+            src={service.image_url}
+            alt={isService ? service.title : service.name}
+            className="w-full h-full object-cover"
+          />
+        )}
       </div>
 
       <h3 className="font-semibold text-lg text-primary">
