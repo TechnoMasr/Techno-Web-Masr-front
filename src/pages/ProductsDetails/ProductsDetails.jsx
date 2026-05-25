@@ -1,10 +1,10 @@
 import { getProductDetails } from "@/api/pagesServices";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
 import BlocksRender from "@/components/sections/BlocksRender";
 import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
+import NotFound from "../NotFound/NotFound";
 
 const ProductsDetails = () => {
   const { slug } = useParams();
@@ -14,17 +14,13 @@ const ProductsDetails = () => {
     queryFn: () => getProductDetails(slug),
   });
 
-  const [blocks, setBlocks] = useState([]);
-
-  useEffect(() => {
-    if (productDetailsData?.product?.blocks) {
-      setBlocks(productDetailsData?.product?.blocks);
-    }
-  }, [productDetailsData]);
-
   if (isLoading) return <BlocksRenderSkeleton />;
 
+  const product = productDetailsData?.product;
+  const blocks = product?.blocks ?? [];
   const seo = productDetailsData?.seo;
+
+  const hasNoBlocks = !blocks.length;
 
   return (
     <>
@@ -37,11 +33,13 @@ const ProductsDetails = () => {
       />
 
       <main>
-        {blocks.length > 0 && (
+        {hasNoBlocks ? (
+          <NotFound />
+        ) : (
           <BlocksRender
             blocks={blocks}
-            serviceId={productDetailsData?.product?.id}
-            serviceTitle={productDetailsData?.product?.name}
+            serviceId={product?.id}
+            serviceTitle={product?.name}
           />
         )}
       </main>

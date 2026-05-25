@@ -5,10 +5,12 @@ import NavBar from "./NavBar";
 import HeaderActions from "./HeaderActions/HeaderActions";
 import { useSelector } from "react-redux";
 
-const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
+const Header = ({ alwaysScrolled = false }) => {
+  const [scrolled, setScrolled] = useState(alwaysScrolled);
 
   useEffect(() => {
+    if (alwaysScrolled) return;
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -18,7 +20,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [alwaysScrolled]);
 
   const { lang } = useParams();
   const { settings } = useSelector((state) => state.settings);
