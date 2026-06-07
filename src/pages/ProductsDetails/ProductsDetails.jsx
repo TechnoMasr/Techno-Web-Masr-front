@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import BlocksRender from "@/components/sections/BlocksRender";
 import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
-import NotFound from "../NotFound/NotFound";
+import Header from "@/components/layout/Header/Header";
 
 const ProductsDetails = () => {
   const { slug } = useParams();
@@ -34,7 +34,7 @@ const ProductsDetails = () => {
 
       <main>
         {hasNoBlocks ? (
-          <NotFound />
+          <Header alwaysScrolled />
         ) : (
           <BlocksRender
             blocks={blocks}

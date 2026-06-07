@@ -5,7 +5,7 @@ import BlocksRender from "@/components/sections/BlocksRender";
 import { useState, useEffect } from "react";
 import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
-import NotFound from "../NotFound/NotFound";
+import Header from "@/components/layout/Header/Header";
 
 const ServicesDetails = () => {
   const { slug } = useParams();
@@ -43,7 +43,7 @@ const ServicesDetails = () => {
 
       <main>
         {hasNoBlocks ? (
-          <NotFound />
+          <Header alwaysScrolled />
         ) : (
           <BlocksRender
             blocks={blocks}
