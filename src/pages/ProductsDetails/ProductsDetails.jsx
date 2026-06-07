@@ -5,6 +5,7 @@ import BlocksRender from "@/components/sections/BlocksRender";
 import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
 import Header from "@/components/layout/Header/Header";
+import NotFound from "../NotFound/NotFound";
 
 const ProductsDetails = () => {
   const { slug } = useParams();
@@ -16,11 +17,19 @@ const ProductsDetails = () => {
 
   if (isLoading) return <BlocksRenderSkeleton />;
 
+  // لو المنتج غير موجود
+  if (
+    !productDetailsData ||
+    productDetailsData?.length === 0 ||
+    !productDetailsData?.product
+  ) {
+    return <NotFound />;
+  }
+
   const product = productDetailsData?.product;
   const blocks = product?.blocks ?? [];
   const seo = productDetailsData?.seo;
 
-  const hasNoBlocks = !blocks.length;
 
   return (
     <>
@@ -33,15 +42,12 @@ const ProductsDetails = () => {
       />
 
       <main>
-        {hasNoBlocks ? (
-          <Header alwaysScrolled />
-        ) : (
-          <BlocksRender
-            blocks={blocks}
-            serviceId={product?.id}
-            serviceTitle={product?.name}
-          />
-        )}
+        <Header alwaysScrolled />
+        <BlocksRender
+          blocks={blocks}
+          serviceId={product?.id}
+          serviceTitle={product?.name}
+        />
       </main>
     </>
   );

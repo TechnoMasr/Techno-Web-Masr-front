@@ -10,6 +10,7 @@ import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
 import PreviousWorkInfo from "@/components/sections/PreviousWorkInfo";
 import PageBanner from "@/components/sections/PageBanner";
+import NotFound from "../NotFound/NotFound";
 
 const PreviousWorkDetails = () => {
   const { slug } = useParams();
@@ -28,6 +29,15 @@ const PreviousWorkDetails = () => {
   }, [portfolioDetailsData]);
 
   if (isLoading) return <BlocksRenderSkeleton />;
+
+  // لو الاعمال غير موجوده
+  if (
+    !portfolioDetailsData ||
+    portfolioDetailsData?.length === 0 ||
+    !portfolioDetailsData?.portfolio
+  ) {
+    return <NotFound />;
+  }
 
   const seo = portfolioDetailsData?.seo;
 

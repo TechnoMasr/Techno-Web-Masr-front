@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
 import Header from "@/components/layout/Header/Header";
+import NotFound from "../NotFound/NotFound";
 
 const ServicesDetails = () => {
   const { slug } = useParams();
@@ -27,9 +28,16 @@ const ServicesDetails = () => {
 
   if (isLoading) return <BlocksRenderSkeleton />;
 
-  const seo = serviceDetailsData?.seo;
+  // لو الخدمة غير موجودة
+  if (
+    !serviceDetailsData ||
+    serviceDetailsData?.length === 0 ||
+    !serviceDetailsData?.service
+  ) {
+    return <NotFound />;
+  }
 
-  const hasNoBlocks = !blocks || blocks.length === 0;
+  const seo = serviceDetailsData?.seo;
 
   return (
     <>
@@ -42,15 +50,13 @@ const ServicesDetails = () => {
       />
 
       <main>
-        {hasNoBlocks ? (
-          <Header alwaysScrolled />
-        ) : (
-          <BlocksRender
-            blocks={blocks}
-            serviceId={serviceDetailsData?.service?.id}
-            serviceTitle={serviceDetailsData?.service?.title}
-          />
-        )}
+        <Header alwaysScrolled />
+
+        <BlocksRender
+          blocks={blocks}
+          serviceId={serviceDetailsData?.service?.id}
+          serviceTitle={serviceDetailsData?.service?.title}
+        />
       </main>
     </>
   );
