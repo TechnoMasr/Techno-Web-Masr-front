@@ -73,7 +73,7 @@ const MobileInCenter = ({ block, loading }) => {
 
       <div className="container">
         {/* 🔥 Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] gap-8 items-center">
+        <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center">
           {/* Left */}
           <motion.ul
             variants={leftContainer}
@@ -95,18 +95,18 @@ const MobileInCenter = ({ block, loading }) => {
                     whileInView={{ scale: 1 }}
                     transition={{ type: "spring" }}
                     viewport={{ once: true }}
-                    className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center"
+                    className="text-lg font-bold bg-secondary/30 rounded-full w-22 h-22 flex items-center justify-center"
                   >
                     <img
                       loading="lazy"
                       src={item.image_url}
                       alt="icon"
-                      className="w-5 h-5"
+                      className="w-12 h-12"
                     />
                   </motion.span>
                 )}
 
-                <h3 className="font-semibold text-xl">{item.title}</h3>
+                <h3 className="font-semibold lg:text-xl">{item.title}</h3>
                 <p className="text-foreground font-medium text-sm max-w-70 leading-tight">
                   {item.description}
                 </p>
@@ -127,7 +127,7 @@ const MobileInCenter = ({ block, loading }) => {
                 loading="lazy"
                 src={block?.image_url}
                 alt="phone mockup"
-                className="w-full h-full object-contain drop-shadow-2xl"
+                className="w-full h-full max-w-[400px] object-contain drop-shadow-2xl"
                 whileHover={{ scale: 1.05, rotate: 1 }}
                 transition={{ duration: 0.4 }}
               />
@@ -155,18 +155,18 @@ const MobileInCenter = ({ block, loading }) => {
                     whileInView={{ scale: 1 }}
                     transition={{ type: "spring" }}
                     viewport={{ once: true }}
-                    className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center"
+                    className="text-lg font-bold bg-secondary/30 rounded-full w-22 h-22 flex items-center justify-center"
                   >
                     <img
                       loading="lazy"
                       src={item.image_url}
                       alt="icon"
-                      className="w-5 h-5"
+                      className="w-12 h-12"
                     />
                   </motion.span>
                 )}
 
-                <h3 className="font-semibold text-xl">{item.title}</h3>
+                <h3 className="font-semibold lg:text-xl">{item.title}</h3>
                 <p className="text-foreground font-medium text-sm max-w-70 leading-tight">
                   {item.description}
                 </p>
@@ -176,7 +176,7 @@ const MobileInCenter = ({ block, loading }) => {
         </div>
 
         {/* 🔥 Mobile Layout */}
-        <div className="flex flex-col items-center gap-4 md:hidden">
+        <div className="flex flex-col items-center gap-4 lg:hidden">
           {/* Phone */}
           {/* <motion.img
             variants={phoneVariant}
@@ -210,18 +210,18 @@ const MobileInCenter = ({ block, loading }) => {
                     whileInView={{ scale: 1 }}
                     transition={{ type: "spring" }}
                     viewport={{ once: true }}
-                    className="text-lg font-bold bg-secondary/30 rounded-full w-14 h-14 flex items-center justify-center"
+                    className="text-lg font-bold bg-secondary/30 rounded-full w-22 h-22 flex items-center justify-center"
                   >
                     <img
                       loading="lazy"
                       src={item.image_url}
                       alt="icon"
-                      className="w-5 h-5"
+                      className="w-12 h-12"
                     />
                   </motion.span>
                 )}
 
-                <h3 className="font-semibold text-xl">{item.title}</h3>
+                <h3 className="font-semibold lg:text-xl">{item.title}</h3>
                 <p className="text-foreground font-medium text-sm max-w-70 leading-tight">
                   {item.description}
                 </p>
