@@ -5,6 +5,40 @@
 /* dark mode */
 @custom-variant dark (&:is(.dark *));
 
+/* @theme {
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
+  --breakpoint-3xl: 1600px;
+} */
+
+/* container */
+/* @utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  width: 100%;
+
+  @media (width >= 576px) {
+    max-width: 540px;
+  }
+  @media (width >= 768px) {
+    max-width: 720px;
+  }
+  @media (width >= 992px) {
+    max-width: 960px;
+  }
+  @media (width >= 1200px) {
+    max-width: 1140px;
+  }
+  @media (width >= 1400px) {
+    max-width: 1320px;
+  }
+} */
+
 /* container */
 @utility container {
   margin-inline: auto;

@@ -57,15 +57,15 @@ const MobileAndSteps = ({ block }) => {
         className="absolute top-1/2 inset-s-0 -translate-y-1/2 -z-10 w-[80%] h-full bg-secondary/20 rounded-full blur-[120px]"
       />
 
-      <div className="container grid grid-cols-1 md:grid-cols-5 gap-16 relative z-10">
+      <div className="container grid grid-cols-1 lg:grid-cols-6 gap-8 relative z-10">
         {/* 🔥 Content */}
         <motion.div
           variants={fadeLeft}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className={`space-y-4 lg:space-y-12 ${
-            block?.image_url ? "md:col-span-3" : "md:col-span-5"
+          className={`space-y-4 lg:space-y-8 ${
+            block?.image_url ? "md:col-span-4" : "md:col-span-6"
           }`}
         >
           <TitleAndDescription
@@ -79,14 +79,14 @@ const MobileAndSteps = ({ block }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-4 lg:w-xl"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
           >
             {block.block_items.map((step, index) => (
               <motion.li
                 key={step.id}
                 variants={stepItem}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="flex flex-col items-center text-center gap-2 border rounded-md text-primary p-4 transition"
+                className="flex flex-col items-center text-center gap-2 border rounded-md text-primary p-3 transition"
               >
                 {/* 🔥 Step Number */}
                 <motion.span
@@ -100,7 +100,7 @@ const MobileAndSteps = ({ block }) => {
                 </motion.span>
 
                 <h3 className="font-semibold text-xl">{step.title}</h3>
-                <p className="text-foreground font-medium max-w-[200px] mx-auto">
+                <p className="text-foreground font-medium">
                   {step.description}
                 </p>
               </motion.li>
@@ -136,14 +136,14 @@ const MobileAndSteps = ({ block }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="w-full h-150 hidden md:block md:col-span-2"
+            className="w-full h-150 hidden lg:block lg:col-span-2"
           >
             <motion.img
               loading="lazy"
               src={block.image_url}
               alt="image"
               className="w-full h-full object-contain"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.4 }}
             />
           </motion.div>
