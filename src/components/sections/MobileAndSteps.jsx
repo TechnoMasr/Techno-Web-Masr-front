@@ -99,8 +99,8 @@ const MobileAndSteps = ({ block }) => {
                   {index + 1}
                 </motion.span>
 
-                <h3 className="font-semibold text-xl">{step.title}</h3>
-                <p className="text-foreground font-medium">
+                <h3 className="font-semibold text-lg">{step.title}</h3>
+                <p className="text-foreground font-medium text-[13px]">
                   {step.description}
                 </p>
               </motion.li>
