@@ -111,7 +111,7 @@ const WhoWeAre = ({ block, loading }) => {
             )}
 
             {block?.description && (
-              <p className="text-foreground font-medium text-sm md:text-base lg:max-w-lg">
+              <p className="text-foreground font-medium text-sm md:text-base">
                 {block.description}
               </p>
             )}
