@@ -2,6 +2,7 @@
   "loading": "جاري التحميل...",
   "back": "رجوع",
   "about_us": "من نحن",
+  "read_more": "قراءة المزيد",
 
   "ServiceCard": {
     "serviceDetails": "تفاصيل الخدمة",
@@ -70,6 +71,7 @@
     "products": "المنتجات",
     "previousWork": "سابقة الأعمال",
     "partners": "عملائنا",
+    "blog": "المدونة",
     "contact": "تواصل معنا",
     "pages": "الصفحات",
     "otherLinks": "روابط اخرى"
@@ -131,6 +133,16 @@
   "Services": {
     "title": "خدماتنا",
     "noServices": "لا يوجد خدمات حاليا"
+  },
+
+  "blog": {
+    "title": "المدونة",
+    "noServices": "لا يوجد مدونات حاليا"
+  },
+
+  "blogDetails": {
+    "shareArticle": "مشاركة المقال",
+    "copied": "تم نسخ الرابط"
   },
 
   "notFound": {

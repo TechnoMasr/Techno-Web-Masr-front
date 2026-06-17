@@ -24,6 +24,10 @@ const Products = React.lazy(() => import("../pages/Products/Products"));
 const ProductsDetails = React.lazy(
   () => import("../pages/ProductsDetails/ProductsDetails"),
 );
+const Blog = React.lazy(() => import("../pages/Blog/Blog"));
+const BlogDetails = React.lazy(
+  () => import("../pages/BlogDetails/BlogDetails"),
+);
 
 const SitePages = React.lazy(() => import("../pages/SitePages/SitePages"));
 
@@ -51,6 +55,8 @@ const router = createBrowserRouter([
       { path: "services/:slug", element: <ServicesDetails /> },
       { path: "products", element: <Products /> },
       { path: "products/:slug", element: <ProductsDetails /> },
+      { path: "blog", element: <Blog /> },
+      { path: "blog/:slug", element: <BlogDetails /> },
 
       { path: "pages/:slug", element: <SitePages /> },
 

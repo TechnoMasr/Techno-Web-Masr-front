@@ -53,6 +53,7 @@ const useNavigationLinks = () => {
       items: [],
     },
     { name: t("Header.partners"), href: `/${locale}/partners`, items: [] },
+    { name: t("Header.blog"), href: `/${locale}/blog`, items: [] },
     { name: t("Header.contact"), href: `/${locale}/contact`, items: [] },
   ];
 

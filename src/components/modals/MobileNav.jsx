@@ -13,7 +13,7 @@ const MobileNav = () => {
   const open = modalName === "mobileNav";
 
   const dispatch = useDispatch();
-  const links = useNavigationLinks();
+  // const links = useNavigationLinks();
 
   const [activeMenu, setActiveMenu] = useState(null);
 
@@ -25,6 +25,10 @@ const MobileNav = () => {
   const { lang } = useParams();
   const locale = lang || "ar";
   const isRTL = locale === "ar";
+
+  const links = useNavigationLinks().filter(
+    (link) => link.href !== `/${locale}/blog`,
+  );
 
   const isExact = (href) => href === `/${locale}`;
 

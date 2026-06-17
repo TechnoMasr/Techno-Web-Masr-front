@@ -2,6 +2,7 @@
   "loading": "Loading...",
   "back": "Back",
   "about_us": "About Us",
+  "read_more": "Read More",
 
   "ServiceCard": {
     "serviceDetails": "Service Details",
@@ -70,6 +71,7 @@
     "products": "Products",
     "previousWork": "Previous Work",
     "partners": "Our Partners",
+    "blog": "Blog",
     "contact": "Contact Us",
     "pages": "Pages",
     "otherLinks": "Other Links"
@@ -131,6 +133,16 @@
   "Services": {
     "title": "Our Services",
     "noServices": "No services available"
+  },
+
+  "blog": {
+    "title": "Blog",
+    "noServices": "No blog available"
+  },
+
+  "blogDetails": {
+    "shareArticle": "Share Article",
+    "copied": "Link copied"
   },
 
   "ErrorPage": {

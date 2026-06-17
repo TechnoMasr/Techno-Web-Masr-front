@@ -10,10 +10,13 @@ import {
 } from "@/components/ui/popover";
 
 const NavBar = () => {
-  const links = useNavigationLinks();
   const { lang } = useParams();
   const location = useLocation();
   const locale = lang || "ar";
+
+  const links = useNavigationLinks().filter(
+    (link) => link.href !== `/${locale}/blog`,
+  );
 
   const [openPopover, setOpenPopover] = useState(null);
 

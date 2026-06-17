@@ -56,3 +56,13 @@ export const pageDetails = async (slug) => {
   const { data } = await api.get(`pages/${slug}`);
   return data?.data || {};
 };
+
+export const getBlogDetails = async (slug) => {
+  const { data } = await api.get(`/blogs/${slug}`);
+  return data?.data || {};
+};
+
+export const getBlogs = async () => {
+  const { data } = await api.get(`/blogs`);
+  return data?.data || [];
+};
