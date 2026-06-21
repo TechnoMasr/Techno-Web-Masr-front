@@ -50,10 +50,10 @@ const BlogDetails = () => {
         <main className="pt-20">
           <section className="container pagePadding space-y-4 lg:space-y-6">
             {/* غلاف المقال */}
-            {blog?.image_url && (
+            {blog?.banner_url && (
               <div className="w-full h-60 md:h-100 lg:h-125 rounded-2xl overflow-hidden">
                 <img
-                  src={blog?.image_url}
+                  src={blog?.banner_url}
                   alt={blog?.title}
                   className="w-full h-full object-cover"
                 />
