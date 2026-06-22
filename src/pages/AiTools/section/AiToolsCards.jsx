@@ -1,7 +1,7 @@
 import image from "@/assets/icons/youtube.svg";
 import { Button } from "@/components/ui/button";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import FiltersSections from "./FiltersSections";
 
 const toolsData = [
@@ -44,11 +44,13 @@ const toolsData = [
 ];
 
 const AiToolsCards = () => {
+  const { lang } = useParams();
+
   return (
     <section className="space-y-6">
       <FiltersSections />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {toolsData.map((tool) => (
           <div
             key={tool.id}
@@ -78,7 +80,7 @@ const AiToolsCards = () => {
               </p>
             </div>
 
-            <Link to={`/ai-tools/${tool.slug}`}>
+            <Link to={`/${lang}/ai-tools/${tool.slug}`}>
               <Button className="w-full">
                 عرض التفاصيل
                 <FaArrowLeftLong className="" />

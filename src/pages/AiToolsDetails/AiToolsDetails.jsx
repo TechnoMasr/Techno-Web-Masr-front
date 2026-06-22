@@ -7,6 +7,7 @@ import FeatureCards from "./section/FeatureCards";
 import ReviewSection from "./section/ReviewSection";
 import SimilarToolsSection from "./section/SimilarToolsSection";
 import SidebarSection from "./section/SidebarSection";
+import CompareSection from "./section/CompareSection";
 
 const AiToolsDetails = () => {
   const { slug } = useParams();
@@ -23,6 +24,7 @@ const AiToolsDetails = () => {
             <FeatureCards />
             <ReviewSection />
             <SimilarToolsSection />
+            <CompareSection />
           </div>
 
           <SidebarSection />

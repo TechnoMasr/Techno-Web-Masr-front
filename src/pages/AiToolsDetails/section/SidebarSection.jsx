@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
+  BookOpenText,
   Calendar,
   DollarSign,
   ExternalLink,
@@ -18,11 +19,14 @@ const SidebarSection = () => {
   };
 
   return (
-    <div className="lg:col-span-1 lg:sticky lg:top-24 flex flex-col gap-4">
+    <div className="lg:col-span-1 lg:sticky lg:top-28 flex flex-col gap-4">
       <div className="bg-white p-4 md:p-6 rounded-2xl border border-slate-100 shadow-sm">
-        <h3 className="text-lg font-bold text-slate-900 mb-6 border-b pb-3">
+        <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2 border-b pb-3">
+          <div className="flex items-center justify-center rounded-full w-8 h-8 bg-secondary/50">
+            <BookOpenText className="w-5 h-5 text-primary" />
+          </div>
           معلومات سريعة
-        </h3>
+        </h2>
 
         <div className="flex flex-col gap-4 mb-6">
           <div className="flex justify-between items-center bg-slate-50/50 p-3 rounded-xl">
@@ -55,8 +59,7 @@ const SidebarSection = () => {
 
           <div className="flex justify-between items-center bg-slate-50/50 p-3 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <MessageSquare className="w-4 h-4" /> عدد
-              المراجعات:
+              <MessageSquare className="w-4 h-4" /> عدد المراجعات:
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
               {tool.reviewsCount} مراجعة
