@@ -2,7 +2,7 @@ import bgImg from "@/assets/images/bg-img.png";
 import { motion } from "framer-motion";
 import PageBannerSkeleton from "../skeletons/PageBannerSkeleton";
 
-const PageBanner = ({ title, block }) => {
+const PageBanner = ({ title, description, block }) => {
   // 🔥 Variants
   const bannerVariant = {
     hidden: { opacity: 0, y: -30 },
@@ -35,6 +35,17 @@ const PageBanner = ({ title, block }) => {
           >
             {title ? title : block?.title || block?.name}
           </motion.h1>
+        )}
+        {(description || block?.description) && (
+          <motion.p
+            variants={bannerVariant}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-white"
+          >
+            {description ? description : block?.description}
+          </motion.p>
         )}
       </div>
     </motion.article>

@@ -5,7 +5,7 @@
 /* dark mode */
 @custom-variant dark (&:is(.dark *));
 
-/* @theme {
+@theme {
   --breakpoint-xs: 480px;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -13,10 +13,10 @@
   --breakpoint-xl: 1200px;
   --breakpoint-2xl: 1400px;
   --breakpoint-3xl: 1600px;
-} */
+}
 
 /* container */
-/* @utility container {
+@utility container {
   margin-inline: auto;
   padding-inline: 1rem;
 
@@ -37,14 +37,14 @@
   @media (width >= 1400px) {
     max-width: 1320px;
   }
-} */
+}
 
 /* container */
-@utility container {
+/* @utility container {
   margin-inline: auto;
   padding-inline: 1rem;
   max-width: 1200px;
-}
+} */
 
 /* fix hover in mobile */
 @custom-variant hover (&:hover);
@@ -245,7 +245,7 @@ input::-webkit-inner-spin-button {
   }
 
   .nav_link {
-    @apply text-white cursor-pointer transition-all duration-300 relative;
+    @apply text-sm xl:text-base text-white cursor-pointer transition-all duration-300 relative;
 
     &::after {
       content: "";

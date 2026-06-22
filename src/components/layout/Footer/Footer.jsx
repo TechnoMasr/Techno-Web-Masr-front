@@ -113,9 +113,9 @@ const Footer = () => {
 
       <div
         className="container relative z-10 text-white
-        flex flex-col md:flex-row justify-evenly gap-8"
+        flex flex-col lg:flex-row justify-evenly gap-8"
       >
-        <div className="flex flex-col items-center text-center md:items-start md:text-start gap-6 md:max-w-96">
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-start gap-6 lg:max-w-96">
           {footerData?.footer_logo && (
             <div className="w-32 overflow-hidden">
               <img

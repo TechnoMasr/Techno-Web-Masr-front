@@ -12,7 +12,7 @@ const HeaderActions = () => {
   const handleAction = useHandleAction();
 
   return (
-    <div className="flex gap-2 md:gap-4">
+    <div className="flex gap-2 xl:gap-4">
       <LanguageSwitcher />
 
       <Button

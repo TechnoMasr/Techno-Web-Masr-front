@@ -35,12 +35,12 @@ const TextAndImage = ({
 
       <div
         className={`container grid grid-cols-1 ${
-          block?.image_url ? "md:grid-cols-2" : ""
+          block?.image_url ? "lg:grid-cols-2" : ""
         } gap-6 lg:gap-12 relative z-10 items-center`}
       >
         {block?.image_url && (
           <motion.div
-            className={`w-full h-full ${imageFirst ? "md:order-2" : ""}`}
+            className={`w-full h-full ${imageFirst ? "lg:order-2" : ""}`}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
@@ -56,14 +56,14 @@ const TextAndImage = ({
         )}
 
         <motion.div
-          className={`${imageFirst && block?.image_url ? "md:order-1" : ""} space-y-6`}
+          className={`${imageFirst && block?.image_url ? "lg:order-1" : ""} space-y-6`}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
           variants={fadeUp}
         >
           <h1
-            className={`text-2xl md:text-2xl font-semibold ${backgroundImage ? "text-white" : "text-black"}`}
+            className={`text-2xl lg:text-2xl font-semibold ${backgroundImage ? "text-white" : "text-black"}`}
           >
             {block.title}
           </h1>

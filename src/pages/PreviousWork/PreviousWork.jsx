@@ -60,7 +60,7 @@ const PreviousWork = () => {
             <EmptyDataSection msg={t("PreviousWork.noWorks")} />
           ) : (
             <motion.ul
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -70,7 +70,6 @@ const PreviousWork = () => {
                   key={item.id}
                   variants={cardVariants}
                   className="hover:scale-102 transition-all duration-500 ease-out"
-                  // whileHover={{ scale: 1.03 }}
                 >
                   <PreviousWorkCard item={item} />
                 </motion.li>

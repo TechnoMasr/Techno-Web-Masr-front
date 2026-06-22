@@ -54,17 +54,13 @@ const Products = () => {
             <EmptyDataSection msg={t("Products.noProducts")} />
           ) : (
             <motion.ul
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
               {productsData?.products?.map((service) => (
-                <motion.li
-                  key={service.id}
-                  variants={cardVariants}
-                  whileHover={{ scale: 1.05 }}
-                >
+                <motion.li key={service.id} variants={cardVariants}>
                   <ServiceCard service={service} type="product" />
                 </motion.li>
               ))}

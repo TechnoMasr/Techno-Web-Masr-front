@@ -23,7 +23,7 @@ const NavBar = () => {
   const isExact = (href) => href === `/${locale}`;
 
   return (
-    <nav className="hidden lg:flex items-center justify-center gap-8">
+    <nav className="hidden lg:flex items-center justify-center gap-4 xl:gap-8">
       {links.map((link, index) => {
         if (!link.items || link.items.length === 0) {
           return (
@@ -70,7 +70,7 @@ const NavBar = () => {
                       <NavLink
                         to={section.href}
                         onClick={() => setOpenPopover(null)}
-                        className="inline-block text-secondary mb-3 text-xl"
+                        className="inline-block text-secondary mb-3 text-xl hover:underline"
                       >
                         {section.title}
                       </NavLink>

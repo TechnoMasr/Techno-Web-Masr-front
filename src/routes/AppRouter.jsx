@@ -28,6 +28,10 @@ const Blog = React.lazy(() => import("../pages/Blog/Blog"));
 const BlogDetails = React.lazy(
   () => import("../pages/BlogDetails/BlogDetails"),
 );
+const AiTools = React.lazy(() => import("../pages/AiTools/AiTools"));
+const AiToolsDetails = React.lazy(
+  () => import("../pages/AiToolsDetails/AiToolsDetails"),
+);
 
 const SitePages = React.lazy(() => import("../pages/SitePages/SitePages"));
 
@@ -57,6 +61,8 @@ const router = createBrowserRouter([
       { path: "products/:slug", element: <ProductsDetails /> },
       { path: "blog", element: <Blog /> },
       { path: "blog/:slug", element: <BlogDetails /> },
+      { path: "ai-tools", element: <AiTools /> },
+      { path: "ai-tools/:slug", element: <AiToolsDetails /> },
 
       { path: "pages/:slug", element: <SitePages /> },
 

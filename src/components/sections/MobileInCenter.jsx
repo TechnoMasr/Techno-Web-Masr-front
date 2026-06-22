@@ -128,7 +128,7 @@ const MobileInCenter = ({ block, loading }) => {
                 src={block?.image_url}
                 alt="phone mockup"
                 className="w-full h-full max-w-[400px] object-contain drop-shadow-2xl"
-                whileHover={{ scale: 1.05, rotate: 1 }}
+                whileHover={{ scale: 1.02, rotate: 0.5 }}
                 transition={{ duration: 0.4 }}
               />
             </motion.div>

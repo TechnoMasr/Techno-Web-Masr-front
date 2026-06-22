@@ -33,11 +33,11 @@ const PreviousWorkSection = ({ block, loading }) => {
         <MainSlider
           breakpoints={{
             0: { slidesPerView: 1 },
-            480: { slidesPerView: 1.3 },
-            570: { slidesPerView: 2.6 },
-            640: { slidesPerView: 3 },
-            // 780: { slidesPerView: 3.5 },
-            960: { slidesPerView: 4 },
+            375: { slidesPerView: 1.5 },
+            570: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            992: { slidesPerView: 3.5 },
+            1200: { slidesPerView: 4 },
           }}
           data={portfolio || []}
           renderItem={(project) => (

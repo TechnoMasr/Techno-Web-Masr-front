@@ -67,11 +67,11 @@ const WhoWeAre = ({ block, loading }) => {
           />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-12">
+        <div className="grid grid-cols-1 xl:grid-cols-5 gap-4 xl:gap-12">
           {/* media */}
           {hasMedia && (
             <motion.div
-              className="col-span-1 lg:col-span-2 h-full min-h-75 overflow-hidden rounded-2xl shadow"
+              className="col-span-1 xl:col-span-2 h-full min-h-75 overflow-hidden rounded-2xl shadow"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
@@ -96,8 +96,8 @@ const WhoWeAre = ({ block, loading }) => {
 
           {/* content */}
           <motion.div
-            className={`flex flex-col gap-4 lg:gap-6 ${
-              hasMedia ? "lg:col-span-3" : "lg:col-span-5"
+            className={`flex flex-col gap-4 xl:gap-6 ${
+              hasMedia ? "xl:col-span-3" : "xl:col-span-5"
             }`}
             initial="hidden"
             whileInView="show"

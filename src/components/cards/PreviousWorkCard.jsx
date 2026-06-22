@@ -7,7 +7,7 @@ const PreviousWorkCard = ({ item }) => {
   return (
     <div
       onClick={() => navigate(`/${lang}/previous-work/${item.slug}`)}
-      className="relative rounded-lg w-full h-90 overflow-hidden cursor-pointer"
+      className="relative rounded-lg w-full aspect-4/6 overflow-hidden cursor-pointer"
     >
       {item.image_url && (
         <img

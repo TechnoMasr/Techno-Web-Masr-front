@@ -34,7 +34,7 @@ const Statistics = ({ block, loading }) => {
         </motion.div>
 
         <motion.ul
-          className="flex flex-wrap justify-center gap-4"
+          className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -46,7 +46,7 @@ const Statistics = ({ block, loading }) => {
             return (
               <motion.li
                 key={item.id}
-                className="w-40 md:w-55 flex flex-col gap-2 p-3 rounded-md bg-white text-primary 
+                className="flex flex-col gap-2 p-3 rounded-md bg-white text-primary 
                   hover:bg-primary hover:text-white transition-all duration-300 group"
                 variants={fadeUp}
               >

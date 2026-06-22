@@ -39,7 +39,7 @@ const PartnersSection = ({ block, loading }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 lg:gap-8"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8"
         >
           {block?.block_items?.map((itemData) => (
             <motion.li

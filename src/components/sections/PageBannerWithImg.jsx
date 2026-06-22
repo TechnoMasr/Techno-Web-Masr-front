@@ -15,8 +15,6 @@ const PageBannerWithImg = ({ block, loading }) => {
     setTitle(block.title.split("#"));
   }, [block]);
 
-  console.log("block", block);
-
   if (loading) return <PageBannerWithImgSkeleton />;
 
   // 🔥 Variants
@@ -32,7 +30,7 @@ const PageBannerWithImg = ({ block, loading }) => {
 
   return (
     <section
-      className="bg-center bg-cover bg-primary w-full h-screen md:h-[500px] content-center pt-24 pb-16 md:mb-10"
+      className="bg-center bg-cover bg-primary w-full h-screen lg:h-125 content-center pt-24 pb-16 lg:mb-10"
       style={{ backgroundImage: `url(${block.bg_image_url})` }}
     >
       <motion.div
@@ -40,12 +38,12 @@ const PageBannerWithImg = ({ block, loading }) => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="container w-full h-full flex flex-col justify-center md:flex-row items-center gap-10"
+        className="container w-full h-full flex flex-col justify-center lg:flex-row items-center gap-10"
       >
         {/* 🔥 Phone / Image */}
         {/* <motion.div
           variants={phoneVariant}
-          className="w-full md:w-1/2 h-62.5 md:h-full"
+          className="w-full lg:w-1/2 h-62.5 lg:h-full"
         > */}
         {block.image_url && (
           <motion.img
@@ -53,7 +51,7 @@ const PageBannerWithImg = ({ block, loading }) => {
             src={block.image_url}
             // src={phone}
             alt=""
-            className="w-[90%] sm:w-[60%] md:w-1/2 h-50 md:h-100 object-contain mx-auto md:translate-y-[15%] drop-shadow-xl"
+            className="w-[90%] sm:w-[60%] lg:w-1/2 h-50 lg:h-100 object-contain mx-auto lg:translate-y-[15%] drop-shadow-xl"
             transition={{ duration: 0.3 }}
           />
         )}
@@ -62,7 +60,7 @@ const PageBannerWithImg = ({ block, loading }) => {
         {/* 🔥 Text Content */}
         <motion.div
           variants={fadeUp}
-          className="w-full md:w-1/2 flex flex-col gap-4 items-center md:items-start text-center md:text-start capitalize"
+          className="w-full lg:w-1/2 flex flex-col gap-4 items-center lg:items-start text-center lg:text-start capitalize"
         >
           <motion.h1
             variants={fadeUp}

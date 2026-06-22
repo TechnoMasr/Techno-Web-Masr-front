@@ -116,7 +116,7 @@ const ContactUS = () => {
           </motion.div>
 
           <div
-            className={`grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-10 mt-6`}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 mt-6`}
           >
             {branches?.map((item) => (
               <motion.div

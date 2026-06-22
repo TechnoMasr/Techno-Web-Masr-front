@@ -53,20 +53,20 @@ const Hero = ({ block, loading }) => {
       className="bg-center bg-cover bg-primary w-full min-h-[80vh] content-center pt-24 pb-16"
       style={{ backgroundImage: `url(${block.bg_image_url})` }}
     >
-      <div className="container w-full h-full flex flex-col md:flex-row items-center gap-4 md:gap-10">
+      <div className="container w-full h-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
         {/* 🔥 Image */}
         {block.image_url && (
           <motion.div
             variants={imageVariant}
             initial="hidden"
             animate="show"
-            className="w-full md:w-1/2 h-62.5 md:h-100"
+            className="w-full lg:w-1/2 h-62.5 lg:h-100"
           >
             <motion.img
               loading="lazy"
               src={block.image_url}
               alt=""
-              className="w-[70%] sm:w-[60%] md:w-[90%] h-full object-contain mx-auto"
+              className="w-[70%] sm:w-[60%] lg:w-[90%] h-full object-contain mx-auto"
               transition={{ duration: 0.4 }}
             />
           </motion.div>
@@ -77,7 +77,7 @@ const Hero = ({ block, loading }) => {
           variants={container}
           initial="hidden"
           animate="show"
-          className="w-full md:w-1/2 flex flex-col gap-2 items-center md:items-start text-center md:text-start capitalize"
+          className="w-full lg:w-1/2 flex flex-col gap-2 items-center lg:items-start text-center lg:text-start capitalize"
         >
           {/* Title line 1 */}
           <motion.h1

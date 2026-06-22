@@ -29,7 +29,7 @@ const WhyChooseUs = ({ block, loading }) => {
           className="absolute bottom-0 inset-s-0 opacity-60 w-26 -z-10"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-16 place-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-16 place-items-center">
           <motion.div
             className="flex flex-col gap-4 lg:gap-6"
             initial="hidden"
@@ -81,7 +81,7 @@ const WhyChooseUs = ({ block, loading }) => {
 
           {block?.image_url && (
             <motion.div
-              className="h-full overflow-hidden hidden md:block"
+              className="h-full overflow-hidden hidden lg:block"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
