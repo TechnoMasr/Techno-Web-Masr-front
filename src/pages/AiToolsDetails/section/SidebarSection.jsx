@@ -44,7 +44,7 @@ const SidebarSection = ({ data }) => {
               {t("SidebarSection.pricingType")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
-              {data?.pricing_type}
+              {data?.pricing_type_translated}
             </span>
           </div>
 

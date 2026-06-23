@@ -25,7 +25,7 @@ const HeadSection = ({ data }) => {
             {data?.name}
           </h1>
           <span className="text-xs font-semibold bg-secondary/50 text-primary px-3 py-1 rounded-full">
-            {data?.pricing_type}
+            {data?.pricing_type_translated}
           </span>
         </div>
         <p className="text-sm md:text-base leading-relaxed mb-6">
@@ -35,15 +35,16 @@ const HeadSection = ({ data }) => {
         <div className="flex flex-wrap items-center gap-y-2 gap-x-4 pt-4 border-t text-xs text-slate-400 font-medium">
           <span className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg text-slate-600">
             <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />{" "}
-            {data?.rating} ({t("HeadSection.reviews", { count: data?.reviews_count })})
+            {data?.rating} (
+            {t("HeadSection.reviews", { count: data?.reviews_count })})
           </span>
           <span className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg text-slate-600">
             <Layers className="w-3.5 h-3.5 text-blue-500" />{" "}
             {data?.category?.name}
           </span>
           <span className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg text-slate-600">
-            <Calendar className="w-3.5 h-3.5 text-emerald-500" /> {t("HeadSection.addedOn")}{" "}
-            {date}
+            <Calendar className="w-3.5 h-3.5 text-emerald-500" />{" "}
+            {t("HeadSection.addedOn")} {date}
           </span>
         </div>
       </div>

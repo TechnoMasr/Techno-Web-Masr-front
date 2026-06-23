@@ -247,7 +247,8 @@ const CompareSection = ({ currentProduct, tips }) => {
                           </span>
                           <span>•</span>
                           <span>
-                            {t("CompareSection.pricing")} {tool.pricing_type}
+                            {t("CompareSection.pricing")}{" "}
+                            {tool.pricing_type_translated}
                           </span>
                         </div>
                       </div>
@@ -378,14 +379,14 @@ const CompareSection = ({ currentProduct, tips }) => {
                     {t("CompareSection.pricingLabel")}
                   </td>
                   <td className="py-3 px-2 text-center text-xs font-bold align-top">
-                    {currentProduct?.pricing_type}
+                    {currentProduct?.pricing_type_translated}
                   </td>
                   {selectedTools.map((tool) => (
                     <td
                       key={tool.id}
                       className="py-3 px-2 text-center text-xs font-bold align-top"
                     >
-                      {tool.pricing_type}
+                      {tool.pricing_type_translated}
                     </td>
                   ))}
                 </tr>
