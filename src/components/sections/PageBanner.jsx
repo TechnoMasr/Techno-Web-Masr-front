@@ -2,7 +2,7 @@ import bgImg from "@/assets/images/bg-img.png";
 import { motion } from "framer-motion";
 import PageBannerSkeleton from "../skeletons/PageBannerSkeleton";
 
-const PageBanner = ({ title, description, block }) => {
+const PageBanner = ({ title, description, block, loading }) => {
   // 🔥 Variants
   const bannerVariant = {
     hidden: { opacity: 0, y: -30 },
@@ -12,6 +12,8 @@ const PageBanner = ({ title, description, block }) => {
       transition: { duration: 0.6, ease: "easeOut" },
     },
   };
+
+  if (loading) return <PageBannerSkeleton />;
 
   return (
     <motion.article

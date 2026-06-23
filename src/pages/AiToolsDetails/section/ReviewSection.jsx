@@ -1,21 +1,7 @@
 import { ListChecks, Minus, Plus, ThumbsDown, ThumbsUp } from "lucide-react";
 import React from "react";
 
-const ReviewSection = () => {
-  const pros = [
-    "النسخة المجانية قوية للغاية وتكفي لمعظم المستخدمين",
-    "يجمع بين المونتاج، الألوان، الصوت، والمؤثرات في برنامج واحد",
-    "أدوات تصحيح الألوان هي الأفضل في الصناعة",
-    "ميزات الذكاء الاصطناعي توفر الوقت وتزيد من الجودة",
-    "يعمل على جميع أنظمة التشغيل",
-  ];
-  const cons = [
-    "يتطلب جهاز كمبيوتر بمواصفات عالية جدًا",
-    "منحنى تعلم حاد وصعب للغاية للمبتدئين",
-    "بعض أفضل ميزات الذكاء الاصطناعي حصرية للنسخة المدفوعة (Studio)",
-    "الواجهة قد تكون معقدة ومربكة",
-  ];
-
+const ReviewSection = ({ pros, cons }) => {
   return (
     <div className="bg-white p-4 md:p-6 rounded-2xl border border-slate-100 shadow-sm">
       <div className="flex items-center gap-2 mb-6 text-slate-900 border-b pb-3">
@@ -33,13 +19,13 @@ const ReviewSection = () => {
             <h3>المزايا الإيجابية</h3>
           </div>
           <ul className="space-y-3">
-            {pros.map((pro, i) => (
+            {pros.map((pro) => (
               <li
-                key={i}
+                key={pro?.id}
                 className="flex items-start gap-2.5 text-sm leading-relaxed"
               >
                 <Plus className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0 bg-emerald-50 rounded-full p-0.5" />
-                <span>{pro}</span>
+                <span>{pro?.content}</span>
               </li>
             ))}
           </ul>
@@ -52,13 +38,13 @@ const ReviewSection = () => {
             <h3>العيوب والتحديات</h3>
           </div>
           <ul className="space-y-3">
-            {cons.map((con, i) => (
+            {cons.map((con) => (
               <li
-                key={i}
+                key={con?.id}
                 className="flex items-start gap-2.5 text-sm leading-relaxed"
               >
                 <Minus className="w-4 h-4 text-rose-500 mt-0.5 shrink-0 bg-rose-50 rounded-full p-0.5" />
-                <span>{con}</span>
+                <span>{con?.content}</span>
               </li>
             ))}
           </ul>

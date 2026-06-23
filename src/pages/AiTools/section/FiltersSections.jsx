@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { getAIToolsCategories } from "@/api/AIToolsServices";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -7,10 +7,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 
-const FiltersSections = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const FiltersSections = ({
+  search,
+  setSearch,
+  category,
+  setCategory,
+  currentCount,
+  totalCount,
+}) => {
+  const { data: categoriesData, isLoading: categoriesLoading } = useQuery({
+    queryKey: ["AiToolsCategories"],
+    queryFn: getAIToolsCategories,
+  });
 
   return (
     <section className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
@@ -18,33 +29,33 @@ const FiltersSections = () => {
         <Input
           type="text"
           placeholder="ابحث عن الأدوات (اسم الأداة، الوصف)..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full ps-10 pe-4 h-11 bg-slate-50 rounded-xl transition-all"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full ps-10 pr-4 h-11 bg-slate-50 rounded-xl transition-all"
         />
-        <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 pointer-events-none" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 pointer-events-none text-slate-400" />
       </div>
 
       <div className="flex items-center gap-4 w-full md:w-auto justify-end">
-        <span className="text-sm whitespace-nowrap">عرض {4} من 231 أداة</span>
+        <span className="text-sm whitespace-nowrap text-slate-500">
+          عرض {currentCount || 0} من {totalCount || 0} أداة
+        </span>
 
-        <Select defaultValue="all">
-          <SelectTrigger className="w-45 h-11 bg-slate-50 rounded-xl font-medium">
+        <Select
+          value={category}
+          onValueChange={setCategory}
+          disabled={categoriesLoading}
+        >
+          <SelectTrigger className="w-45 h-11 bg-slate-50 rounded-xl font-medium focus-visible:border-primary focus-visible:ring-primary/50">
             <SelectValue placeholder="اختر الفئة" />
           </SelectTrigger>
           <SelectContent className="rounded-xl" position="popper">
-            <SelectItem value="all" className="">
-              جميع الفئات (231)
-            </SelectItem>
-            <SelectItem value="design" className="">
-              تصميم
-            </SelectItem>
-            <SelectItem value="video" className="">
-              فيديو
-            </SelectItem>
-            <SelectItem value="education" className="">
-              تعليم ودراسة
-            </SelectItem>
+            <SelectItem value="all">جميع الفئات ({totalCount || 0})</SelectItem>
+            {categoriesData?.categories?.map((cat) => (
+              <SelectItem key={cat.id} value={String(cat.id)}>
+                {cat.name} ({cat.tools_count})
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>

@@ -32,6 +32,9 @@ const AiTools = React.lazy(() => import("../pages/AiTools/AiTools"));
 const AiToolsDetails = React.lazy(
   () => import("../pages/AiToolsDetails/AiToolsDetails"),
 );
+const AiToolsCategories = React.lazy(
+  () => import("../pages/AiToolsCategories/AiToolsCategories"),
+);
 
 const SitePages = React.lazy(() => import("../pages/SitePages/SitePages"));
 
@@ -63,6 +66,7 @@ const router = createBrowserRouter([
       { path: "blog/:slug", element: <BlogDetails /> },
       { path: "ai-tools", element: <AiTools /> },
       { path: "ai-tools/:slug", element: <AiToolsDetails /> },
+      { path: "ai-tools-categories", element: <AiToolsCategories /> },
 
       { path: "pages/:slug", element: <SitePages /> },
 

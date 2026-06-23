@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   Search,
   X,
@@ -23,100 +23,56 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link, useParams } from "react-router";
-import image from "@/assets/icons/youtube.svg";
+import defaultImage from "@/assets/icons/youtube.svg";
+import {
+  getAIToolsCategories,
+  getAIToolsComparisons,
+} from "@/api/AIToolsServices";
+import { useQuery } from "@tanstack/react-query";
 
-// بيانات تجريبية لمحاكاة البحث والاختيار بناءً على الصور المرفقة
-const allToolsDatabase = [
-  {
-    id: "davinci",
-    name: "DaVinci Resolve",
-    category: "إنتاج الفيديو والصوت",
-    rating: 4.9,
-    pricing: "مجاني جزئياً",
-    desc: "برنامج تحرير ومونتاج فيديو احترافي وقوي للغاية، يقدم خطة مجانية بقدرات هائلة، ويتضمن أدوات ذكاء اصطناعي...",
-    features: [
-      "محرر فيديو احترافي متعدد المسارات",
-      "تصحيح ألوان هو الأقوى في الصناعة",
-      "أدوات صوت متقدمة (Fairlight)",
-    ],
-    slug: "davinci-resolve",
-    image: image,
-  },
-  {
-    id: "photoshop",
-    name: "Photoshop (Generative Fill)",
-    category: "تصميم الجرافيك",
-    rating: 4.9,
-    pricing: "مدفوع",
-    desc: "ميزة ثورية داخل برنامج Adobe Photoshop تعتمد على الذكاء الاصطناعي التوليدي لتعديل وتوسيع الصور بذكاء وسرعة.",
-    features: [
-      "توليد محتوى بالذكاء الاصطناعي",
-      "توسيع الصور الذكي",
-      "دمج عناصر احترافي",
-    ],
-    slug: "photoshop",
-    image: image,
-  },
-  {
-    id: "elevenlabs",
-    name: "ElevenLabs",
-    category: "إنتاج الفيديو والصوت",
-    rating: 4.8,
-    pricing: "مجاني جزئياً",
-    desc: "منصة رائدة في توليد الأصوات بالذكاء الاصطناعي، تشتهر بإنتاج أصوات طبيعية وواقعية جداً بمختلف اللغات.",
-    features: ["توليد صوت واقعي", "استنساخ نبرات الصوت", "دعم متعدد اللغات"],
-    slug: "elevenlabs",
-    image: image,
-  },
-  {
-    id: "wolfram",
-    name: "WolframAlpha",
-    category: "تحليل البيانات",
-    rating: 4.9,
-    pricing: "مجاني مع خطط مدفوعة",
-    desc: "محرك معرفة حسابي، يستخدم الذكاء الاصطناعي وخوارزميات معقدة للإجابة على الأسئلة وتحليل البيانات.",
-    features: [
-      "محرك معرفة حسابي",
-      "يجيب على الأسئلة الواقعية",
-      "إجراء حسابات رياضية وفيزيائية معقدة",
-    ],
-    slug: "wolfram",
-    image: image,
-  },
-  {
-    id: "openai",
-    name: "OpenAI",
-    category: "تحليل البيانات",
-    rating: 4.9,
-    pricing: "مجاني مع خطط مدفوعة",
-    desc: "منصة رائدة في توليد الأصوات بالذكاء الاصطناعي، تشتهر بإنتاج أصوات طبيعية وواقعية جداً بمختلف اللغات.",
-    features: ["توليد صوت واقعي", "استنساخ نبرات الصوت", "دعم متعدد اللغات"],
-    slug: "openai",
-    image: image,
-  },
-];
-
-const currentProduct = {
-  id: "wolfram",
-  name: "WolframAlpha",
-  category: "تحليل البيانات",
-  rating: 4.9,
-  pricing: "مجاني مع خطط مدفوعة",
-  desc: "محرك معرفة حسابي، يستخدم الذكاء الاصطناعي وخوارزميات معقدة للإجابة على الأسئلة الواقعية من خلال إجراء عمليات حسابية...",
-  features: [
-    "محرك معرفة حسابي",
-    "يجيب على الأسئلة الواقعية",
-    "إجراء حسابات رياضية وفيزيائية معقدة",
-  ],
-  slug: "wolfram",
-  image: image,
-};
-
-const CompareSection = () => {
+const CompareSection = ({ currentProduct, tips }) => {
   const { lang } = useParams();
   const [isSelectorOpen, setIsSelectorOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [category, setCategory] = useState("all"); // إضافة الـ state المفقودة للفئة
   const [selectedTools, setSelectedTools] = useState([]);
+
+  // جلب البيانات الحقيقية من الـ API
+  const { data: aiToolsComparisons, isLoading: isToolsLoading } = useQuery({
+    queryKey: ["AiToolsComparisons"],
+    queryFn: getAIToolsComparisons,
+  });
+
+  const { data: categoriesData, isLoading: categoriesLoading } = useQuery({
+    queryKey: ["AiToolsCategories"],
+    queryFn: getAIToolsCategories,
+  });
+
+  // استخراج مصفوفة الأدوات من الداتا المستلمة (تتعامل مع الهيكل المتوقع)
+  const toolsList = aiToolsComparisons?.tools || [];
+
+  // دالة الفلترة والبحث الذكي في الفرونت إند (Client-side Filtering)
+  const filteredTools = useMemo(() => {
+    return toolsList.filter((tool) => {
+      // 1. فلترة البحث بالاسم أو الوصف القصير
+      const matchesSearch =
+        !searchQuery ||
+        tool.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tool.short_description
+          ?.toLowerCase()
+          .includes(searchQuery.toLowerCase());
+
+      // 2. فلترة الفئة الذكية والمضمونة
+      // نقوم بتحويل الـ id إلى String لضمان تطابق الأنواع (String vs Number)
+      const matchesCategory =
+        category === "all" ||
+        String(tool.category_id) === String(category) ||
+        String(tool.category?.id) === String(category) ||
+        tool.category?.name === category;
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [toolsList, searchQuery, category]);
 
   const handleAddTool = (tool) => {
     if (selectedTools.length >= 3) return; // حد أقصى 3 أدوات
@@ -126,6 +82,16 @@ const CompareSection = () => {
 
   const handleRemoveTool = (toolId) => {
     setSelectedTools(selectedTools.filter((t) => t.id !== toolId));
+  };
+
+  // دالة مساعدة لتحويل نوع التسعير القادم من الـ API إلى نص عربي مفهوم
+  const getPricingText = (type) => {
+    const pricingMap = {
+      free: "مجاني",
+      partially_free: "مجاني جزئياً",
+      paid: "مدفوع",
+    };
+    return pricingMap[type] || type || "غير محدد";
   };
 
   return (
@@ -143,7 +109,7 @@ const CompareSection = () => {
             <p className="text-sm mt-1">
               اختر أدوات أخرى لمقارنتها مع{" "}
               <span className="font-semibold text-slate-700">
-                {currentProduct.name}
+                {currentProduct?.name}
               </span>{" "}
               واتخذ قراراً مدروساً بناءً على المميزات والتسعير والتقييمات.
             </p>
@@ -179,14 +145,14 @@ const CompareSection = () => {
         </div>
 
         {isSelectorOpen && (
-          <div className="space-y-2 animate-in fade-in-50 duration-200 mt-6">
+          <div className="space-y-4 animate-in fade-in-50 duration-200 mt-6">
             {/* عرض الأدوات المحددة حالياً */}
             <div className="flex flex-wrap items-center gap-2 p-3 bg-slate-50 rounded-xl border">
               <span className="text-xs font-bold pl-2 border-l">
-                الأدوات المحددة (3/{selectedTools.length}):
+                الأدوات المحددة ({selectedTools.length}/3):
               </span>
               {selectedTools.length === 0 ? (
-                <span className="text-xs italic">
+                <span className="text-xs italic text-slate-400">
                   لم يتم اختيار أي أداة بعد...
                 </span>
               ) : (
@@ -205,80 +171,102 @@ const CompareSection = () => {
               )}
             </div>
 
-            {/* حقل البحث الذكي عن الأدوات */}
-            <div className="relative">
-              <Input
-                type="text"
-                placeholder="ابحث عن أداة لإضافتها للمقارنة..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full ps-10 h-11"
-              />
-              <Search className="absolute right-3 top-3.5 h-4 w-4 " />
+            {/* حقل البحث والفلترة */}
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-3">
+              <div className="relative">
+                <Input
+                  type="text"
+                  placeholder="ابحث عن أداة لإضافتها للمقارنة..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full ps-10 h-11"
+                />
+                <Search className="absolute right-3 top-3.5 h-4 w-4 text-slate-400" />
+              </div>
+
+              <Select
+                value={category}
+                onValueChange={setCategory}
+                disabled={categoriesLoading}
+              >
+                <SelectTrigger className="w-full h-11 cursor-pointer">
+                  <SelectValue placeholder="اختر الفئة" />
+                </SelectTrigger>
+                <SelectContent className="rounded-xl" position="popper">
+                  <SelectItem value="all">جميع الفئات</SelectItem>
+                  {categoriesData?.categories?.map((cat) => (
+                    <SelectItem key={cat.id} value={String(cat.id)}>
+                      {cat.name} ({cat.tools_count})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
-            <Select defaultValue="all">
-              <SelectTrigger className="w-full h-11 cursor-pointer">
-                <SelectValue placeholder="اختر الفئة" />
-              </SelectTrigger>
-              <SelectContent className="rounded-xl" position="popper">
-                <SelectItem value="all">جميع الفئات (231)</SelectItem>
-                <SelectItem value="design">تصميم</SelectItem>
-                <SelectItem value="video">فيديو</SelectItem>
-                <SelectItem value="education">تعليم ودراسة</SelectItem>
-              </SelectContent>
-            </Select>
+            {/* قائمة الأدوات المتاحة للاختيار بعد الفلترة */}
+            <div className="max-h-60 overflow-y-auto border rounded-xl divide-y divide-slate-100 bg-white custom_scrollbar">
+              {isToolsLoading ? (
+                <div className="p-4 text-center text-sm text-slate-500">
+                  جاري تحميل الأدوات...
+                </div>
+              ) : filteredTools.length === 0 ? (
+                <div className="p-4 text-center text-sm text-slate-400">
+                  لا توجد أدوات تطابق خيارات البحث.
+                </div>
+              ) : (
+                filteredTools.map((tool) => {
+                  const isSelected = selectedTools.some(
+                    (t) => t.id === tool.id,
+                  );
+                  return (
+                    <div
+                      key={tool.id}
+                      className="flex items-center justify-between gap-2 p-3 hover:bg-slate-50/80 transition-colors"
+                    >
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center flex-wrap gap-2">
+                          <span className="text-sm font-bold text-slate-800">
+                            {tool.name}
+                          </span>
+                          {tool.category?.name && (
+                            <span className="text-xs px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-medium">
+                              {tool.category.name}
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-3 text-xs text-slate-500">
+                          <span className="flex items-center gap-0.5 text-amber-500 font-semibold">
+                            <Star className="w-3 h-3 fill-amber-500" />
+                            {tool.rating}
+                          </span>
+                          <span>•</span>
+                          <span>التسعير: {tool.pricing_type}</span>
+                        </div>
+                      </div>
 
-            {/* قائمة الأدوات المتاحة للاختيار */}
-            <div className="max-h-60 overflow-y-auto border rounded-xl divide-y divide-slate-50 bg-white custom_scrollbar">
-              {allToolsDatabase.map((tool) => {
-                const isSelected = selectedTools.some((t) => t.id === tool.id);
-                return (
-                  <div
-                    key={tool.id}
-                    className="flex items-center justify-between gap-2 p-3 hover:bg-slate-50/80 transition-colors border-b"
-                  >
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center flex-wrap gap-2">
-                        <span className="text-sm font-bold text-slate-800">
-                          {tool.name}
-                        </span>
-                        <span className="text-xs px-2 py-0.5 rounded-md bg-slate-200 text-slate-700 font-medium">
-                          {tool.category}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3 text-xs ">
-                        <span className="flex items-center gap-0.5">
-                          <Star className="w-3 h-3 text-amber-400 fill-amber-400" />{" "}
-                          {tool.rating}
-                        </span>
-                        <span>•</span>
-                        <span>التسعير: {tool.pricing}</span>
-                      </div>
+                      {isSelected ? (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleRemoveTool(tool.id)}
+                          className="text-xs bg-rose-100 text-rose-600 hover:bg-rose-200 hover:text-rose-700 font-semibold"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" /> إزالة
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm"
+                          onClick={() => handleAddTool(tool)}
+                          disabled={selectedTools.length >= 3}
+                          className="text-xs font-semibold"
+                        >
+                          <Plus className="w-3.5 h-3.5" /> إضافة
+                        </Button>
+                      )}
                     </div>
-
-                    {isSelected ? (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleRemoveTool(tool.id)}
-                        className="text-xs bg-rose-100 text-rose-600 hover:bg-rose-200 hover:text-rose-700 font-semibold"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" /> إزالة
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        onClick={() => handleAddTool(tool)}
-                        disabled={selectedTools.length >= 3}
-                        className="text-xs font-semibold"
-                      >
-                        <Plus className="w-3.5 h-3.5" /> إضافة
-                      </Button>
-                    )}
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
           </div>
         )}
@@ -300,10 +288,10 @@ const CompareSection = () => {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse min-w-150 table-fixed">
+            <table className="w-full border-collapse min-w-[600px] table-fixed">
               <thead>
                 <tr className="border-b">
-                  <th className="py-3 px-2 text-sm font-bold text-right w-1/4 align-top">
+                  <th className="py-3 px-2 text-sm font-bold text-right w-1/4 align-top text-slate-900">
                     المعايير
                   </th>
                   {/* الأداة الحالية الثابتة دائماً */}
@@ -311,28 +299,28 @@ const CompareSection = () => {
                     <div className="flex flex-col items-center text-center gap-1">
                       <div className="w-12 h-12 p-2 rounded-xl bg-slate-100 flex items-center justify-center">
                         <img
-                          src={currentProduct.image}
-                          alt={currentProduct.name}
+                          src={currentProduct?.logo}
+                          alt={currentProduct?.name}
                           className="w-full h-full object-contain"
                         />
                       </div>
                       <span className="text-sm font-bold text-slate-900">
-                        {currentProduct.name}
+                        {currentProduct?.name}
                       </span>
                       <span className="text-[10px] font-semibold bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full mt-1">
                         الأداة الحالية
                       </span>
                     </div>
                   </th>
-                  {/* الأدوات المحددة ديناميكياً فقط */}
+                  {/* الأدوات المحددة ديناميكياً */}
                   {selectedTools.map((tool) => (
                     <th key={tool.id} className="py-3 px-2 w-1/4 align-top">
                       <div className="flex flex-col items-center text-center gap-1 relative group">
-                        <div className="w-12 h-12 p-2 rounded-xl bg-slate-100 flex items-center justify-center">
+                        <div className="w-12 h-12 p-1 rounded-xl bg-slate-100 flex items-center justify-center border overflow-hidden">
                           <img
-                            src={tool.image}
+                            src={tool.logo || defaultImage}
                             alt={tool.name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                         <span className="text-sm font-bold text-slate-900">
@@ -349,26 +337,26 @@ const CompareSection = () => {
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 text-slate-700">
                 {/* صف التقييم */}
                 <tr>
                   <td className="py-3 px-2 text-xs font-bold align-top">
                     التقييم
                   </td>
-                  <td className="py-3 px-2 text-center text-sm font-bold text-slate-800 align-top">
-                    <span className="inline-flex items-center gap-1 justify-center">
-                      <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />{" "}
-                      {currentProduct.rating}
+                  <td className="py-3 px-2 text-center text-sm font-bold align-top">
+                    <span className="inline-flex items-center gap-1 justify-center text-amber-500">
+                      <Star className="w-3.5 h-3.5 fill-amber-500" />
+                      {currentProduct?.rating}
                     </span>
                   </td>
                   {selectedTools.map((tool) => (
                     <td
                       key={tool.id}
-                      className="py-3 px-2 text-center text-sm font-bold text-slate-800 align-top"
+                      className="py-3 px-2 text-center text-sm font-bold align-top"
                     >
-                      <span className="inline-flex items-center gap-1 justify-center">
-                        <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />{" "}
-                        {tool.rating}
+                      <span className="inline-flex items-center gap-1 justify-center text-amber-500">
+                        <Star className="w-3.5 h-3.5 fill-amber-500" />
+                        {currentProduct?.rating}
                       </span>
                     </td>
                   ))}
@@ -379,15 +367,15 @@ const CompareSection = () => {
                   <td className="py-3 px-2 text-xs font-bold align-top">
                     التسعير
                   </td>
-                  <td className="py-3 px-2 text-center text-xs font-bold text-amber-600 align-top">
-                    {currentProduct.pricing}
+                  <td className="py-3 px-2 text-center text-xs font-bold align-top">
+                    {currentProduct?.pricing_type}
                   </td>
                   {selectedTools.map((tool) => (
                     <td
                       key={tool.id}
-                      className="py-3 px-2 text-center text-xs font-bold text-emerald-600 align-top"
+                      className="py-3 px-2 text-center text-xs font-bold align-top"
                     >
-                      {tool.pricing}
+                      {tool.pricing_type}
                     </td>
                   ))}
                 </tr>
@@ -398,14 +386,14 @@ const CompareSection = () => {
                     الفئة
                   </td>
                   <td className="py-3 px-2 text-center text-xs font-medium text-slate-600 align-top">
-                    {currentProduct.category}
+                    {currentProduct?.category?.name}
                   </td>
                   {selectedTools.map((tool) => (
                     <td
                       key={tool.id}
                       className="py-3 px-2 text-center text-xs font-medium text-slate-600 align-top"
                     >
-                      {tool.category}
+                      {tool.category?.name}
                     </td>
                   ))}
                 </tr>
@@ -415,15 +403,15 @@ const CompareSection = () => {
                   <td className="py-3 px-2 text-xs font-bold align-top">
                     الوصف
                   </td>
-                  <td className="py-3 px-2 text-xs leading-relaxed align-top">
-                    {currentProduct.desc}
+                  <td className="text-center py-3 px-2 text-xs leading-relaxed font-medium align-top">
+                    {currentProduct?.short_description}
                   </td>
                   {selectedTools.map((tool) => (
                     <td
                       key={tool.id}
-                      className="py-3 px-2 text-xs leading-relaxed align-top"
+                      className="text-center py-3 px-2 text-xs leading-relaxed font-medium align-top"
                     >
-                      {tool.desc}
+                      {tool.short_description}
                     </td>
                   ))}
                 </tr>
@@ -433,29 +421,52 @@ const CompareSection = () => {
                   <td className="py-3 px-2 text-xs font-bold align-top">
                     المميزات
                   </td>
-                  <td className="py-3 px-2 align-top">
+                  <td className="py-3 px-2 align-top text-center">
                     <div className="flex flex-col gap-1.5">
-                      {currentProduct.features.map((f, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-lg text-[11px] font-semibold text-slate-700"
-                        >
-                          <span>{f}</span>
-                        </div>
-                      ))}
+                      {currentProduct?.main_features &&
+                      currentProduct.main_features.length > 0 ? (
+                        currentProduct.main_features.map((f, i) => {
+                          const featureContent =
+                            typeof f === "object" ? f.content : f;
+                          const featureKey =
+                            typeof f === "object" ? f.id || i : i;
+
+                          return (
+                            <div
+                              key={featureKey}
+                              className="flex items-center justify-center gap-1.5 bg-slate-100 p-1.5 rounded-md text-xs font-semibold text-slate-800"
+                            >
+                              <span>{featureContent}</span>
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <span className="text-xs text-slate-400 italic">
+                          غير محددة
+                        </span>
+                      )}
                     </div>
                   </td>
                   {selectedTools.map((tool) => (
-                    <td key={tool.id} className="py-3 px-2 align-top">
+                    <td
+                      key={tool.id}
+                      className="py-3 px-2 align-top text-center"
+                    >
                       <div className="flex flex-col gap-1.5">
-                        {tool.features.map((f, i) => (
-                          <div
-                            key={i}
-                            className="flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-lg text-[11px] font-semibold text-slate-600"
-                          >
-                            <span>{f}</span>
-                          </div>
-                        ))}
+                        {tool.main_features && tool.main_features.length > 0 ? (
+                          tool.main_features.map((feat) => (
+                            <div
+                              key={feat.id}
+                              className="flex items-center justify-center gap-1.5 bg-slate-100 p-1.5 rounded-md text-xs font-semibold text-slate-800"
+                            >
+                              <span>{feat.content}</span>
+                            </div>
+                          ))
+                        ) : (
+                          <span className="text-xs text-slate-400 italic">
+                            غير محددة
+                          </span>
+                        )}
                       </div>
                     </td>
                   ))}
@@ -498,34 +509,25 @@ const CompareSection = () => {
                 <Lightbulb className="w-4 h-4 text-amber-500" /> نصائح للاختيار
                 الذكي:
               </h4>
-              <ul className="text-xs space-y-1.5 list-disc list-inside ps-1">
-                <li>
-                  قارن السعر المتاح مع ميزانيتك الإنتاجية الشهرية أو السنوية.
-                </li>
-                <li>تحقق من متطلبات تشغيل كل برنامج والأنظمة المدعومة.</li>
-                <li>
-                  اختر الأداة بناءً على ميزة معينة تحتاجها وتوفر وقتك الفعلي.
-                </li>
+              <ul className="text-xs space-y-1.5 list-disc list-inside ps-1 font-medium text-slate-700">
+                {tips.map((tip, index) => (
+                  <li key={index}>{tip}</li>
+                ))}
               </ul>
             </div>
             <div className="space-y-2.5">
               <h4 className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
                 <Link2 className="w-4 h-4 text-primary" /> روابط مفيدة تهمك:
               </h4>
-              <ul className="space-y-1.5 ps-1 text-primary">
+              <ul className="space-y-1.5 ps-1 text-primary text-sm">
                 <li>
                   <a href="#all" className="hover:underline">
-                    ← تصفح الأدوات حسب الفئة
-                  </a>
-                </li>
-                <li>
-                  <a href="#compare" className="hover:underline">
-                    ← مقارنة شاملة لجميع الأدوات
+                    تصفح الأدوات حسب الفئة
                   </a>
                 </li>
                 <li>
                   <a href="#tools" className="hover:underline">
-                    ← عرض كافة أقسام الموقع
+                    عرض جميع الأدوات
                   </a>
                 </li>
               </ul>
