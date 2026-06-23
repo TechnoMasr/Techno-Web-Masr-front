@@ -195,7 +195,8 @@
     "step4Description": "Start using the tool that fits your needs and technical background.",
     "toolCount": "{{count}} tool(s)",
     "browseCategory": "Browse Category",
-    "guidelinesTitle": "How to Choose the Right Category?"
+    "guidelinesTitle": "How to Choose the Right Category?",
+    "emptyMsg": "No categories available"
   },
 
   "CompareSection": {

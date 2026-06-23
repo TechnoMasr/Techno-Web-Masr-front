@@ -6,11 +6,12 @@ import { getAITools, getAIToolsHome } from "@/api/AIToolsServices";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
+import SeoManager from "@/utils/SeoManager";
 
 const AiTools = () => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   // قراءة القيم مباشرة من الـ URL مع وضع قيم افتراضية
   const search = searchParams.get("search") || "";
   const category = searchParams.get("category") || "all";
@@ -41,8 +42,8 @@ const AiTools = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setOffset(0); 
-      setAllTools([]); 
+      setOffset(0);
+      setAllTools([]);
     }, 400);
     return () => clearTimeout(handler);
   }, [search]);
@@ -87,36 +88,46 @@ const AiTools = () => {
   });
 
   return (
-    <main className="bg-slate-50">
-      <PageBanner
-        title={homeData?.intro?.title || t("AiTools.heroTitle")}
-        description={
-          homeData?.intro?.description || t("AiTools.heroDescription")
-        }
-        loading={isLoadingHome}
+    <>
+      <SeoManager
+        title={homeData?.seo?.meta_title}
+        description={homeData?.seo?.meta_description}
+        keywords={homeData?.seo?.keywords}
+        canonical={homeData?.seo?.canonical_url}
+        ogImage={homeData?.seo?.og_image_url}
       />
 
-      <div className="container pagePadding space-y-8 lg:space-y-16">
-        <AiToolsCards
-          ai_tools={allTools}
-          totalCount={paginationMeta.total || 0}
-          isLoading={isLoading}
-          isFetching={isFetching}
-          hasMore={paginationMeta.hasMore}
-          remaining={paginationMeta.remaining}
-          onLoadMore={handleLoadMore}
-          search={search}
-          setSearch={setSearch}
-          category={category}
-          setCategory={setCategory}
-        />
-
-        <WhyChooseAiTools
-          data={homeData?.why_choose_us}
+      <main className="bg-slate-50">
+        <PageBanner
+          title={homeData?.intro?.title || t("AiTools.heroTitle")}
+          description={
+            homeData?.intro?.description || t("AiTools.heroDescription")
+          }
           loading={isLoadingHome}
         />
-      </div>
-    </main>
+
+        <div className="container pagePadding space-y-8 lg:space-y-16">
+          <AiToolsCards
+            ai_tools={allTools}
+            totalCount={paginationMeta.total || 0}
+            isLoading={isLoading}
+            isFetching={isFetching}
+            hasMore={paginationMeta.hasMore}
+            remaining={paginationMeta.remaining}
+            onLoadMore={handleLoadMore}
+            search={search}
+            setSearch={setSearch}
+            category={category}
+            setCategory={setCategory}
+          />
+
+          <WhyChooseAiTools
+            data={homeData?.why_choose_us}
+            loading={isLoadingHome}
+          />
+        </div>
+      </main>
+    </>
   );
 };
 

@@ -195,7 +195,8 @@
     "step4Description": "ابدأ باستخدام الأداة التي تناسب احتياجاتك وخلفيتك التقنية.",
     "toolCount": "{{count}} أداة",
     "browseCategory": "تصفح الفئة",
-    "guidelinesTitle": "كيفية اختيار الفئة المناسبة؟"
+    "guidelinesTitle": "كيفية اختيار الفئة المناسبة؟",
+    "emptyMsg": "لا يوجد فئات"
   },
 
   "CompareSection": {

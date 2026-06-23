@@ -40,7 +40,8 @@ const SidebarSection = ({ data }) => {
 
           <div className="flex justify-between items-center bg-slate-50/50 p-2 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <DollarSign className="w-4 h-4" /> {t("SidebarSection.pricingType")}
+              <DollarSign className="w-4 h-4" />{" "}
+              {t("SidebarSection.pricingType")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
               {data?.pricing_type}
@@ -59,10 +60,13 @@ const SidebarSection = ({ data }) => {
 
           <div className="flex justify-between items-center bg-slate-50/50 p-2 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <MessageSquare className="w-4 h-4" /> {t("SidebarSection.reviewsCount")}
+              <MessageSquare className="w-4 h-4" />{" "}
+              {t("SidebarSection.reviewsCount")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
-              {t("SidebarSection.reviewsCountValue", { count: data?.reviews_count })}
+              {t("SidebarSection.reviewsCountValue", {
+                count: data?.reviews_count,
+              })}
             </span>
           </div>
 
@@ -76,15 +80,19 @@ const SidebarSection = ({ data }) => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2.5">
-          <a href="#" className="w-full">
+        {data?.link && (
+          <a
+            href={data?.link}
+            target="_blank"
+            rel="noreferrer"
+            className="w-full"
+          >
             <Button className="w-full gap-2">
               {t("SidebarSection.visitWebsite")}
               <ExternalLink className="w-4 h-4" />
             </Button>
           </a>
-          <Button variant="outline">{t("SidebarSection.viewFullDetails")}</Button>
-        </div>
+        )}
       </div>
     </div>
   );

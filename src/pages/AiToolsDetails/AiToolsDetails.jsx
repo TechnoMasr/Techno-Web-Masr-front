@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import AiToolsDetailsSkeleton from "@/components/skeletons/AiToolsDetailsSkeleton";
 import CompareSteps from "./section/CompareSteps";
 import LinksSections from "./section/LinksSections";
+import SeoManager from "@/utils/SeoManager";
 
 const AiToolsDetails = () => {
   const { slug } = useParams();
@@ -26,6 +27,14 @@ const AiToolsDetails = () => {
   return (
     <>
       <Header alwaysScrolled />
+
+      <SeoManager
+        title={AITool?.seo?.meta_title}
+        description={AITool?.seo?.meta_description}
+        keywords={AITool?.seo?.keywords}
+        canonical={AITool?.seo?.canonical_url}
+        ogImage={AITool?.seo?.og_image_url}
+      />
 
       {isLoading ? (
         <AiToolsDetailsSkeleton />
