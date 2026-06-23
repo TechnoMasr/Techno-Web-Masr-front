@@ -29,8 +29,10 @@ import {
   getAIToolsComparisons,
 } from "@/api/AIToolsServices";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 const CompareSection = ({ currentProduct, tips }) => {
+  const { t } = useTranslation();
   const { lang } = useParams();
   const [isSelectorOpen, setIsSelectorOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -84,18 +86,17 @@ const CompareSection = ({ currentProduct, tips }) => {
     setSelectedTools(selectedTools.filter((t) => t.id !== toolId));
   };
 
-  // دالة مساعدة لتحويل نوع التسعير القادم من الـ API إلى نص عربي مفهوم
   const getPricingText = (type) => {
     const pricingMap = {
-      free: "مجاني",
-      partially_free: "مجاني جزئياً",
-      paid: "مدفوع",
+      free: t("CompareSection.free"),
+      partially_free: t("CompareSection.partiallyFree"),
+      paid: t("CompareSection.paid"),
     };
-    return pricingMap[type] || type || "غير محدد";
+    return pricingMap[type] || type || t("CompareSection.unspecifiedPricing");
   };
 
   return (
-    <section className="w-full flex flex-col gap-6" dir="rtl">
+    <section className="w-full flex flex-col gap-6">
       {/* سكشن صندوق اختيار وعرض الأدوات المتاحة للمقارنة */}
       <div className="bg-white rounded-2xl border shadow-sm p-4 md:p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -104,14 +105,10 @@ const CompareSection = ({ currentProduct, tips }) => {
               <div className="flex items-center justify-center rounded-full w-8 h-8 bg-secondary/50">
                 <Scale className="w-5 h-5 text-primary" />
               </div>
-              اختر أدوات للمقارنة
+              {t("CompareSection.selectToolsTitle")}
             </h2>
             <p className="text-sm mt-1">
-              اختر أدوات أخرى لمقارنتها مع{" "}
-              <span className="font-semibold text-slate-700">
-                {currentProduct?.name}
-              </span>{" "}
-              واتخذ قراراً مدروساً بناءً على المميزات والتسعير والتقييمات.
+              {t("CompareSection.selectToolsDescription", { name: currentProduct?.name })}
             </p>
           </div>
           <div className="flex flex-col items-center gap-2 w-full md:w-auto">
@@ -123,11 +120,11 @@ const CompareSection = ({ currentProduct, tips }) => {
             >
               {isSelectorOpen ? (
                 <>
-                  إخفاء أدوات المقارنة <ChevronUp className="w-4 h-4" />
+                  {t("CompareSection.hideTools")} <ChevronUp className="w-4 h-4" />
                 </>
               ) : (
                 <>
-                  عرض أدوات المقارنة <ChevronDown className="w-4 h-4" />
+                  {t("CompareSection.showTools")} <ChevronDown className="w-4 h-4" />
                 </>
               )}
             </Button>
@@ -138,7 +135,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                 onClick={() => setSelectedTools([])}
                 className="text-xs text-rose-700 bg-rose-100 hover:text-rose-700 hover:bg-rose-200 rounded-xl w-full"
               >
-                مسح جميع الأدوات
+                {t("CompareSection.clearAll")}
               </Button>
             )}
           </div>
@@ -149,11 +146,11 @@ const CompareSection = ({ currentProduct, tips }) => {
             {/* عرض الأدوات المحددة حالياً */}
             <div className="flex flex-wrap items-center gap-2 p-3 bg-slate-50 rounded-xl border">
               <span className="text-xs font-bold pl-2 border-l">
-                الأدوات المحددة ({selectedTools.length}/3):
+                {t("CompareSection.selectedTools", { count: selectedTools.length })}
               </span>
               {selectedTools.length === 0 ? (
                 <span className="text-xs italic text-slate-400">
-                  لم يتم اختيار أي أداة بعد...
+                  {t("CompareSection.noToolsSelected")}
                 </span>
               ) : (
                 selectedTools.map((tool) => (
@@ -176,7 +173,7 @@ const CompareSection = ({ currentProduct, tips }) => {
               <div className="relative">
                 <Input
                   type="text"
-                  placeholder="ابحث عن أداة لإضافتها للمقارنة..."
+                  placeholder={t("CompareSection.searchPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full ps-10 h-11"
@@ -190,10 +187,10 @@ const CompareSection = ({ currentProduct, tips }) => {
                 disabled={categoriesLoading}
               >
                 <SelectTrigger className="w-full h-11 cursor-pointer">
-                  <SelectValue placeholder="اختر الفئة" />
+                  <SelectValue placeholder={t("CompareSection.selectCategory")} />
                 </SelectTrigger>
                 <SelectContent className="rounded-xl" position="popper">
-                  <SelectItem value="all">جميع الفئات</SelectItem>
+                  <SelectItem value="all">{t("CompareSection.allCategories")}</SelectItem>
                   {categoriesData?.categories?.map((cat) => (
                     <SelectItem key={cat.id} value={String(cat.id)}>
                       {cat.name} ({cat.tools_count})
@@ -207,11 +204,11 @@ const CompareSection = ({ currentProduct, tips }) => {
             <div className="max-h-60 overflow-y-auto border rounded-xl divide-y divide-slate-100 bg-white custom_scrollbar">
               {isToolsLoading ? (
                 <div className="p-4 text-center text-sm text-slate-500">
-                  جاري تحميل الأدوات...
+                  {t("CompareSection.loadingTools")}
                 </div>
               ) : filteredTools.length === 0 ? (
                 <div className="p-4 text-center text-sm text-slate-400">
-                  لا توجد أدوات تطابق خيارات البحث.
+                  {t("CompareSection.noMatchingTools")}
                 </div>
               ) : (
                 filteredTools.map((tool) => {
@@ -240,7 +237,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                             {tool.rating}
                           </span>
                           <span>•</span>
-                          <span>التسعير: {tool.pricing_type}</span>
+                          <span>{t("CompareSection.pricing")} {tool.pricing_type}</span>
                         </div>
                       </div>
 
@@ -251,7 +248,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                           onClick={() => handleRemoveTool(tool.id)}
                           className="text-xs bg-rose-100 text-rose-600 hover:bg-rose-200 hover:text-rose-700 font-semibold"
                         >
-                          <Trash2 className="w-3.5 h-3.5" /> إزالة
+                          <Trash2 className="w-3.5 h-3.5" /> {t("CompareSection.remove")}
                         </Button>
                       ) : (
                         <Button
@@ -260,7 +257,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                           disabled={selectedTools.length >= 3}
                           className="text-xs font-semibold"
                         >
-                          <Plus className="w-3.5 h-3.5" /> إضافة
+                          <Plus className="w-3.5 h-3.5" /> {t("CompareSection.add")}
                         </Button>
                       )}
                     </div>
@@ -280,10 +277,10 @@ const CompareSection = ({ currentProduct, tips }) => {
               <div className="flex items-center justify-center rounded-full w-8 h-8 bg-secondary/50">
                 <TableProperties className="w-5 h-5 text-primary" />
               </div>
-              جدول مقارنة الأدوات
+              {t("CompareSection.comparisonTableTitle")}
             </h2>
             <p className="text-sm mt-1">
-              مقارنة تفصيلية بين الأداة الحالية والأدوات التي قمت بتحديدها.
+              {t("CompareSection.comparisonTableDesc")}
             </p>
           </div>
 
@@ -292,7 +289,7 @@ const CompareSection = ({ currentProduct, tips }) => {
               <thead>
                 <tr className="border-b">
                   <th className="py-3 px-2 text-sm font-bold text-right w-1/4 align-top text-slate-900">
-                    المعايير
+                    {t("CompareSection.criteria")}
                   </th>
                   {/* الأداة الحالية الثابتة دائماً */}
                   <th className="py-3 px-2 w-1/4 align-top">
@@ -308,7 +305,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                         {currentProduct?.name}
                       </span>
                       <span className="text-[10px] font-semibold bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full mt-1">
-                        الأداة الحالية
+                        {t("CompareSection.currentTool")}
                       </span>
                     </div>
                   </th>
@@ -341,7 +338,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                 {/* صف التقييم */}
                 <tr>
                   <td className="py-3 px-2 text-xs font-bold align-top">
-                    التقييم
+                    {t("CompareSection.rating")}
                   </td>
                   <td className="py-3 px-2 text-center text-sm font-bold align-top">
                     <span className="inline-flex items-center gap-1 justify-center text-amber-500">
@@ -365,7 +362,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                 {/* صف التسعير */}
                 <tr>
                   <td className="py-3 px-2 text-xs font-bold align-top">
-                    التسعير
+                    {t("CompareSection.pricingLabel")}
                   </td>
                   <td className="py-3 px-2 text-center text-xs font-bold align-top">
                     {currentProduct?.pricing_type}
@@ -383,7 +380,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                 {/* صف الفئة */}
                 <tr>
                   <td className="py-3 px-2 text-xs font-bold align-top">
-                    الفئة
+                    {t("CompareSection.category")}
                   </td>
                   <td className="py-3 px-2 text-center text-xs font-medium text-slate-600 align-top">
                     {currentProduct?.category?.name}
@@ -401,7 +398,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                 {/* صف الوصف */}
                 <tr>
                   <td className="py-3 px-2 text-xs font-bold align-top">
-                    الوصف
+                    {t("CompareSection.description")}
                   </td>
                   <td className="text-center py-3 px-2 text-xs leading-relaxed font-medium align-top">
                     {currentProduct?.short_description}
@@ -419,7 +416,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                 {/* صف المميزات */}
                 <tr>
                   <td className="py-3 px-2 text-xs font-bold align-top">
-                    المميزات
+                    {t("CompareSection.features")}
                   </td>
                   <td className="py-3 px-2 align-top text-center">
                     <div className="flex flex-col gap-1.5">
@@ -441,31 +438,31 @@ const CompareSection = ({ currentProduct, tips }) => {
                           );
                         })
                       ) : (
-                        <span className="text-xs text-slate-400 italic">
-                          غير محددة
-                        </span>
-                      )}
-                    </div>
-                  </td>
-                  {selectedTools.map((tool) => (
-                    <td
-                      key={tool.id}
-                      className="py-3 px-2 align-top text-center"
-                    >
-                      <div className="flex flex-col gap-1.5">
-                        {tool.main_features && tool.main_features.length > 0 ? (
-                          tool.main_features.map((feat) => (
-                            <div
-                              key={feat.id}
-                              className="flex items-center justify-center gap-1.5 bg-slate-100 p-1.5 rounded-md text-xs font-semibold text-slate-800"
-                            >
-                              <span>{feat.content}</span>
-                            </div>
-                          ))
-                        ) : (
                           <span className="text-xs text-slate-400 italic">
-                            غير محددة
+                            {t("CompareSection.unspecified")}
                           </span>
+                        )}
+                      </div>
+                    </td>
+                    {selectedTools.map((tool) => (
+                      <td
+                        key={tool.id}
+                        className="py-3 px-2 align-top text-center"
+                      >
+                        <div className="flex flex-col gap-1.5">
+                          {tool.main_features && tool.main_features.length > 0 ? (
+                            tool.main_features.map((feat) => (
+                              <div
+                                key={feat.id}
+                                className="flex items-center justify-center gap-1.5 bg-slate-100 p-1.5 rounded-md text-xs font-semibold text-slate-800"
+                              >
+                                <span>{feat.content}</span>
+                              </div>
+                            ))
+                          ) : (
+                            <span className="text-xs text-slate-400 italic">
+                              {t("CompareSection.unspecified")}
+                            </span>
                         )}
                       </div>
                     </td>
@@ -475,11 +472,11 @@ const CompareSection = ({ currentProduct, tips }) => {
                 {/* صف الإجراءات */}
                 <tr>
                   <td className="py-3 px-2 text-xs font-bold align-top">
-                    الإجراءات
+                    {t("CompareSection.actions")}
                   </td>
                   <td className="py-3 px-2 text-center align-top">
                     <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg inline-block">
-                      الصفحة الحالية
+                      {t("CompareSection.currentPage")}
                     </span>
                   </td>
                   {selectedTools.map((tool) => (
@@ -492,7 +489,7 @@ const CompareSection = ({ currentProduct, tips }) => {
                           size="sm"
                           className="h-8 text-xs font-bold gap-1 rounded-lg w-full max-w-35 mx-auto"
                         >
-                          عرض التفاصيل <ExternalLink className="w-3 h-3" />
+                          {t("CompareSection.viewDetails")} <ExternalLink className="w-3 h-3" />
                         </Button>
                       </Link>
                     </td>
@@ -506,8 +503,7 @@ const CompareSection = ({ currentProduct, tips }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-6 border-t bg-slate-50/50">
             <div className="space-y-2.5">
               <h4 className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-                <Lightbulb className="w-4 h-4 text-amber-500" /> نصائح للاختيار
-                الذكي:
+                <Lightbulb className="w-4 h-4 text-amber-500" /> {t("CompareSection.tipsTitle")}
               </h4>
               <ul className="text-xs space-y-1.5 list-disc list-inside ps-1 font-medium text-slate-700">
                 {tips.map((tip, index) => (
@@ -517,17 +513,17 @@ const CompareSection = ({ currentProduct, tips }) => {
             </div>
             <div className="space-y-2.5">
               <h4 className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
-                <Link2 className="w-4 h-4 text-primary" /> روابط مفيدة تهمك:
+                <Link2 className="w-4 h-4 text-primary" /> {t("CompareSection.usefulLinks")}
               </h4>
               <ul className="space-y-1.5 ps-1 text-primary text-sm">
                 <li>
                   <a href="#all" className="hover:underline">
-                    تصفح الأدوات حسب الفئة
+                    {t("CompareSection.browseByCategory")}
                   </a>
                 </li>
                 <li>
                   <a href="#tools" className="hover:underline">
-                    عرض جميع الأدوات
+                    {t("CompareSection.viewAllTools")}
                   </a>
                 </li>
               </ul>

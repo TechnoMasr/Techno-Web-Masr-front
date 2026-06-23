@@ -1,13 +1,16 @@
 import { Lightbulb, CheckCircle2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const CompareSteps = ({ data }) => {
+  const { t } = useTranslation();
+
   return (
     <section className="w-full bg-white p-4 md:p-6 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden">
       <div className="flex items-center gap-2 mb-4 text-slate-900 border-b pb-3">
         <div className="flex items-center justify-center rounded-full w-8 h-8 bg-secondary/50">
           <Lightbulb className="w-5 h-5 text-primary" />
         </div>
-        <h2 className="text-xl font-bold">دليل استخدام المقارنة</h2>
+        <h2 className="text-xl font-bold">{t("CompareSteps.title")}</h2>
       </div>
 
       {/* التقسيم الثنائي المتناسق */}
@@ -15,7 +18,7 @@ const CompareSteps = ({ data }) => {
         {/* العمود الأول: الخطوات الإجرائية */}
         <div className="space-y-4">
           <h3 className="text-sm font-bold text-blue-600 uppercase tracking-wider bg-blue-50/90 inline-block px-3 py-1 rounded-md mb-4">
-            الخطوات الأساسية
+            {t("CompareSteps.basicSteps")}
           </h3>
           <ul className="relative space-y-3">
             {data?.steps.map((step, index) => (
@@ -34,7 +37,7 @@ const CompareSteps = ({ data }) => {
         {/* العمود الثاني: نصائح وتوجيهات */}
         <div className="space-y-4">
           <h3 className="text-sm font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50/90 inline-block px-3 py-1 rounded-md mb-4">
-            نصائح وتوجيهات ذكية
+            {t("CompareSteps.smartTips")}
           </h3>
           <ul className="space-y-3">
             {data?.tips.map((tip, index) => (

@@ -3,6 +3,8 @@
   "back": "رجوع",
   "about_us": "من نحن",
   "read_more": "قراءة المزيد",
+  "whatsapp": "واتساب",
+  "phone": "هاتف",
 
   "ServiceCard": {
     "serviceDetails": "تفاصيل الخدمة",
@@ -14,6 +16,7 @@
     "portfolios": "افضل مشاريعنا",
     "pages": "الشروط والأحكام",
     "description": "footer_description",
+    "logoAlt": "الشعار",
     "social": {
       "Facebook": "فيسبوك",
       "LinkedIn": "لينكدإن",
@@ -65,6 +68,7 @@
   },
 
   "Header": {
+    "logoAlt": "الشعار",
     "home": "الرئيسية",
     "about": "من نحن",
     "services": "خدماتنا",
@@ -157,5 +161,184 @@
     "description": "حدثت مشكلة أثناء تحميل الصفحة، برجاء المحاولة مرة أخرى",
     "reload": "إعادة تحميل الصفحة",
     "goHome": "العودة للرئيسية"
+  },
+
+  "AiTools": {
+    "heroTitle": "أدوات الذكاء الاصطناعي",
+    "heroDescription": "اكتشف مجموعة شاملة من أفضل أدوات الذكاء الاصطناعي مع مراجعات متخصصة ومقارنات تفصيلية لمساعدتك في اختيار الأداة المناسبة."
+  },
+
+  "AiToolsCards": {
+    "noTools": "لا يوجد ادوات",
+    "viewDetails": "عرض التفاصيل",
+    "loading": "جاري التحميل...",
+    "showMore": "عرض المزيد ({{remaining}} أداة متبقية)"
+  },
+
+  "FiltersSections": {
+    "searchPlaceholder": "ابحث عن الأدوات (اسم الأداة، الوصف)...",
+    "showingCount": "عرض {{current}} من {{total}} أداة",
+    "selectCategory": "اختر الفئة",
+    "allCategories": "جميع الفئات ({{total}})"
+  },
+
+  "AiToolsCategories": {
+    "heroTitle": "فئات أدوات الذكاء الاصطناعي",
+    "heroDescription": "استكشف أدوات الذكاء الاصطناعي مصنفة حسب التخصص والاستخدام. اعثر على الأداة المناسبة لمجال عملك أو اهتمامك بسهولة.",
+    "step1Title": "حدد هدفك",
+    "step1Description": "فكر في نوع المهمة التي تريد إنجازها بدقة أولاً.",
+    "step2Title": "استكشف الفئة",
+    "step2Description": "تصفح الأدوات المتاحة في الفئة المناسبة لعملك.",
+    "step3Title": "قارن الأدوات",
+    "step3Description": "قارن بين الأدوات المختلفة في نفس الفئة لمعرفة الفروق.",
+    "step4Title": "جرب الأداة",
+    "step4Description": "ابدأ باستخدام الأداة التي تناسب احتياجاتك وخلفيتك التقنية.",
+    "toolCount": "{{count}} أداة",
+    "browseCategory": "تصفح الفئة",
+    "guidelinesTitle": "كيفية اختيار الفئة المناسبة؟"
+  },
+
+  "CompareSection": {
+    "selectToolsTitle": "اختر أدوات للمقارنة",
+    "selectToolsDescription": "اختر أدوات أخرى لمقارنتها مع {{name}} واتخذ قراراً مدروساً بناءً على المميزات والتسعير والتقييمات.",
+    "hideTools": "إخفاء أدوات المقارنة",
+    "showTools": "عرض أدوات المقارنة",
+    "clearAll": "مسح جميع الأدوات",
+    "selectedTools": "الأدوات المحددة ({{count}}/3):",
+    "noToolsSelected": "لم يتم اختيار أي أداة بعد...",
+    "searchPlaceholder": "ابحث عن أداة لإضافتها للمقارنة...",
+    "selectCategory": "اختر الفئة",
+    "allCategories": "جميع الفئات",
+    "loadingTools": "جاري تحميل الأدوات...",
+    "noMatchingTools": "لا توجد أدوات تطابق خيارات البحث.",
+    "pricing": "التسعير:",
+    "remove": "إزالة",
+    "add": "إضافة",
+    "comparisonTableTitle": "جدول مقارنة الأدوات",
+    "comparisonTableDesc": "مقارنة تفصيلية بين الأداة الحالية والأدوات التي قمت بتحديدها.",
+    "criteria": "المعايير",
+    "currentTool": "الأداة الحالية",
+    "rating": "التقييم",
+    "pricingLabel": "التسعير",
+    "category": "الفئة",
+    "description": "الوصف",
+    "features": "المميزات",
+    "unspecified": "غير محددة",
+    "actions": "الإجراءات",
+    "currentPage": "الصفحة الحالية",
+    "viewDetails": "عرض التفاصيل",
+    "tipsTitle": "نصائح للاختيار الذكي:",
+    "usefulLinks": "روابط مفيدة تهمك:",
+    "browseByCategory": "تصفح الأدوات حسب الفئة",
+    "viewAllTools": "عرض جميع الأدوات",
+    "free": "مجاني",
+    "partiallyFree": "مجاني جزئياً",
+    "paid": "مدفوع",
+    "unspecifiedPricing": "غير محدد"
+  },
+
+  "CompareSteps": {
+    "title": "دليل استخدام المقارنة",
+    "basicSteps": "الخطوات الأساسية",
+    "smartTips": "نصائح وتوجيهات ذكية"
+  },
+
+  "FeatureCards": {
+    "title": "المميزات الرئيسية"
+  },
+
+  "HeadSection": {
+    "reviews": "{{count}} مراجعة",
+    "addedOn": "أضيفت في:"
+  },
+
+  "LinksSections": {
+    "title": "أدوات مشابهة قد تهمك",
+    "browseCategories": "تصفح الفئات",
+    "browseCategoriesDesc": "استكشف الأدوات حسب التخصص",
+    "allTools": "جميع الأدوات",
+    "allToolsDesc": "تصفح المجموعة الكاملة من الأدوات"
+  },
+
+  "LongDescription": {
+    "title": "نظرة عامة شاملة"
+  },
+
+  "ReviewSection": {
+    "title": "تقييم شامل ومفصل",
+    "pros": "المزايا الإيجابية",
+    "cons": "العيوب والتحديات"
+  },
+
+  "SidebarSection": {
+    "quickInfo": "معلومات سريعة",
+    "category": "الفئة:",
+    "pricingType": "نوع التسعير:",
+    "rating": "التقييم:",
+    "reviewsCount": "عدد المراجعات:",
+    "reviewsCountValue": "{{count}} مراجعة",
+    "addedDate": "تاريخ الإضافة:",
+    "visitWebsite": "زيارة الموقع الرسمي",
+    "viewFullDetails": "عرض التفاصيل الكاملة"
+  },
+
+  "SimilarToolsSection": {
+    "title": "أدوات مشابهة قد تهمك",
+    "explore": "استكشف الأداة"
+  },
+
+  "PreviousWorkFilter": {
+    "all": "الكل"
+  },
+
+  "LanguageSwitcher": {
+    "arShort": "AR",
+    "enShort": "EN",
+    "arFull": "العربية",
+    "enFull": "English"
+  },
+
+  "ScrollToTopBtn": {
+    "ariaLabel": "الرجوع للأعلى"
+  },
+
+  "MainPagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "goToPage": "انتقل إلى صفحة {{page}}"
+  },
+
+  "VideoBanner": {
+    "playLabel": "تشغيل الفيديو",
+    "closeLabel": "إيقاف وإغلاق الفيديو"
+  },
+
+  "EmptyDataSection": {
+    "defaultMsg": "لا توجد بيانات"
+  },
+
+  "PreviousWorkSection": {
+    "viewAll": "عرض جميع الاعمال"
+  },
+
+  "ServicesSection": {
+    "viewAll": "عرض جميع الخدمات"
+  },
+
+  "TestimonialsSection": {
+    "defaultTitle": "أراء العملاء"
+  },
+
+  "WhyChooseUsBanner": {
+    "defaultTitle": "لماذا تختار تكنو ويب مصر",
+    "defaultDescription": "نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي النمو والتفوق في التخصص الخاص بهم من خلال التطبيق او الموقع"
+  },
+
+  "Dialog": {
+    "close": "إغلاق"
+  },
+
+  "Sheet": {
+    "close": "إغلاق"
   }
 }

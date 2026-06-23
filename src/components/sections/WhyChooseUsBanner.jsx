@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { motion } from "framer-motion"; // <-- استدعاء framer-motion
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
-const defaultTitle = "لماذا تختار تكنو ويب مصر";
-const defaultDescription =
-  "نحن في تكنو ويب مصر نصمم ونطور منصات وتطبيقات ذكية تساعد الشركات علي النمو والتفوق في التخصص الخاص بهم من خلال التطبيق او الموقع";
+const defaultTitle = "WhyChooseUsBanner.defaultTitle";
+const defaultDescription = "WhyChooseUsBanner.defaultDescription";
 
 function getLocalized(value) {
   if (value == null) return "";
@@ -16,13 +16,15 @@ function getLocalized(value) {
 }
 
 const WhyChooseUsBanner = ({ block }) => {
+  const { t } = useTranslation();
+
   const title = useMemo(
-    () => getLocalized(block?.title) || defaultTitle,
-    [block?.title],
+    () => getLocalized(block?.title) || t(defaultTitle),
+    [block?.title, t],
   );
   const description = useMemo(
-    () => getLocalized(block?.description) || defaultDescription,
-    [block?.description],
+    () => getLocalized(block?.description) || t(defaultDescription),
+    [block?.description, t],
   );
   const bgImage = useMemo(() => {
     if (block?.image) {

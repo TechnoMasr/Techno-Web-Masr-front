@@ -1,8 +1,10 @@
 import { getPortfolioCategories } from "@/api/pagesServices";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const PreviousWorkFilter = () => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category");
 
@@ -24,7 +26,7 @@ const PreviousWorkFilter = () => {
                 : "bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary hover:bg-primary/5"
             }`}
       >
-        الكل
+        {t("PreviousWorkFilter.all")}
         {!selectedCategory && (
           <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-8 h-1 bg-white rounded-full" />
         )}

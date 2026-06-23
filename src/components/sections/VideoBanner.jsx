@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
 import VideoBannerSkeleton from "../skeletons/VideoBannerSkeleton";
+import { useTranslation } from "react-i18next";
 
 const VideoBanner = ({ block }) => {
+  const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
 
@@ -26,7 +28,7 @@ const VideoBanner = ({ block }) => {
             type="button"
             onClick={handlePlay}
             className="absolute inset-0 w-full h-full flex items-center justify-center focus:outline-none focus-visible:ring-4 focus-visible:ring-primary focus-visible:ring-offset-4 rounded-2xl group"
-            aria-label="تشغيل الفيديو"
+            aria-label={t("VideoBanner.playLabel")}
           >
             {/* Poster image */}
             {posterUrl && (
@@ -76,7 +78,7 @@ const VideoBanner = ({ block }) => {
                 setIsPlaying(false);
               }}
               className="absolute top-4 left-4 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
-              aria-label="إيقاف وإغلاق الفيديو"
+              aria-label={t("VideoBanner.closeLabel")}
             >
               <svg
                 className="w-5 h-5"

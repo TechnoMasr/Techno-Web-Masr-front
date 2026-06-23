@@ -4,8 +4,10 @@ import MainSlider from "@/components/sections/MainSlider";
 import ServicesSectionSkeleton from "../skeletons/ServicesSectionSkeleton";
 import { getServicesSlider } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 const ServicesSection = ({ block, loading }) => {
+  const { t } = useTranslation();
   const { data: servicesData, isLoading } = useQuery({
     queryKey: ["servicesSlider"],
     queryFn: getServicesSlider,
@@ -27,7 +29,7 @@ const ServicesSection = ({ block, loading }) => {
           description={block?.description}
           link={{
             href: block?.other_data?.btn_1_url || "/services",
-            text: block?.other_data?.btn_1_text || "عرض جميع الخدمات",
+            text: block?.other_data?.btn_1_text || t("ServicesSection.viewAll"),
           }}
         />
 

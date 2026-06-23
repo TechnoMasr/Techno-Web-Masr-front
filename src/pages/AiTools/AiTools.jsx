@@ -4,9 +4,11 @@ import AiToolsCards from "./section/AiToolsCards";
 import { useQuery } from "@tanstack/react-query";
 import { getAITools, getAIToolsHome } from "@/api/AIToolsServices";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router"; // ← استيراد useSearchParams
+import { useSearchParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const AiTools = () => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   
   // قراءة القيم مباشرة من الـ URL مع وضع قيم افتراضية
@@ -87,10 +89,9 @@ const AiTools = () => {
   return (
     <main className="bg-slate-50">
       <PageBanner
-        title={homeData?.intro?.title || "أدوات الذكاء الاصطناعي"}
+        title={homeData?.intro?.title || t("AiTools.heroTitle")}
         description={
-          homeData?.intro?.description ||
-          "اكتشف مجموعة شاملة من أفضل أدوات الذكاء الاصطناعي مع مراجعات متخصصة ومقارنات تفصيلية لمساعدتك في اختيار الأداة المناسبة."
+          homeData?.intro?.description || t("AiTools.heroDescription")
         }
         loading={isLoadingHome}
       />

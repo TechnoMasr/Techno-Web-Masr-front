@@ -4,8 +4,10 @@ import TestimonialsSectionSkeleton from "../skeletons/TestimonialsSectionSkeleto
 import { useQuery } from "@tanstack/react-query";
 import { getTestimonials } from "@/api/pagesServices";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const TestimonialsSection = ({ block }) => {
+  const { t } = useTranslation();
   const { data: testimonialsData, isLoading } = useQuery({
     queryKey: ["testimonialsData"],
     queryFn: () => getTestimonials(),
@@ -23,7 +25,7 @@ const TestimonialsSection = ({ block }) => {
   return (
     <section>
       <div className="container sectionPadding">
-        <SectionTitle title={block.title || "أراء العملاء"} />
+        <SectionTitle title={block.title || t("TestimonialsSection.defaultTitle")} />
 
         <MainSlider
           data={testimonialsData || []}

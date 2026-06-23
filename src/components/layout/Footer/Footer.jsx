@@ -121,7 +121,7 @@ const Footer = () => {
               <img
                 loading="lazy"
                 src={footerData?.footer_logo}
-                alt={"logo"}
+                alt={t("Footer.logoAlt")}
                 className="w-full h-full object-contain"
               />
             </div>

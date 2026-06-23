@@ -1,35 +1,38 @@
 import PageBanner from "@/components/sections/PageBanner";
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import image from "@/assets/icons/youtube.svg";
 import { Link, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getAIToolsCategoriesPage } from "@/api/AIToolsServices";
 import AiToolsCategoriesSkeleton from "@/components/skeletons/AiToolsCategoriesSkeleton";
+import { useTranslation } from "react-i18next";
 
 const AiToolsCategories = () => {
+  const { t } = useTranslation();
+
   const steps = [
     {
       id: 1,
-      title: "حدد هدفك",
-      description: "فكر في نوع المهمة التي تريد إنجازها بدقة أولاً.",
+      title: t("AiToolsCategories.step1Title"),
+      description: t("AiToolsCategories.step1Description"),
       image: image,
     },
     {
       id: 2,
-      title: "استكشف الفئة",
-      description: "تصفح الأدوات المتاحة في الفئة المناسبة لعملك.",
+      title: t("AiToolsCategories.step2Title"),
+      description: t("AiToolsCategories.step2Description"),
       image: image,
     },
     {
       id: 3,
-      title: "قارن الأدوات",
-      description: "قارن بين الأدوات المختلفة في نفس الفئة لمعرفة الفروق.",
+      title: t("AiToolsCategories.step3Title"),
+      description: t("AiToolsCategories.step3Description"),
       image: image,
     },
     {
       id: 4,
-      title: "جرب الأداة",
-      description: "ابدأ باستخدام الأداة التي تناسب احتياجاتك وخلفيتك التقنية.",
+      title: t("AiToolsCategories.step4Title"),
+      description: t("AiToolsCategories.step4Description"),
       image: image,
     },
   ];
@@ -44,10 +47,9 @@ const AiToolsCategories = () => {
   return (
     <main className="bg-slate-50">
       <PageBanner
-        title={data?.hero?.title || "فئات أدوات الذكاء الاصطناعي"}
+        title={data?.hero?.title || t("AiToolsCategories.heroTitle")}
         description={
-          data?.hero?.description ||
-          "استكشف أدوات الذكاء الاصطناعي مصنفة حسب التخصص والاستخدام. اعثر على الأداة المناسبة لمجال عملك أو اهتمامك بسهولة."
+          data?.hero?.description || t("AiToolsCategories.heroDescription")
         }
         loading={isLoading}
       />
@@ -83,7 +85,7 @@ const AiToolsCategories = () => {
                     </div>
 
                     <span className="text-xs font-bold text-slate-500 bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-lg">
-                      {category.tools_count || 0} أداة
+                      {t("AiToolsCategories.toolCount", { count: category.tools_count || 0 })}
                     </span>
                   </div>
 
@@ -98,7 +100,7 @@ const AiToolsCategories = () => {
 
                 {/* زر التنقل الداخلي التفاعلي */}
                 <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 group-hover:text-primary transition-colors duration-200 mt-auto pt-2 border-t border-slate-50">
-                  <span>تصفح الفئة</span>
+                  <span>{t("AiToolsCategories.browseCategory")}</span>
                   <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
                 </div>
               </Link>
@@ -109,7 +111,7 @@ const AiToolsCategories = () => {
         {data?.guidelines?.items.length > 0 && (
           <section className="w-full">
             <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight text-center mb-6">
-              {data?.guidelines?.main_title || `كيفية اختيار الفئة المناسبة؟`}
+              {data?.guidelines?.main_title || t("AiToolsCategories.guidelinesTitle")}
             </h2>
 
             {/* شبكة الخطوات المتصلة */}

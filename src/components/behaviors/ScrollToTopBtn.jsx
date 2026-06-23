@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const ScrollToTopBtn = () => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const ScrollToTopBtn = () => {
           : "opacity-0 translate-y-6 pointer-events-none"
       }
       `}
-      aria-label="Scroll to top"
+      aria-label={t("ScrollToTopBtn.ariaLabel")}
     >
       <FaArrowUp />
     </button>

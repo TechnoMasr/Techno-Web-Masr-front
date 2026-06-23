@@ -2,8 +2,10 @@ import { openModal } from "@/store/modals/modalsSlice";
 import { IoLanguage } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const LanguageSwitcher = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang } = useParams();
@@ -30,10 +32,10 @@ const LanguageSwitcher = () => {
         hover:text-secondary hover:border-secondary transition-colors duration-300"
     >
       <span className="font-medium text-sm sm:hidden">
-        {lang === "en" ? "AR" : "EN"}
+        {lang === "en" ? t("LanguageSwitcher.arShort") : t("LanguageSwitcher.enShort")}
       </span>
       <span className="font-medium text-sm hidden sm:inline">
-        {lang === "en" ? "العربية" : "English"}
+        {lang === "en" ? t("LanguageSwitcher.arFull") : t("LanguageSwitcher.enFull")}
       </span>
       <IoLanguage />
     </button>

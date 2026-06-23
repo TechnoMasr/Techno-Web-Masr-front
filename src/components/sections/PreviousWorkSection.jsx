@@ -2,10 +2,10 @@ import PreviousWorkCard from "@/components/cards/PreviousWorkCard";
 import SectionTitle from "@/components/common/SectionTitle";
 import MainSlider from "@/components/sections/MainSlider";
 import PreviousWorkSectionSkeleton from "../skeletons/PreviousWorkSectionSkeleton";
-// import { useQuery } from "@tanstack/react-query";
-// import { getPortfolioSlider } from "@/api/mainServices";
+import { useTranslation } from "react-i18next";
 
 const PreviousWorkSection = ({ block, loading }) => {
+  const { t } = useTranslation();
   // const { data: portfolioData, isLoading } = useQuery({
   //   queryKey: ["portfolioSlider"],
   //   queryFn: getPortfolioSlider,
@@ -26,7 +26,7 @@ const PreviousWorkSection = ({ block, loading }) => {
           description={block?.description}
           link={{
             href: block?.other_data?.btn_1_url || "/previous-work",
-            text: block?.other_data?.btn_1_text || "عرض جميع الاعمال",
+            text: block?.other_data?.btn_1_text || t("PreviousWorkSection.viewAll"),
           }}
         />
 

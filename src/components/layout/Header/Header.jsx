@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import HeaderActions from "./HeaderActions/HeaderActions";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Header = ({ alwaysScrolled = false }) => {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(alwaysScrolled);
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const Header = ({ alwaysScrolled = false }) => {
               <img
                 loading="lazy"
                 src={settings?.site_logo}
-                alt="Logo"
+                alt={t("Header.logoAlt")}
                 className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
               />
             )}

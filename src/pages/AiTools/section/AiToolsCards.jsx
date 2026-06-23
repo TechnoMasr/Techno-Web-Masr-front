@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router";
 import FiltersSections from "./FiltersSections";
 import EmptyDataSection from "@/components/sections/EmptyDataSection";
 import AiToolsCardsSkeleton from "@/components/skeletons/AiToolsCardsSkeleton";
+import { useTranslation } from "react-i18next";
 
 const AiToolsCards = ({
   ai_tools,
@@ -18,6 +19,7 @@ const AiToolsCards = ({
   category,
   setCategory,
 }) => {
+  const { t } = useTranslation();
   const { lang } = useParams();
 
   return (
@@ -36,7 +38,7 @@ const AiToolsCards = ({
       {isLoading && ai_tools.length === 0 ? ( // ← initial load بس
         <AiToolsCardsSkeleton />
       ) : ai_tools?.length === 0 ? (
-        <EmptyDataSection msg="لا يوجد ادوات" />
+        <EmptyDataSection msg={t("AiToolsCards.noTools")} />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {ai_tools.map((tool) => (
@@ -74,8 +76,8 @@ const AiToolsCards = ({
 
               <Link to={`/${lang}/ai-tools/${tool.slug}`}>
                 <Button className="w-full flex items-center justify-center gap-2">
-                  عرض التفاصيل
-                  <FaArrowLeftLong />
+                  {t("AiToolsCards.viewDetails")}
+                  <FaArrowLeftLong className="ltr:rotate-180" />
                 </Button>
               </Link>
             </div>
@@ -91,9 +93,9 @@ const AiToolsCards = ({
             onClick={onLoadMore}
             disabled={isFetching}
           >
-            {isFetching // ← اللودينج هنا بس
-              ? "جاري التحميل..."
-              : `عرض المزيد (${remaining} أداة متبقية)`}
+            {isFetching
+              ? t("AiToolsCards.loading")
+              : t("AiToolsCards.showMore", { remaining })}
           </Button>
         </div>
       )}

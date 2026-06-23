@@ -1,15 +1,17 @@
 import { FaFolderOpen } from "react-icons/fa";
 import { RiRobot2Line } from "react-icons/ri";
 import { Link, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const LinksSections = () => {
+  const { t } = useTranslation();
   const { lang } = useParams();
 
   const list = [
     {
       id: 1,
-      title: "تصفح الفئات",
-      description: "استكشف الأدوات حسب التخصص",
+      title: t("LinksSections.browseCategories"),
+      description: t("LinksSections.browseCategoriesDesc"),
       icon: RiRobot2Line,
       iconColor: "text-rose-600",
       iconBg: "bg-rose-50",
@@ -17,8 +19,8 @@ const LinksSections = () => {
     },
     {
       id: 2,
-      title: "جميع الأدوات",
-      description: "تصفح المجموعة الكاملة من الأدوات",
+      title: t("LinksSections.allTools"),
+      description: t("LinksSections.allToolsDesc"),
       icon: FaFolderOpen,
       iconColor: "text-blue-600",
       iconBg: "bg-blue-50",
@@ -29,7 +31,7 @@ const LinksSections = () => {
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-bold text-slate-900 px-1">
-        أدوات مشابهة قد تهمك
+        {t("LinksSections.title")}
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

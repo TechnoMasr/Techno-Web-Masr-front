@@ -8,8 +8,10 @@ import {
   MessageSquare,
   Star,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const SidebarSection = ({ data }) => {
+  const { t } = useTranslation();
   const date = new Date(data?.created_at).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -23,13 +25,13 @@ const SidebarSection = ({ data }) => {
           <div className="flex items-center justify-center rounded-full w-8 h-8 bg-secondary/50">
             <BookOpenText className="w-5 h-5 text-primary" />
           </div>
-          معلومات سريعة
+          {t("SidebarSection.quickInfo")}
         </h2>
 
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex justify-between items-center bg-slate-50/50 p-2 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <Layers className="w-4 h-4" /> الفئة:
+              <Layers className="w-4 h-4" /> {t("SidebarSection.category")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
               {data?.category?.name}
@@ -38,7 +40,7 @@ const SidebarSection = ({ data }) => {
 
           <div className="flex justify-between items-center bg-slate-50/50 p-2 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <DollarSign className="w-4 h-4" /> نوع التسعير:
+              <DollarSign className="w-4 h-4" /> {t("SidebarSection.pricingType")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
               {data?.pricing_type}
@@ -47,7 +49,7 @@ const SidebarSection = ({ data }) => {
 
           <div className="flex justify-between items-center bg-slate-50/50 p-2 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <Star className="w-4 h-4" /> التقييم:
+              <Star className="w-4 h-4" /> {t("SidebarSection.rating")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold flex items-center gap-1">
               {data?.rating}
@@ -57,16 +59,16 @@ const SidebarSection = ({ data }) => {
 
           <div className="flex justify-between items-center bg-slate-50/50 p-2 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <MessageSquare className="w-4 h-4" /> عدد المراجعات:
+              <MessageSquare className="w-4 h-4" /> {t("SidebarSection.reviewsCount")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
-              {data?.reviews_count} مراجعة
+              {t("SidebarSection.reviewsCountValue", { count: data?.reviews_count })}
             </span>
           </div>
 
           <div className="flex justify-between items-center bg-slate-50/50 p-2 rounded-xl">
             <span className="text-xs font-medium flex items-center gap-2">
-              <Calendar className="w-4 h-4" /> تاريخ الإضافة:
+              <Calendar className="w-4 h-4" /> {t("SidebarSection.addedDate")}
             </span>
             <span className="text-xs md:text-sm text-slate-700 font-bold">
               {date}
@@ -77,11 +79,11 @@ const SidebarSection = ({ data }) => {
         <div className="flex flex-col gap-2.5">
           <a href="#" className="w-full">
             <Button className="w-full gap-2">
-              زيارة الموقع الرسمي
+              {t("SidebarSection.visitWebsite")}
               <ExternalLink className="w-4 h-4" />
             </Button>
           </a>
-          <Button variant="outline">عرض التفاصيل الكاملة</Button>
+          <Button variant="outline">{t("SidebarSection.viewFullDetails")}</Button>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@
   "back": "Back",
   "about_us": "About Us",
   "read_more": "Read More",
+  "whatsapp": "WhatsApp",
+  "phone": "Phone",
 
   "ServiceCard": {
     "serviceDetails": "Service Details",
@@ -14,6 +16,7 @@
     "portfolios": "Best Projects",
     "pages": "Terms and Conditions",
     "description": "footer_description",
+    "logoAlt": "Logo",
     "social": {
       "Facebook": "Facebook",
       "LinkedIn": "LinkedIn",
@@ -65,6 +68,7 @@
   },
 
   "Header": {
+    "logoAlt": "Logo",
     "home": "Home",
     "about": "About Us",
     "services": "Services",
@@ -157,5 +161,184 @@
     "title": "404",
     "subtitle": "Page Not Found",
     "goHome": "Go Home"
+  },
+
+  "AiTools": {
+    "heroTitle": "AI Tools",
+    "heroDescription": "Discover a comprehensive collection of the best AI tools with expert reviews and detailed comparisons to help you choose the right tool."
+  },
+
+  "AiToolsCards": {
+    "noTools": "No tools found",
+    "viewDetails": "View Details",
+    "loading": "Loading...",
+    "showMore": "Show more ({{remaining}} tool(s) remaining)"
+  },
+
+  "FiltersSections": {
+    "searchPlaceholder": "Search tools (name, description)...",
+    "showingCount": "Showing {{current}} of {{total}} tools",
+    "selectCategory": "Select category",
+    "allCategories": "All categories ({{total}})"
+  },
+
+  "AiToolsCategories": {
+    "heroTitle": "AI Tools Categories",
+    "heroDescription": "Explore AI tools categorized by specialty and use case. Find the right tool for your field or interest easily.",
+    "step1Title": "Define Your Goal",
+    "step1Description": "Think about the type of task you want to accomplish first.",
+    "step2Title": "Explore the Category",
+    "step2Description": "Browse the tools available in the appropriate category for your work.",
+    "step3Title": "Compare Tools",
+    "step3Description": "Compare different tools in the same category to identify differences.",
+    "step4Title": "Try the Tool",
+    "step4Description": "Start using the tool that fits your needs and technical background.",
+    "toolCount": "{{count}} tool(s)",
+    "browseCategory": "Browse Category",
+    "guidelinesTitle": "How to Choose the Right Category?"
+  },
+
+  "CompareSection": {
+    "selectToolsTitle": "Select Tools to Compare",
+    "selectToolsDescription": "Select other tools to compare with {{name}} and make an informed decision based on features, pricing, and ratings.",
+    "hideTools": "Hide comparison tools",
+    "showTools": "Show comparison tools",
+    "clearAll": "Clear all tools",
+    "selectedTools": "Selected tools ({{count}}/3):",
+    "noToolsSelected": "No tools selected yet...",
+    "searchPlaceholder": "Search for a tool to add to comparison...",
+    "selectCategory": "Select category",
+    "allCategories": "All categories",
+    "loadingTools": "Loading tools...",
+    "noMatchingTools": "No tools match your search options.",
+    "pricing": "Pricing:",
+    "remove": "Remove",
+    "add": "Add",
+    "comparisonTableTitle": "Tools Comparison Table",
+    "comparisonTableDesc": "Detailed comparison between the current tool and the tools you selected.",
+    "criteria": "Criteria",
+    "currentTool": "Current Tool",
+    "rating": "Rating",
+    "pricingLabel": "Pricing",
+    "category": "Category",
+    "description": "Description",
+    "features": "Features",
+    "unspecified": "Not specified",
+    "actions": "Actions",
+    "currentPage": "Current Page",
+    "viewDetails": "View Details",
+    "tipsTitle": "Smart selection tips:",
+    "usefulLinks": "Useful links:",
+    "browseByCategory": "Browse tools by category",
+    "viewAllTools": "View all tools",
+    "free": "Free",
+    "partiallyFree": "Partially Free",
+    "paid": "Paid",
+    "unspecifiedPricing": "Unspecified"
+  },
+
+  "CompareSteps": {
+    "title": "Comparison Guide",
+    "basicSteps": "Basic Steps",
+    "smartTips": "Smart Tips & Guidance"
+  },
+
+  "FeatureCards": {
+    "title": "Key Features"
+  },
+
+  "HeadSection": {
+    "reviews": "{{count}} review(s)",
+    "addedOn": "Added on:"
+  },
+
+  "LinksSections": {
+    "title": "Similar Tools You Might Like",
+    "browseCategories": "Browse Categories",
+    "browseCategoriesDesc": "Explore tools by specialty",
+    "allTools": "All Tools",
+    "allToolsDesc": "Browse the complete collection of tools"
+  },
+
+  "LongDescription": {
+    "title": "Comprehensive Overview"
+  },
+
+  "ReviewSection": {
+    "title": "Detailed Review",
+    "pros": "Pros",
+    "cons": "Cons & Challenges"
+  },
+
+  "SidebarSection": {
+    "quickInfo": "Quick Info",
+    "category": "Category:",
+    "pricingType": "Pricing Type:",
+    "rating": "Rating:",
+    "reviewsCount": "Reviews:",
+    "reviewsCountValue": "{{count}} reviews",
+    "addedDate": "Added date:",
+    "visitWebsite": "Visit Official Website",
+    "viewFullDetails": "View Full Details"
+  },
+
+  "SimilarToolsSection": {
+    "title": "Similar Tools You Might Like",
+    "explore": "Explore Tool"
+  },
+
+  "PreviousWorkFilter": {
+    "all": "All"
+  },
+
+  "LanguageSwitcher": {
+    "arShort": "AR",
+    "enShort": "EN",
+    "arFull": "Arabic",
+    "enFull": "English"
+  },
+
+  "ScrollToTopBtn": {
+    "ariaLabel": "Scroll to top"
+  },
+
+  "MainPagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "goToPage": "Go to page {{page}}"
+  },
+
+  "VideoBanner": {
+    "playLabel": "Play video",
+    "closeLabel": "Stop and close video"
+  },
+
+  "EmptyDataSection": {
+    "defaultMsg": "No data found"
+  },
+
+  "PreviousWorkSection": {
+    "viewAll": "View all works"
+  },
+
+  "ServicesSection": {
+    "viewAll": "View all services"
+  },
+
+  "TestimonialsSection": {
+    "defaultTitle": "Client testimonials"
+  },
+
+  "WhyChooseUsBanner": {
+    "defaultTitle": "Why choose Techno Web Masr",
+    "defaultDescription": "We at Techno Web Masr design and develop smart platforms and applications that help companies grow and excel in their field through their application or website."
+  },
+
+  "Dialog": {
+    "close": "Close"
+  },
+
+  "Sheet": {
+    "close": "Close"
   }
 }
