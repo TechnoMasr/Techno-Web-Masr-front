@@ -3,7 +3,7 @@ import WhyChooseAiTools from "./section/WhyChooseAiTools";
 import AiToolsCards from "./section/AiToolsCards";
 import { useQuery } from "@tanstack/react-query";
 import { getAITools, getAIToolsHome } from "@/api/AIToolsServices";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import SeoManager from "@/utils/SeoManager";
@@ -12,16 +12,16 @@ const AiTools = () => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // قراءة القيم مباشرة من الـ URL مع وضع قيم افتراضية
   const search = searchParams.get("search") || "";
   const category = searchParams.get("category") || "all";
 
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [offset, setOffset] = useState(0);
-  const [allTools, setAllTools] = useState([]);
+  const [accumulatedTools, setAccumulatedTools] = useState([]);
   const [paginationMeta, setPaginationMeta] = useState({});
 
-  // دالة لتحديث الـ URL عند تغيير السيرش أو الفئة
+  const prevFilterRef = useRef({ search: debouncedSearch, category });
+
   const setSearch = (value) => {
     setSearchParams((prev) => {
       if (value) prev.set("search", value);
@@ -38,21 +38,26 @@ const AiTools = () => {
     });
   };
 
-  // عمل Debounce للبحث القادم من الـ URL
+  // Debounce للسيرش
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setOffset(0);
-      setAllTools([]);
     }, 400);
     return () => clearTimeout(handler);
   }, [search]);
 
-  // عمل reset فقط عند تغيير الـ category في الـ URL
+  // Reset بس لو الفلتر اتغير فعلاً
   useEffect(() => {
-    setOffset(0);
-    setAllTools([]);
-  }, [category]);
+    const prev = prevFilterRef.current;
+    const filterChanged =
+      prev.search !== debouncedSearch || prev.category !== category;
+
+    if (filterChanged) {
+      setOffset(0);
+      setAccumulatedTools([]);
+      prevFilterRef.current = { search: debouncedSearch, category };
+    }
+  }, [debouncedSearch, category]);
 
   const {
     data: aiToolsData,
@@ -62,6 +67,7 @@ const AiTools = () => {
     queryKey: ["AiTools", { category, search: debouncedSearch, offset }],
     queryFn: getAITools,
     keepPreviousData: true,
+    staleTime: 1000 * 60 * 5,
   });
 
   useEffect(() => {
@@ -69,14 +75,16 @@ const AiTools = () => {
 
     const newTools = aiToolsData?.ai_tools || [];
 
-    setAllTools((prev) => (offset === 0 ? newTools : [...prev, ...newTools]));
+    setAccumulatedTools((prev) =>
+      offset === 0 ? newTools : [...prev, ...newTools],
+    );
     setPaginationMeta({
       hasMore: aiToolsData?.has_more,
       nextOffset: aiToolsData?.next_offset,
       remaining: aiToolsData?.remaining,
       total: aiToolsData?.total,
     });
-  }, [aiToolsData, offset]); // إضافة offset كـ dependency لضمان دقة الكود
+  }, [aiToolsData]);
 
   const handleLoadMore = () => {
     setOffset(paginationMeta.nextOffset);
@@ -108,7 +116,7 @@ const AiTools = () => {
 
         <div className="container pagePadding space-y-8 lg:space-y-16">
           <AiToolsCards
-            ai_tools={allTools}
+            ai_tools={accumulatedTools}
             totalCount={paginationMeta.total || 0}
             isLoading={isLoading}
             isFetching={isFetching}
