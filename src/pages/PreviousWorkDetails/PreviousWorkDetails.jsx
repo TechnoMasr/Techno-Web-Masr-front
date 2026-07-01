@@ -11,6 +11,7 @@ import SeoManager from "@/utils/SeoManager";
 import PreviousWorkInfo from "@/components/sections/PreviousWorkInfo";
 import PageBanner from "@/components/sections/PageBanner";
 import NotFound from "../NotFound/NotFound";
+import BlogsSection from "@/components/sections/BlogsSection";
 
 const PreviousWorkDetails = () => {
   const { slug } = useParams();
@@ -40,6 +41,7 @@ const PreviousWorkDetails = () => {
   }
 
   const seo = portfolioDetailsData?.seo;
+  const blogs = portfolioDetailsData?.blogs || [];
 
   return (
     <>
@@ -61,6 +63,8 @@ const PreviousWorkDetails = () => {
             serviceTitle={portfolioDetailsData?.portfolio?.name}
           />
         )}
+
+        {blogs.length > 0 && <BlogsSection blogs={blogs} />}
       </main>
     </>
   );

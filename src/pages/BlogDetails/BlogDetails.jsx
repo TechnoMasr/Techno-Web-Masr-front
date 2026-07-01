@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { useState } from "react";
 import { RxCopy } from "react-icons/rx";
 import { IoMdDoneAll } from "react-icons/io";
-import { FaLinkedinIn, FaFacebookF, FaXTwitter } from "react-icons/fa6"; // استيراد الأيقونات الجديدة
+import { FaLinkedinIn, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 
 import { getBlogDetails } from "@/api/pagesServices";
 import { useQuery } from "@tanstack/react-query";
@@ -37,11 +37,12 @@ const BlogDetails = () => {
   return (
     <>
       <SeoManager
-        title={seo?.meta_title}
-        description={seo?.meta_description}
+        title={seo?.meta_title || blog?.title}
+        description={seo?.meta_description || blog?.description}
         keywords={seo?.keywords}
         canonical={seo?.canonical_url}
         ogImage={seo?.og_image_url}
+        schemaMarkup={blog?.schema_markup}
       />
 
       <Header alwaysScrolled />

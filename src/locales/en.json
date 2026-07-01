@@ -341,5 +341,9 @@
 
   "Sheet": {
     "close": "Close"
+  },
+
+  "BlogsSection": {
+    "title": "Our Blogs"
   }
 }

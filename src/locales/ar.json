@@ -341,5 +341,9 @@
 
   "Sheet": {
     "close": "إغلاق"
+  },
+
+  "BlogsSection": {
+    "title": "مدوناتنا"
   }
 }

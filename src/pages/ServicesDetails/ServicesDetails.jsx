@@ -7,6 +7,7 @@ import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
 import Header from "@/components/layout/Header/Header";
 import NotFound from "../NotFound/NotFound";
+import BlogsSection from "@/components/sections/BlogsSection";
 
 const ServicesDetails = () => {
   const { slug } = useParams();
@@ -38,15 +39,17 @@ const ServicesDetails = () => {
   }
 
   const seo = serviceDetailsData?.seo;
+  const blogs = serviceDetailsData?.blogs || [];
 
   return (
     <>
       <SeoManager
-        title={seo?.meta_title}
-        description={seo?.meta_description}
+        title={seo?.meta_title || serviceDetailsData?.service?.title}
+        description={seo?.meta_description || serviceDetailsData?.service?.description}
         keywords={seo?.keywords}
         canonical={seo?.canonical_url}
         ogImage={seo?.og_image_url}
+        schemaMarkup={serviceDetailsData?.service?.schema_markup}
       />
 
       <main>
@@ -57,6 +60,8 @@ const ServicesDetails = () => {
           serviceId={serviceDetailsData?.service?.id}
           serviceTitle={serviceDetailsData?.service?.title}
         />
+
+        {blogs.length > 0 && <BlogsSection blogs={blogs} />}
       </main>
     </>
   );

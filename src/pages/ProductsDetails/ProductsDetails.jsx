@@ -6,6 +6,7 @@ import BlocksRenderSkeleton from "@/components/skeletons/BlocksRenderSkeleton";
 import SeoManager from "@/utils/SeoManager";
 import Header from "@/components/layout/Header/Header";
 import NotFound from "../NotFound/NotFound";
+import BlogsSection from "@/components/sections/BlogsSection";
 
 const ProductsDetails = () => {
   const { slug } = useParams();
@@ -28,17 +29,18 @@ const ProductsDetails = () => {
 
   const product = productDetailsData?.product;
   const blocks = product?.blocks ?? [];
+  const blogs = productDetailsData?.blogs || [];
   const seo = productDetailsData?.seo;
-
 
   return (
     <>
       <SeoManager
-        title={seo?.meta_title}
-        description={seo?.meta_description}
+        title={seo?.meta_title || product?.name}
+        description={seo?.meta_description || product?.description}
         keywords={seo?.keywords}
         canonical={seo?.canonical_url}
         ogImage={seo?.og_image_url}
+        schemaMarkup={product?.schema_markup}
       />
 
       <main>
@@ -48,6 +50,8 @@ const ProductsDetails = () => {
           serviceId={product?.id}
           serviceTitle={product?.name}
         />
+
+        {blogs.length > 0 && <BlogsSection blogs={blogs} />}
       </main>
     </>
   );
